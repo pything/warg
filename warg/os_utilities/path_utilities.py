@@ -30,19 +30,20 @@ def system_open_path(path: Path, *, verbose: bool = False) -> None:
     """
     if has_x_server():
         if verbose:
-            print(f"Opening the directory ({path}) using the systems default file manager")
-
-        directory = str(path)
+            print(f"Opening ({path}) using the systems default handler")
 
         if is_windows():
-            subprocess.Popen(["start", directory], shell=True)
+            if path.is_dir():
+                subprocess.Popen(["start", path], shell=True)
+            else:
+                os.startfile(path, "open")
 
         elif is_mac():
-            subprocess.Popen(["open", directory])
+            subprocess.Popen(["open", path])
 
         else:
             # try:
-            subprocess.Popen(["xdg-open", directory])
+            subprocess.Popen(["xdg-open", path])
             # except OSError:
     else:
         print("Target display not set")
@@ -99,3 +100,6 @@ if __name__ == "__main__":
     print(exist_any_extension(Path.cwd() / "__init__"))
     print(exist_any_extension(Path.cwd() / "__init__.test"))
     print(exist_any_extension(Path.cwd() / "__init___.py"))
+
+    system_open_path(Path("__init__.py"))
+    # system_open_path(Path(__file__).parent)

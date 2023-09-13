@@ -33,7 +33,7 @@ def recursive_flatten(sequence: Iterable) -> Iterable:
     [None, 2, 2, 2]
     """
     for element in sequence:
-        if isinstance(element, Iterable):
+        if isinstance(element, Iterable) and not isinstance(element, str):
             yield from recursive_flatten(element)
         else:
             yield element
@@ -41,6 +41,7 @@ def recursive_flatten(sequence: Iterable) -> Iterable:
 
 if __name__ == "__main__":
     print(list(recursive_flatten((((2,), 2), (2,), 2))))
+    print(list(recursive_flatten(((("2",), 2), (2,), 2))))
     print(list(recursive_flatten((([[None]], 2), (2,), 2))))
 
     print(list(recursive_flatten((([[None]], 2), (2,), 2))))

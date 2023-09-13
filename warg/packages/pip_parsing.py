@@ -52,9 +52,9 @@ try:
             file_path = str(file_path)
         return [get_reqed(ir) for ir in parse_requirements(file_path, session=session)]
 
-except:
+except (ModuleNotFoundError, ImportError) as e:
+    print(e)
     get_requirements_from_file = sink
-    ...
     # print('You version of python is to old!')
 
 if __name__ == "__main__":
