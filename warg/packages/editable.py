@@ -3,7 +3,7 @@ import json
 # noinspection PyProtectedMember
 try:
     from importlib.metadata import Distribution, PackageNotFoundError, PathDistribution
-except:
+except (ModuleNotFoundError, ImportError) as e:
     from importlib_metadata import Distribution, PackageNotFoundError, PathDistribution
 
 __all__ = [
