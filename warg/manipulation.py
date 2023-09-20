@@ -23,7 +23,7 @@ def recursive_flatten_seq(seq: Sequence) -> Sequence:
 
 def recursive_flatten(sequence: Iterable) -> Iterable:
     """
-    Depth first flatten iterable
+    Depth first flattens iterable
 
     >>> list(recursive_flatten([1, [2], 3]))
     [1, 2, 3]

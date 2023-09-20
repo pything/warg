@@ -15,7 +15,7 @@ import functools
 import time
 import typing
 from functools import wraps
-from typing import Sequence, MutableMapping, Any, Any
+from typing import Sequence, MutableMapping, Any
 
 
 def timeit(f: typing.Callable) -> typing.Callable:

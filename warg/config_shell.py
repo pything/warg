@@ -24,13 +24,13 @@ class PlaybackShell(cmd.Cmd):
 
     # ----- record and playback -----
     def do_record(self, file: Path) -> None:
-        """Save future commands to filename:  RECORD file.cmd"""
+        """Save future commands to filename: RECORD file.cmd"""
         if not file:
             file = self.default_file_path
         self.file = open(file, "w")
 
     def do_playback(self, file: Path) -> None:
-        """Playback commands from a file:  PLAYBACK file.cmd"""
+        """Playback commands from a file: PLAYBACK file.cmd"""
         self.close()
         if not file:
             file = self.default_file_path
@@ -154,7 +154,7 @@ class ConfigShell(PlaybackShell):
 
 if __name__ == "__main__":
 
-    def ujsd():
+    def main():
         """
 
         :return:
@@ -243,4 +243,4 @@ if __name__ == "__main__":
 
         cs.cmdloop()
 
-    ujsd()
+    main()

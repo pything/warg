@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from importlib import resources
-from importlib.metadata import Distribution, PackageNotFoundError
+from importlib.metadata import PackageNotFoundError
 from warnings import warn
 
 __project__ = "Warg"
@@ -25,7 +25,8 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 # with open(Path(__file__).parent.parent / "README.md", "r") as this_init_file:
 #    __doc__ += this_init_file.read()
 
-# __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"] # let everything be accessable from base warg import
+# __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"] # let everything be accessible
+# from base warg import
 
 
 from typing import Any

@@ -11,7 +11,7 @@ __all__ = ["ContextWrapper", "NopContext"]
 
 import contextlib
 import inspect
-from typing import Callable, Sequence, Mapping, Optional
+from typing import Callable, Sequence, Mapping, Optional, ContextManager
 
 
 class NopContext(contextlib.AbstractContextManager):
@@ -24,13 +24,13 @@ class NopContext(contextlib.AbstractContextManager):
 
 class ContextWrapper(contextlib.AbstractContextManager):
     """
-    Allows for conditional application of contexts, if uninstantiated context manager classes are passed no arguments is supplied in construction.
-    if disabled None is returned
-    if enabled return of context manager is propagated"""
+    Allows for conditional application of contexts, if uninstantiated context manager classes are passed no arguments
+    is supplied in construction.
+    if disabled, None is returned if enabled return of context manager is propagated"""
 
     def __init__(
         self,
-        context_manager: Callable,
+        context_manager: ContextManager,
         enabled: bool,
         construction_args: Sequence = (),
         construction_kwargs: Optional[Mapping] = None,
@@ -61,7 +61,7 @@ class ContextWrapper(contextlib.AbstractContextManager):
 
 if __name__ == "__main__":
 
-    class SampleContextManager:
+    class SampleContextManager(contextlib.AbstractContextManager):
         """description"""
 
         def __init__(self, message="Hello World"):
@@ -77,11 +77,11 @@ if __name__ == "__main__":
         """
         :rtype: None
         """
-        with ContextWrapper(SampleContextManager(), True):
+        with ContextWrapper(SampleContextManager, True):
             print("with enabled")
 
         print()
-        with ContextWrapper(SampleContextManager(), False):
+        with ContextWrapper(SampleContextManager, False):
             print("with disabled")
 
         print()

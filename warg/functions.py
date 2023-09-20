@@ -25,6 +25,7 @@ __all__ = [
     "last_key",
     "to_list",
     "to_tuple",
+    "recurse_replace_empty",
 ]
 
 import operator
@@ -42,9 +43,26 @@ from typing import (
     Tuple,
     List,
     Union,
+    Optional,
 )
 
 from warg import Number, drop_unused_kws
+
+
+def recurse_replace_empty(iterable: Iterable) -> Optional[Iterable]:
+    if isinstance(iterable, str) or not isinstance(iterable, Iterable):
+        return iterable
+
+    if iterable:
+        if isinstance(iterable, Mapping):
+            return {k: recurse_replace_empty(v) for k, v in iterable.items()}
+
+        # noinspection PyArgumentList
+        return type(iterable)(
+            recurse_replace_empty(i) for i in iterable
+        )  # contstruct type of iterable with replaced empties
+
+    return None
 
 
 def list_keys(d: Dict) -> List[Any]:
