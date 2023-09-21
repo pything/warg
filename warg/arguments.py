@@ -29,7 +29,7 @@ class UpperAttrMetaclass(type):
     """
     Upper case all attributes if not __private"""
 
-    def __new__(mcs, clsname, bases, dct: dict):
+    def __new__(mcs, cls_name, bases, dct: dict):
         uppercase_attr = {}
         for name, val in dct.items():
             if not name.startswith("__"):
@@ -37,7 +37,7 @@ class UpperAttrMetaclass(type):
             else:
                 uppercase_attr[name] = val
 
-        return super(UpperAttrMetaclass, mcs).__new__(mcs, clsname, bases, uppercase_attr)
+        return super(UpperAttrMetaclass, mcs).__new__(mcs, cls_name, bases, uppercase_attr)
 
 
 class ConfigObject(object):
@@ -47,20 +47,20 @@ class ConfigObject(object):
     pass
 
 
-def to_lower_properties(C_dict: Mapping) -> ConfigObject:
+def to_lower_properties(mapping: Mapping) -> ConfigObject:
     """
 
-    :param C_dict:
-    :type C_dict:
+    :param mapping:
+    :type mapping:
     :return:
     :rtype:ConfigObject
     """
-    if not isinstance(C_dict, dict):
-        C_dict = config_to_mapping(C_dict)
+    if not isinstance(mapping, dict):
+        mapping = config_to_mapping(mapping)
 
     a = ConfigObject()
 
-    for k, v in C_dict.items():
+    for k, v in mapping.items():
         assert isinstance(k, str)
         lowered = k.lower()
         if isinstance(v, (PosixPath, Path)):
@@ -127,19 +127,19 @@ def get_upper_case_vars_or_protected_of(module: object, lower_keys: bool = True)
     return {}
 
 
-def config_to_mapping(C: object, only_upper_case: bool = True) -> NOD:
+def config_to_mapping(config_object: object, only_upper_case: bool = True) -> NOD:
     """
 
-    :param C:
-    :type C:
+    :param config_object:
+    :type config_object:
     :param only_upper_case:
     :type only_upper_case:
     :return:
     :rtype:"""
     if only_upper_case:
-        return NOD(get_upper_case_vars_or_protected_of(C))
+        return NOD(get_upper_case_vars_or_protected_of(config_object))
     else:
-        return NOD(vars(C))
+        return NOD(vars(config_object))
 
 
 def add_bool_arg(
@@ -226,14 +226,14 @@ def check_for_duplicates_in_args(**kwargs) -> None:
             warn(f"Config contains hiding duplicates of {key} and {k_lowered}, {occur} times")
 
 
-def str_to_bool(s: str, truthies: Tuple[str, ...] = ("true", "1")) -> bool:
+def str_to_bool(s: str, truthy_values: Tuple[str, ...] = ("true", "1")) -> bool:
     """
 
 
-    :param truthies:
+    :param truthy_values:
     :param s:
     :return:"""
-    return s.lower() in truthies
+    return s.lower() in truthy_values
 
 
 str2bool = str_to_bool

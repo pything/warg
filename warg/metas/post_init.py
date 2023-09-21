@@ -9,7 +9,7 @@ __doc__ = r"""
 
 __all__ = ["PostInit"]
 
-from typing import Sequence, MutableMapping, Any, Any
+from typing import Sequence, MutableMapping, Any
 
 
 class PostInit(type):

@@ -6,7 +6,7 @@ __doc__ = r"""
 
            Created on 09-02-2021
            """
-__all__ = ["IgnoreInterruptSignal", "LambdaContext"]
+__all__ = ["IgnoreInterruptSignal", "LambdaContext", "Suppress"]
 
 import contextlib
 import signal
@@ -44,3 +44,10 @@ class IgnoreInterruptSignal(contextlib.AbstractContextManager, AlsoDecorator):
 
     def __exit__(self, exc_type, exc_val, exc_tb) -> None:
         signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+
+class Suppress(contextlib.suppress, contextlib.ContextDecorator):
+    """
+    A version of contextlib.suppress with decorator support.
+
+    """

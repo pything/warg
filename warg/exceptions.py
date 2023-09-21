@@ -10,9 +10,7 @@ __doc__ = r"""
 __all__ = ["NoData", "IncompatiblePackageVersions"]
 
 import types
-import typing
-from importlib.resources import Package
-from typing import Iterable, MutableMapping, Union
+from typing import Iterable, Union
 
 
 class NoData(Exception):

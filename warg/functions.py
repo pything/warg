@@ -25,12 +25,15 @@ __all__ = [
     "last_key",
     "to_list",
     "to_tuple",
+    "recurse_replace_empty",
+    "text_in_file",
 ]
 
 import operator
 from collections import defaultdict
 from copy import deepcopy
 from functools import reduce
+from pathlib import Path
 from typing import (
     Any,
     Callable,
@@ -42,9 +45,28 @@ from typing import (
     Tuple,
     List,
     Union,
+    Optional,
 )
 
-from warg import Number, drop_unused_kws
+from warg.contexts import Suppress
+from warg.typing_extension import Number
+from warg.decorators import drop_unused_kws
+
+
+def recurse_replace_empty(iterable: Iterable) -> Optional[Iterable]:
+    if isinstance(iterable, str) or not isinstance(iterable, Iterable):
+        return iterable
+
+    if iterable:
+        if isinstance(iterable, Mapping):
+            return {k: recurse_replace_empty(v) for k, v in iterable.items()}
+
+        # noinspection PyArgumentList
+        return type(iterable)(
+            recurse_replace_empty(i) for i in iterable
+        )  # contstruct type of iterable with replaced empties
+
+    return None
 
 
 def list_keys(d: Dict) -> List[Any]:
@@ -273,6 +295,13 @@ def to_tuple(x: Union[Iterable, Any]) -> Union[Tuple, Any]:
     except StopIteration:
         return ()
     return (to_tuple(val), *to_tuple(i))
+
+
+@Suppress(FileNotFoundError)
+def text_in_file(text: str, filename: Path) -> bool:
+    if filename.exists():
+        return any(text in line for line in filename.open())
+    return False
 
 
 if __name__ == "__main__":

@@ -5,3 +5,4 @@ apppath
 warg
 
 #mistune==0.8.4
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability

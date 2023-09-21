@@ -40,7 +40,7 @@ def busy_indicator(
 
 if __name__ == "__main__":
 
-    def iasd() -> None:
+    def main() -> None:
         """description"""
         import time
 
@@ -49,4 +49,4 @@ if __name__ == "__main__":
             if i > 100:
                 break
 
-    iasd()
+    main()

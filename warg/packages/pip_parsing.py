@@ -1,8 +1,8 @@
 from pathlib import Path
-from typing import List, Union
-
+from typing import Union
 from urllib.parse import urlparse
-from warg.functions import identity, sink
+
+from warg.functions import sink
 
 __all__ = ["get_requirements_from_file"]
 
