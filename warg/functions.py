@@ -26,12 +26,14 @@ __all__ = [
     "to_list",
     "to_tuple",
     "recurse_replace_empty",
+    "text_in_file",
 ]
 
 import operator
 from collections import defaultdict
 from copy import deepcopy
 from functools import reduce
+from pathlib import Path
 from typing import (
     Any,
     Callable,
@@ -46,7 +48,9 @@ from typing import (
     Optional,
 )
 
-from warg import Number, drop_unused_kws
+from warg.contexts import Suppress
+from warg.typing_extension import Number
+from warg.decorators import drop_unused_kws
 
 
 def recurse_replace_empty(iterable: Iterable) -> Optional[Iterable]:
@@ -291,6 +295,13 @@ def to_tuple(x: Union[Iterable, Any]) -> Union[Tuple, Any]:
     except StopIteration:
         return ()
     return (to_tuple(val), *to_tuple(i))
+
+
+@Suppress(FileNotFoundError)
+def text_in_file(text: str, filename: Path) -> bool:
+    if filename.exists():
+        return any(text in line for line in filename.open())
+    return False
 
 
 if __name__ == "__main__":

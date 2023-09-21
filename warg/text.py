@@ -25,14 +25,15 @@ def to_british_english(text: str, rules: Mapping = default_rules) -> str:
     """
 
     :param text:
-    :type text:
+    :type text: str
     :param rules:
-    :type rules:
-    :return:
-    :rtype:
+    :type rules: Mapping
+    :return: text
+    :rtype: str
     """
     for r in rules.items():
         text = text.replace(*r)
+
     return text
 
 
@@ -42,8 +43,10 @@ def deamericanise(text: str) -> str:
 
     convert to 'British English'
 
-    :return:
-    :rtype:
+    :param text: some text
+    :type text: str
+    :return: deamericanised text
+    :rtype: str
     """
     return to_british_english(text)
 

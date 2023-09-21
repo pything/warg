@@ -7,7 +7,7 @@ from warnings import warn
 __project__ = "Warg"
 
 __author__ = "Christian Heider Nielsen"
-__version__ = "1.2.7"
+__version__ = "1.2.8"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -16,7 +16,7 @@ Created on 27/04/2019
 """
 
 from pathlib import Path
-
+from typing import Any
 
 with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
@@ -28,8 +28,6 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 # __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"] # let everything be accessible
 # from base warg import
 
-
-from typing import Any
 
 try:
     # from .ode import * # Silly thing
