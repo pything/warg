@@ -16,3 +16,4 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 from .pip_parsing import *
 from .reloading import *
 from .editable import *
+from .versioning import *

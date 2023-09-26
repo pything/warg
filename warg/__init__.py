@@ -7,8 +7,6 @@ except:
     from importlib_metadata import PackageNotFoundError
     from importlib_resources import files
 
-from warnings import warn
-
 __project__ = "Warg"
 
 __author__ = "Christian Heider Nielsen"
@@ -21,7 +19,6 @@ Created on 27/04/2019
 """
 
 from pathlib import Path
-from typing import Any
 
 with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
@@ -32,7 +29,6 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 
 # __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"] # let everything be accessible
 # from base warg import
-
 
 try:
     # from .ode import * # Silly thing
@@ -92,55 +88,8 @@ try:
 except PackageNotFoundError as e:
     DEVELOP = True
 
-
-def get_version(append_time: Any = DEVELOP) -> str:
-    """
-
-    :param append_time:
-    :return:
-    """
-    import datetime
-    import os
-
-    version = __version__
-    if not version:
-        version = os.getenv("VERSION", "0.0.0")
-
-    if append_time:
-        now = datetime.datetime.utcnow()
-        date_version = now.strftime("%Y%m%d%H%M%S")
-        # date_version = time.time()
-
-        if version:
-            # Most git tags are prefixed with 'v' (example: v1.2.3) this is
-            # never desirable for artefact repositories, so we strip the
-            # leading 'v' if it's present.
-            version = version[1:] if isinstance(version, str) and version.startswith("v") else version
-        else:
-            # The Default version is an ISO8601 compliant datetime. PyPI doesn't allow
-            # the colon ':' character in its versions, and time is required to allow
-            # for multiple publications to master in one day. This datetime string
-            # uses the 'basic' ISO8601 format for both its date and time components
-            # to avoid issues with the colon character (ISO requires that date and
-            # time components of a date-time string must be uniformly basic or
-            # extended, which is why the date component does not have dashes.)
-            #
-            # Publications using datetime versions should only be made from master
-            # to represent the HEAD moving forward.
-            warn(f"Environment variable VERSION is not set, only using datetime: {date_version}")
-
-            # warn(f'Environment variable VERSION is not set, only using timestamp: {version}')
-
-        version = f"{version}.{date_version}"
-
-    return version
-
-
-if __version__ is None:
-    __version__ = get_version(append_time=True)
-
+__version__ = get_version(__version__, append_time=DEVELOP)
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
-
 
 if __name__ == "__main__":
     print(__version__)
