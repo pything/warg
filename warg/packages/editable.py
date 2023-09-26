@@ -1,6 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import json
 
-# noinspection PyProtectedMember
 try:
     from importlib.metadata import Distribution, PackageNotFoundError, PathDistribution
 except (ModuleNotFoundError, ImportError) as e:

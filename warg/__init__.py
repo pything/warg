@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from importlib import resources
-from importlib.metadata import PackageNotFoundError
+try:
+    from importlib.resources import files
+    from importlib.metadata import PackageNotFoundError
+except:
+    from importlib_metadata import PackageNotFoundError
+    from importlib_resources import files
+
 from warnings import warn
 
 __project__ = "Warg"
 
 __author__ = "Christian Heider Nielsen"
-__version__ = "1.2.8"
+__version__ = "1.2.9"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -54,7 +59,6 @@ try:
     from .exceptions import *
     from .manipulation import *
     from .replication import *
-    from .styling import *
     from .strings import *
     from .contexts import *
     from .config_shell import *
@@ -70,18 +74,18 @@ except ImportError as ix:
         )  # TODO: PARSE WHAT is missing and print
     raise ix
 
-PROJECT_NAME = __project__.lower().strip().replace(" ", "_")
+PROJECT_NAME = clean_string(__project__)
 PROJECT_VERSION = __version__
 PROJECT_YEAR = 2018
-PROJECT_AUTHOR = __author__.lower().strip().replace(" ", "_")
-PROJECT_ORGANISATION = "pything"
+PROJECT_AUTHOR = clean_string(__author__)
+PROJECT_ORGANISATION = clean_string("Pything")
 
 __url__ = f"https://github.com/{PROJECT_ORGANISATION}/{PROJECT_NAME}"
 
 # from apppath import AppPath # CAREFUL CIRCULAR DEPENDENCY WARNING!
 # PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR) # NOT USED!
 
-PACKAGE_DATA_PATH = resources.files(PROJECT_NAME) / "data"
+PACKAGE_DATA_PATH = files(PROJECT_NAME) / "data"
 
 try:
     DEVELOP = package_is_editable(PROJECT_NAME)

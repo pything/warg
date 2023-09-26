@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 09/10/2019
            """
 
-__all__ = ["indent_lines", "str_to_tuple"]
+__all__ = ["indent_lines", "str_to_tuple", "clean_string"]
 
 from typing import Any
 
@@ -42,6 +42,10 @@ def indent_lines(input_str: Any, indent_spaces_num: int = 2, ignore_single_lines
 def str_to_tuple(arg):
     """Convert a series of zero or more numbers to an argument tuple"""
     return tuple(map(int, arg.split()))
+
+
+def clean_string(s: str) -> str:
+    return s.lower().strip().replace(" ", "_")
 
 
 if __name__ == "__main__":
