@@ -57,6 +57,19 @@ def dist_is_editable(dist: Distribution) -> bool:
     return False
 
 
+'''
+
+def dist_is_editable(dist: Any) -> bool:
+    """
+    Return True if given Distribution is an editable installation."""
+    for path_item in sys.path:
+        egg_link = Path(path_item) / f"{dist.project_name}.egg-link"
+        if egg_link.is_file():
+            return True
+    return False
+'''
+
+
 def package_is_editable(package_name: str) -> bool:
     """
     Return True if given Package is an editable installation.

@@ -7,6 +7,7 @@ except:
     from importlib_metadata import PackageNotFoundError
     from importlib_resources import files
 
+
 __project__ = "Warg"
 
 __author__ = "Christian Heider Nielsen"
