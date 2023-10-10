@@ -10,8 +10,8 @@ except:
 
 __project__ = "Warg"
 
-__author__ = "Christian Heider Nielsen"
-__version__ = "1.2.9"
+__author__ = "Christian Heider Lindbjerg"
+__version__ = "1.3.0"
 __doc__ = r"""
 Created on 27/04/2019
 

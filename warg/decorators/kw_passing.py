@@ -7,7 +7,7 @@ from functools import wraps
 from logging import warning
 from typing import Dict, MutableMapping, Sequence, Tuple, Any, Callable
 
-__author__ = "Christian Heider Nielsen"
+__author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
           The concept "kw passing" implemented here lets one make a contract with the caller that all
           kwargs with be passed onwards to a receiver, this lets the caller inspect available kwargs of the

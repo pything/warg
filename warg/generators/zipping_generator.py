@@ -3,7 +3,7 @@
 from copy import deepcopy
 from typing import Any, Generator, Iterable, Iterator
 
-__author__ = "Christian Heider Nielsen"
+__author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
 
            Created on 28/10/2019

@@ -1,12 +1,13 @@
 __all__ = ["get_version"]
-
+from pathlib import Path
 import datetime
 from logging import warning
 
 
-def get_version(version: str, append_time: bool = False, verbose: bool = False) -> str:
+def get_version(version: str, append_time: bool = False, verbose: bool = False, context: Path = None) -> str:
     """
 
+    :param verbose:
     :param version:
     :param append_time:
     :return:
@@ -17,23 +18,56 @@ def get_version(version: str, append_time: bool = False, verbose: bool = False) 
 
     try:
         import subprocess
-        from pathlib import Path
+
+        if context is None:
+            import inspect
+            import os
+
+            caller_parent = Path(os.path.abspath((inspect.stack()[1])[1])).resolve().parent
+        else:
+            context = Path(context)
+            if context.is_file():
+                caller_parent = context.parent
+            else:
+                caller_parent = context
 
         git_version = (
             subprocess.check_output(
-                ["git", "describe", "--always", "--dirty"],
-                cwd=Path(__file__).resolve().parent,
+                [
+                    "git",
+                    "describe",
+                    "--always",
+                    # "--dirty",
+                    "origin/HEAD",
+                ],
+                cwd=caller_parent,
             )
             .strip()
             .decode()
         )
+        current_git_version = (
+            subprocess.check_output(
+                [
+                    "git",
+                    "describe",
+                    "--always",
+                    "--dirty",
+                ],
+                cwd=caller_parent,
+            )
+            .strip()
+            .decode()
+        )
+        if "dirty" in current_git_version:
+            warning(f"{caller_parent} git is dirty, {current_git_version}")
+
         if git_version.split("-")[0] != version:
-            msg = f"git version {git_version} does not match __version__" f" {version}"
+            msg = f"{caller_parent} git version {git_version} does not match __version__" f" {version}"
             warning(msg)
             assert git_version.split("-")[0] == version, msg
         else:
             if verbose:
-                msg = f"git version {git_version} matches __version__" f" {version}"
+                msg = f"{caller_parent} git version {git_version} matches __version__" f" {version}"
                 print(msg)
     except:
         if append_time:

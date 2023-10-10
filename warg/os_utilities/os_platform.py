@@ -3,7 +3,7 @@
 import os
 import sys
 
-__author__ = "Christian Heider Nielsen"
+__author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
           get os platform path_utilities 
 
