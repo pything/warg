@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from warg.metas.singleton import SingletonBase, SingletonMeta
 
-__author__ = "Christian Heider Nielsen"
+__author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
            """
 

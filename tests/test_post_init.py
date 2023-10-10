@@ -5,7 +5,7 @@ from typing import Sequence, MutableMapping, Any
 from warg import drop_unused_kws
 from warg.metas.post_init import PostInit
 
-__author__ = "Christian Heider Nielsen"
+__author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
            """
 

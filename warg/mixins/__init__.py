@@ -6,7 +6,7 @@ __doc__ = r"""
            Created on 17/02/2020
            """
 
-__author__ = "Christian Heider Nielsen"
+__author__ = "Christian Heider Lindbjerg"
 
 from pathlib import Path
 

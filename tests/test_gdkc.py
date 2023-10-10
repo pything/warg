@@ -6,7 +6,7 @@ import pytest
 
 from warg.gdkc import GeneralisedDelayedKwargConstruction
 
-__author__ = "Christian Heider Nielsen"
+__author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
             Much like the partial wrapper from functools, GeneralisedDelayedKwargConstruction provides a
             way of finishing constrution of class instance or call of function but lets you change the

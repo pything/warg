@@ -16,7 +16,7 @@ from typing import (
     Mapping,
 )
 
-__author__ = "Christian Heider Nielsen"
+__author__ = "Christian Heider Lindbjerg"
 
 __all__ = ["NamedOrderedDictionary", "NOD"]
 
