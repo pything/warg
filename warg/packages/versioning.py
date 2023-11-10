@@ -4,6 +4,10 @@ import datetime
 from logging import warning
 
 
+class NotGitException(Exception):
+    pass
+
+
 def get_version(version: str, append_time: bool = False, verbose: bool = False, context: Path = None) -> str:
     """
 
@@ -30,45 +34,47 @@ def get_version(version: str, append_time: bool = False, verbose: bool = False, 
                 caller_parent = context.parent
             else:
                 caller_parent = context
-
-        git_version = (
-            subprocess.check_output(
-                [
-                    "git",
-                    "describe",
-                    "--always",
-                    # "--dirty",
-                    "origin/HEAD",
-                ],
-                cwd=caller_parent,
+        if (caller_parent / ".git").exists() and (caller_parent / ".git").is_dir():
+            git_version = (
+                subprocess.check_output(
+                    [
+                        "git",
+                        "describe",
+                        "--always",
+                        # "--dirty",
+                        "origin/HEAD",
+                    ],
+                    cwd=caller_parent,
+                )
+                .strip()
+                .decode()
             )
-            .strip()
-            .decode()
-        )
-        current_git_version = (
-            subprocess.check_output(
-                [
-                    "git",
-                    "describe",
-                    "--always",
-                    "--dirty",
-                ],
-                cwd=caller_parent,
+            current_git_version = (
+                subprocess.check_output(
+                    [
+                        "git",
+                        "describe",
+                        "--always",
+                        "--dirty",
+                    ],
+                    cwd=caller_parent,
+                )
+                .strip()
+                .decode()
             )
-            .strip()
-            .decode()
-        )
-        if "dirty" in current_git_version:
-            warning(f"{caller_parent} git is dirty, {current_git_version}")
+            if "dirty" in current_git_version:
+                warning(f"{caller_parent} git is dirty, {current_git_version}")
 
-        if git_version.split("-")[0] != version:
-            msg = f"{caller_parent} git version {git_version} does not match __version__" f" {version}"
-            warning(msg)
-            assert git_version.split("-")[0] == version, msg
+            if git_version.split("-")[0] != version:
+                msg = f"{caller_parent} git version {git_version} does not match __version__" f" {version}"
+                warning(msg)
+                assert git_version.split("-")[0] == version, msg
+            else:
+                if verbose:
+                    msg = f"{caller_parent} git version {git_version} matches __version__" f" {version}"
+                    print(msg)
         else:
-            if verbose:
-                msg = f"{caller_parent} git version {git_version} matches __version__" f" {version}"
-                print(msg)
+            raise NotGitException
     except:
         if append_time:
             now = datetime.datetime.utcnow()

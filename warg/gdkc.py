@@ -19,12 +19,19 @@ class GeneralisedDelayedKwargConstruction(object):
     [constructor, args, kwargs]
     """
 
-    def __init__(self, constructor: Callable, *args: Sequence, **kwargs: Any):
+    def __init__(self, constructor: Callable, *args: Any, **kwargs: Any):
         """
         [constructor, args, kwargs]
-        :param constructor:
-        :param args:
-        :param kwargs:"""
+
+
+
+        :type kwargs: Any
+        :type args: Any
+        :type constructor: Callable
+        :param constructor: The delayed callable, to be evaluated at __call__ or context __enter__
+        :param args: arguments to use for evaluation, If only one is provided and is of typing mapping, it is assumed to be kwargs directly
+        :param kwargs: arguments to use for evaluation
+        """
         self.constructor: Callable = constructor
         assert len(args) < 2, f"Does not support multiple args, only a single mapping type"
         if len(args) == 1:
@@ -42,19 +49,22 @@ class GeneralisedDelayedKwargConstruction(object):
         else:
             self.kwargs: MutableMapping = kwargs
 
-    def __enter__(self):
+    def __enter__(self) -> Any:
         self.instance = self.__call__()
         return self.instance.__enter__()
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, exc_type, exc_val, exc_tb) -> Any:
         return self.instance.__exit__(exc_type, exc_val, exc_tb)
 
     def __call__(self, *args, **kwargs) -> Any:
         """
 
+        Allows last minute override of kwargs
+
         :param args:
         :param kwargs:
-        :return:"""
+        :return:
+        """
 
         war = "".join(
             [

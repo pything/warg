@@ -5,7 +5,16 @@ import inspect
 import types
 from functools import wraps
 from logging import warning
-from typing import Dict, MutableMapping, Sequence, Tuple, Any, Callable
+from typing import (
+    Dict,
+    MutableMapping,
+    Sequence,
+    Tuple,
+    Any,
+    Callable,
+    Optional,
+    Iterable,
+)
 
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
@@ -104,7 +113,11 @@ def eval_sig_kw_params(
     return passing_sig, passing_params
 
 
-def passes_kws_to(*receiver_funcs: Callable, keep_from_var_kw: bool = False) -> Callable:
+def passes_kws_to(
+    *receiver_funcs: Callable,
+    keep_from_var_kw: bool = False,
+    no_pass_filter: Optional[Iterable] = None,
+) -> Callable:
     """
     A contract decorator, attaching this to a function you explicitly state that kws will be passed onward to
     a receiver function. No call graph checks if this actually enforces this yet. Also all receiver kwargs
@@ -121,6 +134,12 @@ def passes_kws_to(*receiver_funcs: Callable, keep_from_var_kw: bool = False) -> 
         passing_sig = inspect.signature(passing_func)
         for rf in receiver_funcs:
             passing_sig, new_params = eval_sig_kw_params(passing_sig, rf, keep_from_var_kw)
+            if no_pass_filter:  # DOES NOT ENFORCE NO PASS OF ARGUMENTS
+                for k in no_pass_filter:
+                    if k in new_params:
+                        new_params.pop(k)
+                    else:
+                        warning(f"{k} is not in signature of {rf}")
             passing_sig = passing_sig.replace(parameters=list(new_params.values()))
         passing_func.__signature__ = passing_sig
         return passing_func
@@ -152,6 +171,7 @@ def super_init_pass_on_kws(
         return func
 
     if f:
+        # noinspection PyTypeChecker
         return _func(f)
 
     return _func
@@ -220,6 +240,31 @@ def drop_args_and_kws(f: Callable) -> Callable:
     return wrapper
 
 
+def verify_kws_sig(f: Callable) -> Callable:
+    @wraps(f)
+    def wrapper(*args, **kwargs: MutableMapping):
+        """
+
+        :param args:
+        :type args:
+        :return:
+        :rtype:"""
+        from_sig = inspect.signature(f)
+
+        for k, v in from_sig.parameters.items():
+            # noinspection PyUnresolvedReferences
+            if v.kind == inspect._ParameterKind.VAR_KEYWORD:
+                return f(*args, **kwargs)
+
+        for k, v in kwargs.items():
+            if k not in from_sig.parameters.keys():
+                raise Exception(f"dropped {k} with value {v} from call of {f}")
+
+        return f(*args, **kwargs)
+
+    return wrapper
+
+
 WRAPPER_NO_ANNOTATION = tuple(
     set(functools.WRAPPER_ASSIGNMENTS)
     - {
@@ -264,8 +309,10 @@ def pack_args(
                 if verbose:
                     print(f"{pack_name} was extended, careful!")
                 a = kwargs.pop(pack_name, None)
+                # noinspection PyTypeChecker
                 new_kwargs[pack_name] = (*a, *args)
             else:
+                # noinspection PyTypeChecker
                 new_kwargs[pack_name] = args
         return f(*args, **new_kwargs)
 
@@ -352,8 +399,10 @@ def pack_args_and_kws(
                 if verbose:
                     print(f"{pack_name} was extended, careful!")
                 a, k = kwargs.pop(pack_name, None)
+                # noinspection PyTypeChecker
                 new_kwargs[pack_name] = ((*a, *args), {**k, **kwargs})
             else:
+                # noinspection PyTypeChecker
                 new_kwargs[pack_name] = (args, kwargs)
         return f(*args, **kwargs)
 
@@ -401,6 +450,7 @@ def drop_unused_kws(f: Callable) -> Callable:
         from_sig = inspect.signature(f)
 
         for k, v in from_sig.parameters.items():
+            # noinspection PyUnresolvedReferences
             if v.kind == inspect._ParameterKind.VAR_KEYWORD:
                 return f(*args, **kwargs)
 
@@ -408,6 +458,8 @@ def drop_unused_kws(f: Callable) -> Callable:
         for k, v in kwargs.items():
             if k in from_sig.parameters.keys():
                 kept[k] = v
+            else:
+                warning(f"dropped {k} with value {v} from call of {f}")
 
         return f(*args, **kept)
 
@@ -454,6 +506,18 @@ if __name__ == "__main__":
             """description"""
 
             @passes_kws_to(BaseClass.__init__)
+            def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
+                super().__init__(arg0, *args, **kwargs)
+                self.arg1 = arg1
+                self.arg2 = arg2
+                self.kwarg2 = kwarg2
+
+        class SubClass12(BaseClass):
+            """description"""
+
+            @verify_kws_sig
+            @drop_unused_kws
+            @passes_kws_to(BaseClass.__init__, no_pass_filter=["kwarg0"])
             def __init__(self, arg0, arg1, arg2, *args, kwarg2=None, **kwargs: MutableMapping):
                 super().__init__(arg0, *args, **kwargs)
                 self.arg1 = arg1
@@ -510,11 +574,14 @@ if __name__ == "__main__":
 
         print(inspect.signature(SubClass0.__init__))
         print(inspect.signature(SubClass1.__init__))
-        print(inspect.signature(SubClass1.__init__))
+        print(inspect.signature(SubClass2.__init__))
+        print(inspect.signature(SubClass12.__init__))
 
         print(vars(SubClass0(1, 1, 1, kwarg0=52)))
         print(vars(SubClass1(2, 2, 1, kwarg0=52)))
         print(vars(SubClass2(1, 1, 1, kwarg0=52)))
+        print(vars(SubClass12(1, 1, 1, kwarg1=52)))
+        # print(vars(SubClass12(1, 1, 1, kwarg0=52))) # Throws exception, intentional
         print(inspect.getmro(SubClass0))
 
         some_func(a=1, b=2, c=3)
