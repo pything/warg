@@ -27,6 +27,7 @@ __all__ = [
     "to_tuple",
     "recurse_replace_empty",
     "text_in_file",
+    "int_limits",
 ]
 
 import operator
@@ -51,6 +52,18 @@ from typing import (
 from warg.contexts import Suppress
 from warg.typing_extension import Number
 from warg.decorators import drop_unused_kws
+import sys
+import ctypes
+
+
+def int_limits(c_int_type: Any) -> Tuple[int, int]:
+    signed = c_int_type(-1).value < c_int_type(0).value
+    bit_size = ctypes.sizeof(c_int_type) * 8
+    signed_limit = 2 ** (bit_size - 1)
+    return (-signed_limit, signed_limit - 1) if signed else (0, 2 * signed_limit - 1)
+
+
+TO_LIST_MAX_RECURSION_LIMIT = int_limits(ctypes.c_int)[-1]
 
 
 def recurse_replace_empty(iterable: Iterable) -> Optional[Iterable]:
@@ -273,13 +286,24 @@ def to_list(x: Union[Iterable, Any]) -> Union[List, Any]:
     if False:
         if x is None:
             return []
+
+    if TO_LIST_MAX_RECURSION_LIMIT:
+        original = sys.getrecursionlimit()
+        sys.setrecursionlimit(TO_LIST_MAX_RECURSION_LIMIT)
+
     if not isinstance(x, Iterable):
         return x
+
     i = iter(x)
+
     try:
         val = next(i)
     except StopIteration:
         return []
+    finally:
+        if TO_LIST_MAX_RECURSION_LIMIT:
+            sys.setrecursionlimit(original)
+
     return [to_list(val)] + to_list(i)
 
 
@@ -287,13 +311,24 @@ def to_tuple(x: Union[Iterable, Any]) -> Union[Tuple, Any]:
     if False:
         if x is None:
             return ()
+
+    if TO_LIST_MAX_RECURSION_LIMIT:
+        original = sys.getrecursionlimit()
+        sys.setrecursionlimit(TO_LIST_MAX_RECURSION_LIMIT)
+
     if not isinstance(x, Iterable):
         return x
+
     i = iter(x)
+
     try:
         val = next(i)
     except StopIteration:
         return ()
+    finally:
+        if TO_LIST_MAX_RECURSION_LIMIT:
+            sys.setrecursionlimit(original)
+
     return (to_tuple(val), *to_tuple(i))
 
 
@@ -301,6 +336,7 @@ def to_tuple(x: Union[Iterable, Any]) -> Union[Tuple, Any]:
 def text_in_file(text: str, filename: Path) -> bool:
     if filename.exists():
         return any(text in line for line in filename.open())
+
     return False
 
 
