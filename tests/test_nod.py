@@ -5,6 +5,7 @@ import pytest
 from warg.data_structures.named_ordered_dictionary import IllegalAttributeKey, NOD
 
 __author__ = "Christian Heider Lindbjerg"
+__doc__ = r"""Testing of NamedOrderedDictionary class"""
 
 
 def test_attribute_assignment():
@@ -159,7 +160,7 @@ def test_sorcery():
     assert columns["arg1"] == arg1
 
 
-"""
+IGNORE = """
 def test_access_operators_NOD_of():
     list_rep = NOD("str_parameter", 10).as_list()
     arg0 = list_rep[0]
@@ -335,139 +336,139 @@ def test_recurse_conversion_of_dicts3():
 
 
 def test_recurse_conversion_of_dicts4():
-    nodict = NOD()
-    nodict.paramA = {}
-    nodict.paramA["s"] = "str_parameter"
-    nodict.paramB = 10
+    no_dict = NOD()
+    no_dict.paramA = {}
+    no_dict.paramA["s"] = "str_parameter"
+    no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
-    assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA.s)
+    assert no_dict.paramB == 10
+    print(no_dict)
+    print(no_dict.paramA.s)
 
     # 6
-    nodict = NOD()
-    nodict.paramA = {}
-    nodict.paramA.s = "str_parameter"
-    nodict.paramB = 10
+    no_dict = NOD()
+    no_dict.paramA = {}
+    no_dict.paramA.s = "str_parameter"
+    no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
-    assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA.s)
+    assert no_dict.paramB == 10
+    print(no_dict)
+    print(no_dict.paramA.s)
 
     # 7
-    nodict = NOD()
-    nodict.paramA = {}
-    nodict.paramA["s"] = [{"sd": "str_parameter"}]
-    nodict.paramB = 10
+    no_dict = NOD()
+    no_dict.paramA = {}
+    no_dict.paramA["s"] = [{"sd": "str_parameter"}]
+    no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
-    assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA.s)
+    assert no_dict.paramB == 10
+    print(no_dict)
+    print(no_dict.paramA.s)
 
     # 8
-    nodict = NOD()
-    nodict.paramA = {}
-    nodict.paramA.s = [{"sd": "str_parameter"}]
-    nodict.paramB = 10
+    no_dict = NOD()
+    no_dict.paramA = {}
+    no_dict.paramA.s = [{"sd": "str_parameter"}]
+    no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
-    assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA.s)
+    assert no_dict.paramB == 10
+    print(no_dict)
+    print(no_dict.paramA.s)
 
     # 9
-    nodict = NOD()
-    nodict.paramA = [{"s": {"sd": "str_parameter"}}]
-    nodict.paramB = 10
+    no_dict = NOD()
+    no_dict.paramA = [{"s": {"sd": "str_parameter"}}]
+    no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
-    assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    assert no_dict.paramB == 10
+    print(no_dict)
+    print(no_dict.paramA)
 
     # 10
-    nodict = NOD()
-    nodict.paramA = [{"s": ({"sd": "str_parameter"},)}]
-    nodict.paramB = 10
+    no_dict = NOD()
+    no_dict.paramA = [{"s": ({"sd": "str_parameter"},)}]
+    no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
-    assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    assert no_dict.paramB == 10
+    print(no_dict)
+    print(no_dict.paramA)
 
     # 11
-    nodict = NOD()
-    nodict.paramA = [{"sd": "str_parameter"}]
-    nodict.paramB = 10
+    no_dict = NOD()
+    no_dict.paramA = [{"sd": "str_parameter"}]
+    no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
-    assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    assert no_dict.paramB == 10
+    print(no_dict)
+    print(no_dict.paramA)
 
     # 12
-    nodict = NOD()
-    nodict.paramA = {}
-    nodict.paramA.a = [{"s": {"sd": "str_parameter"}}]
-    nodict.paramB = 10
+    no_dict = NOD()
+    no_dict.paramA = {}
+    no_dict.paramA.a = [{"s": {"sd": "str_parameter"}}]
+    no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
-    assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    assert no_dict.paramB == 10
+    print(no_dict)
+    print(no_dict.paramA)
 
     # 13
-    nodict = NOD()
-    nodict.paramA = {}
-    nodict.paramA.a = [{"s": ({"sd": "str_parameter"},)}]
-    nodict.paramB = 10
+    no_dict = NOD()
+    no_dict.paramA = {}
+    no_dict.paramA.a = [{"s": ({"sd": "str_parameter"},)}]
+    no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
-    assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA.a)
+    assert no_dict.paramB == 10
+    print(no_dict)
+    print(no_dict.paramA.a)
 
     # 14
-    nodict = NOD()
-    nodict.paramA = {}
-    nodict.paramA.a = [{"s": [{"sd": "str_parameter"}]}]
-    nodict.paramB = 10
+    no_dict = NOD()
+    no_dict.paramA = {}
+    no_dict.paramA.a = [{"s": [{"sd": "str_parameter"}]}]
+    no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
-    assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    assert no_dict.paramB == 10
+    print(no_dict)
+    print(no_dict.paramA)
 
     # 15
-    nodict = NOD()
-    nodict.paramA = [{"s": {"sd": "str_parameter"}}, {"sfd": 1}]
-    nodict.paramB = 10
+    no_dict = NOD()
+    no_dict.paramA = [{"s": {"sd": "str_parameter"}}, {"sfd": 1}]
+    no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
-    assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    assert no_dict.paramB == 10
+    print(no_dict)
+    print(no_dict.paramA)
 
     # 16
-    nodict = NOD()
-    nodict.paramA = {"s": {"sd": {"sfd": 1}}}
-    nodict.paramB = 10
+    no_dict = NOD()
+    no_dict.paramA = {"s": {"sd": {"sfd": 1}}}
+    no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
-    assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA.s.sd.sfd)
-    nodict.paramA.s.sd.sfd = 2
-    assert nodict.paramA.s.sd.sfd == 2
+    assert no_dict.paramB == 10
+    print(no_dict)
+    print(no_dict.paramA.s.sd.sfd)
+    no_dict.paramA.s.sd.sfd = 2
+    assert no_dict.paramA.s.sd.sfd == 2
 
 
 def test_call_index():
-    nodict = NOD()
-    nodict.paramA = 2
-    nodict.paramB = 10
-    nodict.paramC = 5
-    nodict.paramD = 5
-    nodict[6] = 1
-    nodict[1] = 1
-    nodict[2] = 11
+    no_dict = NOD()
+    no_dict.paramA = 2
+    no_dict.paramB = 10
+    no_dict.paramC = 5
+    no_dict.paramD = 5
+    no_dict[6] = 1
+    no_dict[1] = 1
+    no_dict[2] = 11
 
-    assert nodict.paramA == 2
-    assert nodict.paramB == 10
-    assert nodict.paramC == 5
-    assert nodict.paramD == 5
+    assert no_dict.paramA == 2
+    assert no_dict.paramB == 10
+    assert no_dict.paramC == 5
+    assert no_dict.paramD == 5
 
-    assert nodict("paramA", "paramB", 6) == [2, 10, 1]
-    assert nodict("paramC") == [5]
-    assert nodict(6, "paramD", 1) == [1, 5, 1]
-    assert nodict(2) == [11]
+    assert no_dict("paramA", "paramB", 6) == [2, 10, 1]
+    assert no_dict("paramC") == [5]
+    assert no_dict(6, "paramD", 1) == [1, 5, 1]
+    assert no_dict(2) == [11]

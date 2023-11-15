@@ -32,7 +32,7 @@ def sanitise_auto_dict(d: Dict) -> Optional[Dict]:
         if len(d.keys()) == 0:
             return
 
-    out_dict = dict()
+    out_dict = {}
     for k, v in d.items():
         if isinstance(v, defaultdict):
             sanitised = sanitise_auto_dict(v)

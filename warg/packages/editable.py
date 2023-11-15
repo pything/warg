@@ -57,7 +57,7 @@ def dist_is_editable(dist: Distribution) -> bool:
     return False
 
 
-'''
+IGNORE = '''
 
 def dist_is_editable(dist: Any) -> bool:
     """

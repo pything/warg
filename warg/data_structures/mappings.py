@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 from typing import Mapping, Iterable, Hashable, Dict, Callable
 
 __all__ = [
