@@ -5,7 +5,7 @@ import sys
 
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
-          get os platform path_utilities 
+          get os platform path_utilities
 
            Created on 13/06/2020
            """

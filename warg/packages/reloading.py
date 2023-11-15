@@ -32,7 +32,7 @@ from warnings import warn
 
 from warg.decorators import passes_kws_to
 
-"""
+IGNORE = """
 PRELOADED_MODULES = set()
 def init():
   # local imports to keep things neat

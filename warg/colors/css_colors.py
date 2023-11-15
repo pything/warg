@@ -13,10 +13,8 @@ __all__ = ["color"]
 import re
 from functools import partial
 
-"""
-Map of CSS color names to RGB integer values.
-"""
-css_colors = {
+
+css_colors = {  # Map of CSS color names to RGB integer values.
     "aliceblue": (240, 248, 255),
     "antiquewhite": (250, 235, 215),
     "aqua": (0, 255, 255),
