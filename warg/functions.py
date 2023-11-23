@@ -28,9 +28,12 @@ __all__ = [
     "recurse_replace_empty",
     "text_in_file",
     "int_limits",
+    "flatten_mapping",
 ]
 
+import ctypes
 import operator
+import sys
 from collections import defaultdict
 from copy import deepcopy
 from functools import reduce
@@ -50,10 +53,8 @@ from typing import (
 )
 
 from warg.contexts import Suppress
-from warg.typing_extension import Number
 from warg.decorators import drop_unused_kws
-import sys
-import ctypes
+from warg.typing_extension import Number
 
 
 def int_limits(c_int_type: Any) -> Tuple[int, int]:
@@ -338,6 +339,23 @@ def text_in_file(text: str, filename: Path) -> bool:
         return any(text in line for line in filename.open())
 
     return False
+
+
+def flatten_mapping(map: Mapping) -> Mapping:
+    """
+    iterates and recursively flattens nested mappings by appending keys for each level
+
+      :param map: nested mapping to flatten
+      :return: a single level mapping with appended level keys
+    """
+    out_dict = {}
+    for k, v in map.items():
+        if isinstance(v, Mapping):
+            out_dict.update(**{f"{k}_{ki}": vi for ki, vi in flatten_mapping(v).items()})
+        else:
+            out_dict[k] = v
+
+    return out_dict
 
 
 if __name__ == "__main__":
