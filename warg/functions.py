@@ -29,6 +29,8 @@ __all__ = [
     "text_in_file",
     "int_limits",
     "flatten_mapping",
+    "most_common_substrings",
+    "mappings_agreement_reduce",
 ]
 
 import ctypes
@@ -51,7 +53,8 @@ from typing import (
     Union,
     Optional,
 )
-
+from difflib import SequenceMatcher
+from itertools import product
 from warg.contexts import Suppress
 from warg.decorators import drop_unused_kws
 from warg.typing_extension import Number
@@ -356,6 +359,56 @@ def flatten_mapping(map: Mapping) -> Mapping:
             out_dict[k] = v
 
     return out_dict
+
+
+def most_common_substrings(
+    strings: Iterable[str], min_common_substring: int = 2, min_common_count: int = 2
+) -> List[str]:
+    """
+    Finds common substrings in Iterable of strings, ordered in most to least occurring
+
+    :param strings:
+    :param min_common_substring:
+    :param min_common_count:
+    :return:
+    """
+    name_matches = []
+
+    for z1, z2 in product(strings, strings):
+        if z1 != z2:
+            match = SequenceMatcher(isjunk=None, a=z1, b=z2).find_longest_match(
+                alo=0, ahi=len(z1), blo=0, bhi=len(z2)
+            )
+            match_string = z1[match.a : match.a + match.size]
+            if len(match_string) >= min_common_substring:
+                name_matches.append(match_string)
+
+    return sorted(set([i for i in name_matches if name_matches.count(i) >= min_common_count]))
+
+
+def mappings_agreement_reduce(m1: Mapping[Any, Any], m2: Mapping[Any, Any]) -> Mapping[Any, Any]:
+    """
+    takes two mappings and reduces it to one mapping, if the agree or one of them is None take one or the other. if
+    they disagree the resulting value is None.
+
+    :param m1: A mapping
+    :param m2: Another mapping
+    :return: a single mapping
+    """
+    out = {}
+    for k, v in m1.items():
+        if k not in m2 or v == m2[k] or not m2[k]:
+            out[k] = v
+        elif not v and k in m2:
+            out[k] = m2[k]
+        else:
+            out[k] = None
+
+    for k, v in m2.items():
+        if k not in out:
+            out[k] = v
+
+    return out
 
 
 if __name__ == "__main__":
