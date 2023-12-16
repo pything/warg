@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
@@ -10,7 +9,7 @@ __doc__ = r"""
 from collections import defaultdict
 from typing import Dict, Optional, Mapping
 
-__all__ = ["AutoDict", "sanitise_auto_dict", "recursive_default_dict_print"]
+__all__ = ["AutoDict", "sanitise_auto_dict", "recursive_default_dict_print", "recursive_default_dict"]
 
 
 def AutoDict() -> defaultdict:
@@ -48,6 +47,10 @@ def sanitise_auto_dict(d: Dict) -> Optional[Dict]:
 
 autodict = AutoDict
 AD = AutoDict
+
+
+def recursive_default_dict() -> defaultdict:
+    return defaultdict(recursive_default_dict)
 
 
 def recursive_default_dict_print(d: Mapping, depth: int = 1) -> None:

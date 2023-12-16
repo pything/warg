@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
@@ -383,7 +382,7 @@ def most_common_substrings(
             if len(match_string) >= min_common_substring:
                 name_matches.append(match_string)
 
-    return sorted(set([i for i in name_matches if name_matches.count(i) >= min_common_count]))
+    return sorted({i for i in name_matches if name_matches.count(i) >= min_common_count})
 
 
 def mappings_agreement_reduce(m1: Mapping[Any, Any], m2: Mapping[Any, Any]) -> Mapping[Any, Any]:

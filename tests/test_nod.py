@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import pytest
 
 from warg.data_structures.named_ordered_dictionary import IllegalAttributeKey, NOD

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
@@ -740,7 +739,7 @@ if __name__ == "__main__":
         assert OrderedSet([1, 2]) == iter([2, 1, 1])
 
     def test_unordered_inequality():
-        assert OrderedSet([1, 2]) != set([])
+        assert OrderedSet([1, 2]) != set()
         assert OrderedSet([1, 2]) != frozenset([2, 1, 3])
 
         assert OrderedSet([1, 2]) != {2: "b"}
@@ -768,7 +767,7 @@ if __name__ == "__main__":
         data and name are used to indicate what sort of tests is run.
         """
         if not allsame_(results):
-            raise AssertionError("Not all same {} for {} with datas={}".format(results, name, datas))
+            raise AssertionError(f"Not all same {results} for {name} with datas={datas}")
         for a, b in it.combinations(results, 2):
             if not isinstance(a, (bool, int)):
                 assert a is not b, name + " should all be different items"

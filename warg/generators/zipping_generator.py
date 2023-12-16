@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 from copy import deepcopy
 from typing import Any, Generator, Iterable, Iterator
 
@@ -46,8 +45,7 @@ def unzipper(_iterable: Iterable[Iterable[Any]]) -> Iterable[Any]:
             for a in _iterable:
                 yield unzip(a)
         else:
-            for i in _iterable:
-                yield i
+            yield from _iterable
 
 
 if __name__ == "__main__":

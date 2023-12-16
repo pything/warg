@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 from warg.metas.singleton import SingletonBase, SingletonMeta
 
 __author__ = "Christian Heider Lindbjerg"

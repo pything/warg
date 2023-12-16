@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 
 __author__ = "Christian Heider Lindbjerg"
@@ -19,8 +18,7 @@ class IterDictItemsMixin:
     Mixin class for iterating kw pairs in a class instance __dict__"""
 
     def __iter__(self) -> Tuple[Any, Any]:
-        for attr, value in self.__dict__.items():
-            yield attr, value
+        yield from self.__dict__.items()
 
 
 class IterDictKeysMixin:
@@ -28,8 +26,7 @@ class IterDictKeysMixin:
     Mixin class for iterating only the keys of a class instance __dict__"""
 
     def __iter__(self) -> Any:
-        for attr in self.__dict__.keys():
-            yield attr
+        yield from self.__dict__.keys()
 
 
 class IterDictValuesMixin:
@@ -37,8 +34,7 @@ class IterDictValuesMixin:
     Mixin class for iterating only the values of a class instance __dict__"""
 
     def __iter__(self) -> Any:
-        for value in self.__dict__.values():
-            yield value
+        yield from self.__dict__.values()
 
 
 if __name__ == "__main__":

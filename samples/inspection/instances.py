@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 
 ismodule(), isclass(), ismethod(), isfunction(), isgeneratorfunction(),

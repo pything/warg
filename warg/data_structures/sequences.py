@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
           Plugin
@@ -25,6 +24,6 @@ def split(seq: Sequence) -> Tuple[Sequence, Sequence]:
 
 
 if __name__ == "__main__":
-    print((split(list(range(11)))))
-    print((split(list(range(10)))))
-    print((split(list(range(9)))))
+    print(split(list(range(11))))
+    print(split(list(range(10))))
+    print(split(list(range(9))))
