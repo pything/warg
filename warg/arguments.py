@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import argparse
 from collections import namedtuple
 from pathlib import Path, PosixPath
@@ -37,10 +36,10 @@ class UpperAttrMetaclass(type):
             else:
                 uppercase_attr[name] = val
 
-        return super(UpperAttrMetaclass, mcs).__new__(mcs, cls_name, bases, uppercase_attr)
+        return super().__new__(mcs, cls_name, bases, uppercase_attr)
 
 
-class ConfigObject(object):
+class ConfigObject:
     """
     Config object"""
 

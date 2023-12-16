@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 try:
     from importlib.resources import files
     from importlib.metadata import PackageNotFoundError
@@ -11,7 +10,7 @@ except:
 __project__ = "Warg"
 
 __author__ = "Christian Heider Lindbjerg"
-__version__ = "1.3.5"
+__version__ = "1.3.6"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -21,7 +20,7 @@ Created on 27/04/2019
 
 from pathlib import Path
 
-with open(Path(__file__).parent / "README.md", "r") as this_init_file:
+with open(Path(__file__).parent / "README.md") as this_init_file:
     __doc__ += this_init_file.read()
 # del Path
 

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 from typing import Mapping, Iterable, Hashable, Dict, Callable
 
 __all__ = [
@@ -77,7 +76,7 @@ def invert_dict(d: Mapping) -> Dict:
     :return:
     :rtype:
     """
-    return dict(((v, k) for k, v in d.items()))
+    return {v: k for k, v in d.items()}
 
 
 def pivot_dict(d: Dict, key) -> Dict:
@@ -89,7 +88,7 @@ def pivot_dict(d: Dict, key) -> Dict:
     :return:
     :rtype:
     """
-    return dict(((v[key], k) for k, v in d.items()))
+    return {v[key]: k for k, v in d.items()}
 
 
 def pivot_dict_object(d: Dict, key) -> Dict:
@@ -101,7 +100,7 @@ def pivot_dict_object(d: Dict, key) -> Dict:
     :return:
     :rtype:
     """
-    return dict(((getattr(v, key), k) for k, v in d.items()))
+    return {getattr(v, key): k for k, v in d.items()}
 
 
 if __name__ == "__main__":

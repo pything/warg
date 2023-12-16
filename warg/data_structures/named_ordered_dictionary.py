@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 from typing import (
     Any,
@@ -341,8 +340,7 @@ return nod
         return item in self.__dict__
 
     def __iter__(self):
-        for key, value in self.__dict__.items():
-            yield key, value
+        yield from self.__dict__.items()
 
     def __repr__(self):
         items = self.items()

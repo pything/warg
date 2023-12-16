@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = """
@@ -13,7 +12,7 @@ import logging
 from typing import Any, Mapping, MutableMapping, Sequence, Callable
 
 
-class GeneralisedDelayedKwargConstruction(object):
+class GeneralisedDelayedKwargConstruction:
     """
     A generalised class for setting up kwargs for later construction of an instance of an object
     [constructor, args, kwargs]

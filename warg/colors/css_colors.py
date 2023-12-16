@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 
 __author__ = "heider"
@@ -192,7 +191,7 @@ def parse_rgb(s):
     :rtype:
     """
     if not isinstance(s, str):
-        raise ValueError("Could not parse color '{0}'".format(s))
+        raise ValueError(f"Could not parse color '{s}'")
     s = s.strip().replace(" ", "").lower()
     # simple lookup
     rgb = css_colors.get(s)
@@ -215,7 +214,7 @@ def parse_rgb(s):
     if match:
         return tuple(int(v) for v in match.group(1).split(","))
 
-    raise ValueError("Could not parse color '{0}'".format(s))
+    raise ValueError(f"Could not parse color '{s}'")
 
 
 def is_string(obj):
