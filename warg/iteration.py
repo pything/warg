@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-from typing import Sequence, Any, Tuple
+from typing import Callable, Iterable, List, Sequence, Any, Tuple
 
-__all__ = ["pairs", "chunks"]
+__all__ = ["pairs", "chunks", "leaf_apply", "leaf_type_apply"]
 
 
 def pairs(s: Sequence) -> Tuple[Any, Any]:
@@ -25,6 +25,26 @@ def pairs(s: Sequence) -> Tuple[Any, Any]:
     for item in i:
         yield prev, item
         prev = item
+
+
+def leaf_apply(seq: Iterable, func: Callable) -> List:
+    sub = []
+    for element in seq:
+        if isinstance(element, Iterable):
+            sub.append(leaf_apply(element, func))
+        else:
+            sub.append(func(element))
+    return sub
+
+
+def leaf_type_apply(seq: Iterable, func: Callable, leaf_type: type = tuple) -> List:
+    sub = []
+    for element in seq:
+        if not isinstance(element, leaf_type):
+            sub.append(leaf_type_apply(element, func, leaf_type))
+        else:
+            sub.append(func(element))
+    return sub
 
 
 def chunks(lst: Sequence, n: int) -> Any:

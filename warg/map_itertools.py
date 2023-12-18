@@ -15,7 +15,7 @@ __all__ = [
 ]
 
 import itertools
-from typing import Any, Mapping, Tuple
+from typing import Any, Callable, Iterable, List, Mapping, Sequence, Tuple
 
 
 def map_value_product(dicts: Mapping) -> Any:
