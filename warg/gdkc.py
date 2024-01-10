@@ -22,13 +22,8 @@ class GeneralisedDelayedKwargConstruction:
         """
         [constructor, args, kwargs]
 
-
-
-        :type kwargs: Any
-        :type args: Any
-        :type constructor: Callable
         :param constructor: The delayed callable, to be evaluated at __call__ or context __enter__
-        :param args: arguments to use for evaluation, If only one is provided and is of typing mapping, it is assumed to be kwargs directly
+        :param args: arguments to use for evaluation, If only one is provided and is of typing mapping, it is assumed to be directly kwargs
         :param kwargs: arguments to use for evaluation
         """
         self.constructor: Callable = constructor

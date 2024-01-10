@@ -223,7 +223,7 @@ if __name__ == "__main__":
     result = look_up_args(my_function, 8, 0)
     print(result)
 
-    @precompute_lut_args_dec(list(zip(range(9), reversed(range(9)))))
+    @precompute_lut_args_dec(list(zip(range(9), list(range(9))[::-1])))
     def my_function2(foo, bar):
         """
 
