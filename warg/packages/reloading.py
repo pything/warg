@@ -22,6 +22,7 @@ __all__ = [
 ]
 
 import importlib
+import logging
 import sys
 from importlib import reload
 from importlib.util import find_spec
@@ -55,6 +56,7 @@ def reload_all():
       pass
 init()
 """
+VERBOSE = False
 
 
 def contain(q: Any, s: Iterable) -> bool:
@@ -97,7 +99,7 @@ def reload_requirements(requirements_path: Path, containment_test: Callable = co
         reload_module(r.name, containment_test=containment_test)
 
 
-def reload_all_modules(catch_exceptions: bool = True, verbose: bool = True) -> None:
+def reload_all_modules(catch_exceptions: bool = True, verbose: bool = VERBOSE) -> None:
     """
 
     :param catch_exceptions:
@@ -109,10 +111,10 @@ def reload_all_modules(catch_exceptions: bool = True, verbose: bool = True) -> N
             reload(mod)
     except Exception as e:
         if verbose:
-            print(mod)
+            logging.error(mod)
         if catch_exceptions:
             if verbose:
-                print(e)
+                logging.error(e)
         else:
             raise e
 
@@ -294,7 +296,7 @@ def ensure_in_sys_path(
     position: Optional[int] = None,
     resolve: bool = False,
     absolute: bool = True,
-    verbose: bool = False,
+    verbose: bool = VERBOSE,
 ) -> None:
     """
 
@@ -340,7 +342,7 @@ def ensure_in_sys_path(
             sys.path.append(str_path)
     else:
         if verbose:
-            print(f"{path} is already in sys path")
+            logging.warning(f"{path} is already in sys path")
 
 
 def is_module_available(module: str) -> bool:

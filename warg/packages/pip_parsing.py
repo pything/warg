@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import logging
 from pathlib import Path
 from typing import Union
 from urllib.parse import urlparse
@@ -37,14 +37,20 @@ try:
         """
 
         req_ = req.requirement
+
         if req.is_editable:  # parse out egg=... fragment from VCS URL
             parsed = urlparse(req_)
             egg_name = parsed.fragment.partition("egg=")[-1]
+            if not egg_name:
+                egg_name = parsed.path.split("/")[-1]
             without_fragment = parsed._replace(fragment="").geturl()
             req_parsed = f"{egg_name} @ {without_fragment}"
         else:
             req_parsed = req_
-        return get_requirement(req_parsed)
+        try:
+            return get_requirement(req_parsed)
+        except:
+            return None
 
     def get_requirements_from_file(
         file_path: Union[str, Path], session: Union[str, PipSession] = "test"
@@ -52,10 +58,13 @@ try:
         """Turn requirements.txt into a list"""
         if isinstance(file_path, Path):
             file_path = str(file_path)
-        return [get_reqed(ir) for ir in parse_requirements(file_path, session=session)]
+
+        parsed_reqs = [get_reqed(ir) for ir in parse_requirements(file_path, session=session)]
+
+        return [p for p in parsed_reqs if p]
 
 except (ModuleNotFoundError, ImportError) as e:
-    print(e)
+    logging.error(e)
     get_requirements_from_file = sink
     # print('You version of python is to old!')
 

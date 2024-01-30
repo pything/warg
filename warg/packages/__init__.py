@@ -16,3 +16,4 @@ from .pip_parsing import *
 from .reloading import *
 from .editable import *
 from .versioning import *
+from .namespaces import *
