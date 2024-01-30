@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 __all__ = ["get_version"]
+
+import logging
 from pathlib import Path
 import datetime
 from logging import warning
@@ -74,7 +76,7 @@ def get_version(version: str, append_time: bool = False, verbose: bool = False, 
             else:
                 if verbose:
                     msg = f"{caller_parent} git version {git_version} matches __version__" f" {version}"
-                    print(msg)
+                    logging.info(msg)
         else:
             raise NotGitException
     except:

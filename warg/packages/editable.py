@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import logging
 
 try:
     from importlib.metadata import Distribution, PackageNotFoundError, PathDistribution
@@ -16,6 +17,8 @@ __all__ = [
 from pathlib import Path
 from typing import Optional
 
+VERBOSE = False
+
 
 # noinspection PyProtectedMember
 def dist_is_editable(dist: Distribution) -> bool:
@@ -30,10 +33,12 @@ def dist_is_editable(dist: Distribution) -> bool:
     top_level_name = None
     if top_level:
         top_level_name = top_level.split("\n")[0].strip()
+
     else:  # assume top level namespace is the same as dist
         if isinstance(dist, PathDistribution):
             if hasattr(dist, "_normalized_name"):  # This is wacky...
                 top_level_name = dist._normalized_name
+
         elif isinstance(dist, Distribution):
             if hasattr(dist, "name"):
                 top_level_name = dist.name
@@ -77,8 +82,10 @@ def package_is_editable(package_name: str) -> bool:
         dist = Distribution.from_name(package_name)
 
         return dist_is_editable(dist)
+
     except PackageNotFoundError as p:
-        print(p)
+        if VERBOSE:
+            logging.info(p)
 
 
 def get_package_location(package_name: str) -> Path:
@@ -86,8 +93,10 @@ def get_package_location(package_name: str) -> Path:
         dist = Distribution.from_name(package_name)
         if dist:
             return get_dist_package_location(dist)
+
     except PackageNotFoundError as p:
-        print(p)
+        if VERBOSE:
+            logging.info(p)
 
 
 # noinspection PyProtectedMember
@@ -103,10 +112,12 @@ def get_dist_package_location(dist: Distribution) -> Optional[Path]:
     top_level_name = None
     if top_level:
         top_level_name = top_level.split("\n")[0].strip()
+
     else:  # assume top level namespace is the same as dist
         if isinstance(dist, PathDistribution):
             if hasattr(dist, "_normalized_name"):  # This is wacky...
                 top_level_name = dist._normalized_name
+
         elif isinstance(dist, Distribution):
             if hasattr(dist, "name"):
                 top_level_name = dist.name
