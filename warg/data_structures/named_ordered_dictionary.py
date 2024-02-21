@@ -39,7 +39,8 @@ def recurse_conversion(self, value):
         value = self.__class__(value)
     elif isinstance(value, (list, tuple)):  # TODO: MAYBE KEEP?
         value = type(value)(
-            self.__class__(x) if isinstance(x, MutableMapping) else recurse_conversion(self, x) for x in value
+            (self.__class__(x) if isinstance(x, MutableMapping) else recurse_conversion(self, x))
+            for x in value
         )
     return value
 

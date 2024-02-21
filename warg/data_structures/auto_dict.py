@@ -9,7 +9,12 @@ __doc__ = r"""
 from collections import defaultdict
 from typing import Dict, Optional, Mapping
 
-__all__ = ["AutoDict", "sanitise_auto_dict", "recursive_default_dict_print", "recursive_default_dict"]
+__all__ = [
+    "AutoDict",
+    "sanitise_auto_dict",
+    "recursive_default_dict_print",
+    "recursive_default_dict",
+]
 
 
 def AutoDict() -> defaultdict:
