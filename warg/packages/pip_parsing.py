@@ -47,6 +47,7 @@ try:
             req_parsed = f"{egg_name} @ {without_fragment}"
         else:
             req_parsed = req_
+
         try:
             return get_requirement(req_parsed)
         except:

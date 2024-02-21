@@ -17,3 +17,4 @@ from .reloading import *
 from .editable import *
 from .versioning import *
 from .namespaces import *
+from .satisfaction import *
