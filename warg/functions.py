@@ -343,17 +343,19 @@ def text_in_file(text: str, filename: Path) -> bool:
     return False
 
 
-def flatten_mapping(map: Mapping) -> Mapping:
+def flatten_mapping(mapping: Mapping[str, Any], seperator: str = "_") -> Mapping[str, Any]:
     """
     iterates and recursively flattens nested mappings by appending keys for each level
 
-      :param map: nested mapping to flatten
-      :return: a single level mapping with appended level keys
+
+    :param seperator:
+    :param mapping: nested mapping to flatten
+    :return: a single level mapping with appended level keys
     """
     out_dict = {}
-    for k, v in map.items():
+    for k, v in mapping.items():
         if isinstance(v, Mapping):
-            out_dict.update(**{f"{k}_{ki}": vi for ki, vi in flatten_mapping(v).items()})
+            out_dict.update(**{f"{k}{seperator}{ki}": vi for ki, vi in flatten_mapping(v).items()})
         else:
             out_dict[k] = v
 
