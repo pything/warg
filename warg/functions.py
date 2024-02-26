@@ -355,7 +355,7 @@ def flatten_mapping(mapping: Mapping[str, Any], seperator: str = "_") -> Mapping
     out_dict = {}
     for k, v in mapping.items():
         if isinstance(v, Mapping):
-            out_dict.update(**{f"{k}{seperator}{ki}": vi for ki, vi in flatten_mapping(v).items()})
+            out_dict.update(**{f"{k}{seperator}{ki}": vi for ki, vi in flatten_mapping(v, seperator).items()})
         else:
             out_dict[k] = v
 
