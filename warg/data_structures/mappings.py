@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from typing import Mapping, Iterable, Hashable, Dict, Callable
+from typing import Mapping, Iterable, Hashable, Dict, Callable, MutableMapping
 
 __all__ = [
     "invert_mapping",
@@ -43,7 +43,7 @@ def recurse_mapping(a: Mapping, call: Callable = print) -> None:
         call(v)
 
 
-def invert_mapping(m: Mapping) -> Mapping:
+def invert_mapping(m: Mapping) -> Mapping:  # TODO: TEST THIS; MAY CONTAINS BUGS!
     """
     Invert a mapping
 
@@ -52,13 +52,16 @@ def invert_mapping(m: Mapping) -> Mapping:
     :return: :rtype:
     """
 
-    new_m = type(m)()
+    if isinstance(m, MutableMapping):
+        new_m = type(m)()
+    else:
+        new_m = {}
 
     for k, v in m.items():
         if not isinstance(v, Hashable):
             raise TypeError(f"values must be hashable, was {type(v), v}, for key {k}")
         if v in new_m:
-            if isinstance(new_m[v], Iterable):
+            if isinstance(new_m[v], Iterable) and (not isinstance(new_m[v], str)):
                 new_m[v] = (*new_m[v], k)
             else:
                 new_m[v] = [new_m[v], k]
@@ -67,7 +70,7 @@ def invert_mapping(m: Mapping) -> Mapping:
     return new_m
 
 
-def invert_dict(d: Mapping) -> Dict:
+def invert_dict(d: Mapping) -> Dict:  # TODO: HANDLE DUPLICATE KEYS; CONVERT TO TUPLES
     """
     Invert a dict
 
@@ -79,7 +82,7 @@ def invert_dict(d: Mapping) -> Dict:
     return {v: k for k, v in d.items()}
 
 
-def pivot_dict(d: Dict, key) -> Dict:
+def pivot_dict(d: Dict, key) -> Dict:  # TODO: HANDLE DUPLICATE KEYS; CONVERT TO TUPLES
     """
     pivot_key -> pivot_value
 
@@ -91,7 +94,7 @@ def pivot_dict(d: Dict, key) -> Dict:
     return {v[key]: k for k, v in d.items()}
 
 
-def pivot_dict_object(d: Dict, key) -> Dict:
+def pivot_dict_object(d: Dict, key) -> Dict:  # TODO: HANDLE DUPLICATE KEYS; CONVERT TO TUPLES
     """
     pivot_key -> pivot_value for object attributes
 
