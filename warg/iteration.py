@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from typing import Callable, Iterable, List, Sequence, Any, Tuple
+from typing import Any, Callable, Iterable, List, Sequence, Tuple
 
 __all__ = ["pairs", "chunks", "leaf_apply", "leaf_type_apply"]
 

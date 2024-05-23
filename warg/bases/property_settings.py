@@ -8,7 +8,7 @@ __doc__ = r"""
 __all__ = ["PropertySettings"]
 
 from collections.abc import Mapping
-from typing import Dict, MutableMapping, Any
+from typing import Any, Dict, MutableMapping
 
 from warg import NOD
 

@@ -9,7 +9,7 @@ __doc__ = r"""
 __all__ = ["ArgIdentifier", "get_arg_names", "cprinta", "cprintz"]
 
 import ast
-from typing import Optional, Any, Callable
+from typing import Any, Callable, Optional
 
 
 class ArgIdentifier(ast.NodeVisitor):

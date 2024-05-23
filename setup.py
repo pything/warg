@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from typing import List, Sequence, Union, TextIO
+from typing import List, Sequence, TextIO, Union
 
 
 def python_version_check(major: int = 3, minor: int = 7):

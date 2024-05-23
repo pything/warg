@@ -3,17 +3,9 @@ import functools
 import inspect
 import types
 from functools import wraps
-from logging import warning
-from typing import (
-    Dict,
-    MutableMapping,
-    Sequence,
-    Tuple,
-    Any,
-    Callable,
-    Optional,
-    Iterable,
-)
+from typing import Any, Callable, Dict, Iterable, MutableMapping, Optional, Sequence, Tuple
+
+from logging_utilities import warning
 
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""

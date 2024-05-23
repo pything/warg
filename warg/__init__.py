@@ -61,6 +61,7 @@ try:
     from .colors import *
     from .packages import *
     from .iteration import *
+    from .logging_utilities import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = Path(__file__).parent.parent / f"requirements.txt"

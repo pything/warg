@@ -18,7 +18,7 @@ __all__ = [
 ]
 
 import math
-from typing import Any, Optional, Callable
+from typing import Any, Callable, Optional
 
 from warg import Number
 from warg.decorators import drop_unused_kws, passes_kws_to

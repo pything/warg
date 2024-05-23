@@ -11,7 +11,7 @@ __all__ = ["is_excluded", "is_python_package", "is_python_module", "negate"]
 import re
 from functools import wraps
 from pathlib import Path
-from typing import Callable, Sequence, MutableMapping, Union, Any
+from typing import Any, Callable, MutableMapping, Sequence, Union
 
 
 def is_python_module(path: Path) -> bool:

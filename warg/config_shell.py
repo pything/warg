@@ -9,9 +9,9 @@ __all__ = ["PlaybackShell", "ConfigShell"]
 
 import cmd
 from pathlib import Path
-from typing import MutableMapping, Optional, Callable
+from typing import Callable, MutableMapping, Optional
 
-from warg import passes_kws_to, PropertySettings
+from warg import PropertySettings, passes_kws_to
 
 
 class PlaybackShell(cmd.Cmd):

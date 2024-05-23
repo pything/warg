@@ -6,11 +6,7 @@ __doc__ = r"""
            Created on 21/12/2019
            """
 
-from warg.data_structures.auto_dict import (
-    AutoDict,
-    sanitise_auto_dict,
-    recursive_default_dict_print,
-)
+from warg.data_structures.auto_dict import AutoDict, recursive_default_dict_print, sanitise_auto_dict
 
 
 def test_a():

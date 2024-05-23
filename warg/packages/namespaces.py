@@ -1,8 +1,7 @@
-from types import ModuleType
-from typing import Any, Dict
-
 import importlib
 import pkgutil
+from types import ModuleType
+from typing import Any, Dict
 
 __all__ = ["import_submodules", "import_submodule_alls"]
 

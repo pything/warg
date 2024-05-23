@@ -6,7 +6,7 @@ __doc__ = r"""
            Created on 09/03/2020
            """
 
-from warg import kws_sink, prod, sink, evaluate_context
+from warg import evaluate_context, kws_sink, prod, sink
 
 
 def test_a():

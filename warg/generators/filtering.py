@@ -7,7 +7,7 @@ __doc__ = r"""
            """
 
 from enum import Enum
-from typing import Iterable, Any
+from typing import Any, Iterable
 
 __all__ = ["FilterModeEnum", "symbol_filter"]
 

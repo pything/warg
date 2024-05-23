@@ -10,7 +10,7 @@ __all__ = ["ContextWrapper", "NopContext"]
 
 import contextlib
 import inspect
-from typing import Callable, Sequence, Mapping, Optional, ContextManager
+from typing import Callable, ContextManager, Mapping, Optional, Sequence
 
 
 class NopContext(contextlib.AbstractContextManager):

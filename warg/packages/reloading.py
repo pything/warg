@@ -27,10 +27,12 @@ import sys
 from importlib import reload
 from importlib.util import find_spec
 from pathlib import Path
-from typing import Optional, Any, Union, List, Iterable, Callable
+from typing import Any, Callable, Iterable, List, Optional, Union
 from warnings import warn
 
 from warg.decorators import passes_kws_to
+
+logger = logging.getLogger(__name__)
 
 IGNORE = """
 PRELOADED_MODULES = set()
@@ -111,10 +113,10 @@ def reload_all_modules(catch_exceptions: bool = True, verbose: bool = VERBOSE) -
             reload(mod)
     except Exception as e:
         if verbose:
-            logging.error(mod)
+            logger.error(mod)
         if catch_exceptions:
             if verbose:
-                logging.error(e)
+                logger.error(e)
         else:
             raise e
 
@@ -342,7 +344,7 @@ def ensure_in_sys_path(
             sys.path.append(str_path)
     else:
         if verbose:
-            logging.warning(f"{path} is already in sys path")
+            logger.warning(f"{path} is already in sys path")
 
 
 def is_module_available(module: str) -> bool:

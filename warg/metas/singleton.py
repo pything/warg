@@ -11,7 +11,7 @@ __all__ = ["SingletonBase", "SingletonMeta", "key_singleton", "singleton"]
 
 import functools
 from functools import wraps
-from typing import Any, Sequence, MutableMapping, Callable
+from typing import Any, Callable, MutableMapping, Sequence
 
 
 class SingletonBase:

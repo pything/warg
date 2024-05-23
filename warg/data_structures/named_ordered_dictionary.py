@@ -6,13 +6,13 @@ from typing import (
     Iterable,
     KeysView,
     List,
+    Mapping,
     MutableMapping,
     Sequence,
     Tuple,
     Type,
     TypeVar,
     ValuesView,
-    Mapping,
 )
 
 __author__ = "Christian Heider Lindbjerg"

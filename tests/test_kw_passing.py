@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import inspect
-from typing import Sequence, MutableMapping, Any
+from typing import Any, MutableMapping, Sequence
 
 from warg.decorators.kw_passing import (
     drop_unused_kws,

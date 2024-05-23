@@ -11,13 +11,15 @@ __all__ = [
 ]
 
 import logging
+
 import os
 import subprocess
 import sys
-from enum import Enum
+from enum import Enum, auto
 from pathlib import Path
 from typing import Optional
 
+logger = logging.getLogger(__name__)
 
 # from warg import is_windows # avoid dependency import not standard python pkgs.
 CUR_OS = sys.platform
@@ -34,11 +36,18 @@ def catching_callable(*args, **kwargs):
         # subprocess.run(*args,**kwargs)
     except subprocess.CalledProcessError as e:
         output = (e.stderr, e.stdout, e)
-    logging.warning(output)
+    logger.warning(output)
 
 
 SP_CALLABLE = catching_callable  # subprocess.call
 DEFAULT_PIP_INDEX = os.environ.get("PIP_INDEX_URL", "https://pypi.org/pypi/")
+
+
+class InstallStrategyEnum(Enum):
+    """ """
+
+    uninstall_first = auto()  # TODO: HOW MANY TIME TO DO THIS?
+    just_install = auto()
 
 
 def is_pip_installed():
@@ -64,7 +73,7 @@ def get_embedded_python_interpreter_path() -> Optional[Path]:
         if not try_path.exists():
             try_path = interpreter_path.parent / "python3.exe"
             if not try_path.exists():
-                logging.error(f"Could not find python {try_path}")
+                logger.error(f"Could not find python {try_path}")
                 if not fallback:
                     return None
             else:
@@ -77,7 +86,7 @@ def get_embedded_python_interpreter_path() -> Optional[Path]:
         if not try_path.exists():
             try_path = interpreter_path.parent / "bin" / "python3"
             if not try_path.exists():
-                logging.error(f"Could not find python {try_path}")
+                logger.error(f"Could not find python {try_path}")
                 if not fallback:
                     return None
             else:
@@ -88,7 +97,12 @@ def get_embedded_python_interpreter_path() -> Optional[Path]:
     return interpreter_path
 
 
-def install_pip_if_not_present(always_upgrade: bool = True):
+def install_pip_if_not_present(
+    always_upgrade: bool = True, install_strategy: InstallStrategyEnum = InstallStrategyEnum.just_install
+):
+    if install_strategy == InstallStrategyEnum.uninstall_first:
+        ...  # TODO: Implement
+
     if not is_pip_installed() or always_upgrade:
         if False:
             import ensurepip
@@ -131,6 +145,31 @@ class UpgradeStrategyEnum(Enum):
 # ADDITIONAL_PIPE_KWS = dict(stderr=subprocess.PIPE,stdout=subprocess.PIPE, stdin=subprocess.PIPE)
 
 
+def pip_programatic_install(package):
+    """
+    not supported
+    :param package:
+    :return:
+    """
+    import importlib
+
+    try:
+        importlib.import_module(package)
+    except ImportError:
+        import pip
+
+        if hasattr(pip, "main"):
+            pip.main(["install", package])
+        else:
+            pip._internal.main(["install", package])
+    finally:
+        globals()[package] = importlib.import_module(package)
+        import site
+        from importlib import reload
+
+        reload(site)
+
+
 def install_requirements_from_file(
     requirements_path: Path,
     upgrade: Optional[bool] = None,
@@ -161,6 +200,9 @@ def install_requirements_from_file(
     if upgrade:
         args += ["--upgrade"]
 
+    if True:
+        args += ["--ignore-installed"]
+
     if upgrade_strategy:
         args += ["--upgrade-strategy", upgrade_strategy.value]
 
@@ -179,7 +221,7 @@ def install_requirements_from_file(
             SP_CALLABLE([str(get_embedded_python_interpreter_path()), "-m", "pip", *args])
 
         else:
-            logging.info("PIP IS STILL MISSING!")
+            logger.info("PIP IS STILL MISSING!")
 
 
 if __name__ == "__main__":

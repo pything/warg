@@ -8,7 +8,7 @@ __doc__ = r"""
 
 __all__ = ["evaluate_context"]
 
-from typing import Any, Callable, MutableMapping, Tuple, List, Dict
+from typing import Any, Callable, Dict, List, MutableMapping, Tuple
 
 
 def evaluate_context(

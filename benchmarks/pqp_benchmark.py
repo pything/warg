@@ -3,6 +3,7 @@ from typing import MutableMapping
 
 import numpy
 from benchmarks.benchmark_func import benchmark_func
+
 from draugr.multiprocessing_utilities.pooled_queue_processor import (
     PooledQueueProcessor,
     PooledQueueTask,

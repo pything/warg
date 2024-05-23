@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from typing import Mapping, Iterable, Hashable, Dict, Callable, MutableMapping
+from typing import Callable, Dict, Hashable, Iterable, Mapping, MutableMapping
 
 __all__ = [
     "invert_mapping",

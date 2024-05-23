@@ -9,7 +9,7 @@ __doc__ = r"""
 import random
 import time
 from multiprocessing import Process, Queue, current_process, freeze_support
-from typing import Sequence, Callable
+from typing import Callable, Sequence
 
 
 def worker(i: Queue, output: Queue) -> None:
