@@ -10,7 +10,7 @@ except:
 __project__ = "Warg"
 
 __author__ = "Christian Heider Lindbjerg"
-__version__ = "1.4.4"
+__version__ = "1.4.5"
 __doc__ = r"""
 Created on 27/04/2019
 

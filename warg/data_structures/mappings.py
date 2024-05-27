@@ -111,8 +111,10 @@ def to_dict(m: Mapping) -> dict:
     for k, v in m.items():
         if isinstance(v, Mapping):
             o[k] = to_dict(v)
-        elif isinstance(v, Collection):
-            o[k] = [to_dict(v_) if isinstance(v, Mapping) else v_ for v_ in v]
+        elif isinstance(v, str):
+            o[k] = v
+        elif isinstance(v, Iterable):
+            o[k] = [to_dict(v_) if isinstance(v_, Mapping) else v_ for v_ in v]
         else:
             o[k] = v
     return o
@@ -127,7 +129,7 @@ if __name__ == "__main__":
     def uhasdu():
         from warg.data_structures.named_ordered_dictionary import NOD
 
-        a = NOD({"b": NOD(c=1)})
+        a = NOD({"b": NOD(c=1)}, d="usahfo7uyhaouw", f=[NOD(p="m")])
 
         print(a)
         print(a.as_dict())
