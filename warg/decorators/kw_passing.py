@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 import functools
 import inspect
+import logging
 import types
 from functools import wraps
 from typing import Any, Callable, Dict, Iterable, MutableMapping, Optional, Sequence, Tuple
-
-from logging_utilities import warning
 
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
@@ -27,6 +26,9 @@ __all__ = [
     "pack_args_and_kws",
     "AlsoDecorator",
 ]
+
+
+logger = logging.getLogger(__name__)
 
 
 # noinspection PyUnresolvedReferences
@@ -93,7 +95,7 @@ def eval_sig_kw_params(
             if v.kind == inspect._ParameterKind.VAR_KEYWORD:
                 no_var_kw = False
         if no_var_kw:
-            warning(
+            logger.warning(
                 f"Receiver {receiver_func} with {receiver_params} does not acceptable arbitrary kwargs although "
                 f"from_func will pass "
                 f"all "
@@ -130,7 +132,7 @@ def passes_kws_to(
                     if k in new_params:
                         new_params.pop(k)
                     else:
-                        warning(f"{k} is not in signature of {rf}")
+                        logger.warning(f"{k} is not in signature of {rf}")
             passing_sig = passing_sig.replace(parameters=list(new_params.values()))
         passing_func.__signature__ = passing_sig
         return passing_func
@@ -450,7 +452,7 @@ def drop_unused_kws(f: Callable) -> Callable:
             if k in from_sig.parameters.keys():
                 kept[k] = v
             else:
-                warning(f"dropped {k} with value {v} from call of {f}")
+                logger.warning(f"dropped {k} with value {v} from call of {f}")
 
         return f(*args, **kept)
 
