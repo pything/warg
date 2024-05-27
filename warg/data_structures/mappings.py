@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from typing import Callable, Dict, Hashable, Iterable, Mapping, MutableMapping
+from typing import Callable, Collection, Dict, Hashable, Iterable, Mapping, MutableMapping
 
 __all__ = [
     "invert_mapping",
@@ -111,6 +111,8 @@ def to_dict(m: Mapping) -> dict:
     for k, v in m.items():
         if isinstance(v, Mapping):
             o[k] = to_dict(v)
+        elif isinstance(v, Collection):
+            o[k] = [to_dict(v_) if isinstance(v, Mapping) else v_ for v_ in v]
         else:
             o[k] = v
     return o
