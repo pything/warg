@@ -10,7 +10,7 @@ except:
 __project__ = "Warg"
 
 __author__ = "Christian Heider Lindbjerg"
-__version__ = "1.4.2"
+__version__ = "1.4.3"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -61,6 +61,7 @@ try:
     from .colors import *
     from .packages import *
     from .iteration import *
+    from .logging_utilities import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = Path(__file__).parent.parent / f"requirements.txt"

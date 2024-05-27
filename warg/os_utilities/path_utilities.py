@@ -11,7 +11,7 @@ import subprocess
 from pathlib import Path
 from typing import Optional
 
-from warg.os_utilities.os_platform import is_windows, is_mac, has_x_server
+from warg.os_utilities.os_platform import has_x_server, is_mac, is_windows
 
 __all__ = ["latest_file", "exist_any_extension", "system_open_path"]
 

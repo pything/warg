@@ -7,7 +7,7 @@ __doc__ = r"""
            """
 
 from itertools import cycle
-from typing import Iterable, Callable
+from typing import Callable, Iterable
 
 
 def busy_indicator(

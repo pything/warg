@@ -7,7 +7,7 @@ __doc__ = r"""
            """
 
 from collections import defaultdict
-from typing import Dict, Optional, Mapping
+from typing import Dict, Mapping, Optional
 
 __all__ = [
     "AutoDict",

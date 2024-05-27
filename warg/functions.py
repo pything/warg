@@ -35,25 +35,17 @@ __all__ = [
 import ctypes
 import operator
 import sys
+import webbrowser
 from collections import defaultdict
 from copy import deepcopy
-from functools import reduce
-from pathlib import Path
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    Iterable,
-    Iterator,
-    Mapping,
-    Sequence,
-    Tuple,
-    List,
-    Union,
-    Optional,
-)
 from difflib import SequenceMatcher
+from functools import reduce
 from itertools import product
+from pathlib import Path
+from typing import Any, Callable, Dict, Iterable, Iterator, List, Mapping, Optional, Sequence, Tuple, Union
+
+import requests
+
 from warg.contexts import Suppress
 from warg.decorators import drop_unused_kws
 from warg.typing_extension import Number
@@ -412,6 +404,42 @@ def mappings_agreement_reduce(m1: Mapping[Any, Any], m2: Mapping[Any, Any]) -> M
     return out
 
 
+def open_uri_resource(uri: str) -> str:
+    """Opens the default web browser.
+    Qt offers PyQt5.QtWebEngineWidgets (QWebEngineView, QWebEngineSettings) but they are not
+    available from pyQGIS
+
+    """
+
+    path = Path(uri)
+
+    if path.exists() and path.is_file():
+        uri = f"file:///{path.absolute()}"
+        msg = uri
+        webbrowser.open_new_tab(uri)
+    else:
+        try:
+            uri = f'https://{uri.lstrip("https://")}'
+            r = requests.head(uri)
+            if r.ok:  # it is a boolean
+                try:
+                    webbrowser.open_new_tab(uri)
+                    msg = uri
+                except webbrowser.Error as e:
+                    msg = f"Webbrowser error: {e}"
+
+            elif r.status_code == 404:
+                msg = f'HTTP Error 404: Page not found.<br>The following URL may be broken or dead:<br><br><a href="{uri}">{uri}</a>'
+
+            else:
+                msg = f'Error with URL<br><br><a href="{uri}">{uri}</a>'
+
+        except requests.ConnectionError as e:
+            msg = f'URL <a href="{uri}">{uri}</a> could not be opened.<br><br>Is your internet connection up and working?'
+
+    return msg
+
+
 if __name__ == "__main__":
 
     def asud() -> None:
@@ -450,8 +478,11 @@ if __name__ == "__main__":
         ij = ([10, 29], [(2, 3, 4), [[12, 4, 5]], ((2, 92, 90))], [])
         print(to_tuple(ij))
 
-    i8jsadij()
-    i8jsadi2j()
+    # i8jsadij()
+    # i8jsadi2j()
     # asud()
     # asidj()
     # asjdnasid()
+
+    # print(open_uri_resource(__file__))
+    print(open_uri_resource("dr.dk"))

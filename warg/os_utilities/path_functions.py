@@ -18,8 +18,7 @@ import collections
 import os
 from itertools import cycle
 from pathlib import Path
-
-from typing import Iterable, Union, Callable
+from typing import Callable, Iterable, Union
 
 
 def path_join(*p: Union[Path, str]) -> Path:

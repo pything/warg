@@ -9,7 +9,7 @@ __doc__ = r"""
 __all__ = ["FirstArgIdentifier", "get_first_arg_name", "cprint"]
 
 import ast
-from typing import Optional, Any, Callable
+from typing import Any, Callable, Optional
 
 
 def recurse_first_args(args):

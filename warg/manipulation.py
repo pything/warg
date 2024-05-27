@@ -8,7 +8,7 @@ __doc__ = r"""
 
 __all__ = ["recursive_flatten"]
 
-from typing import Sequence, Iterable
+from typing import Iterable, Sequence
 
 
 def recursive_flatten_seq(seq: Sequence) -> Sequence:

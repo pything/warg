@@ -6,18 +6,21 @@ from typing import (
     Iterable,
     KeysView,
     List,
+    Mapping,
     MutableMapping,
     Sequence,
     Tuple,
     Type,
     TypeVar,
     ValuesView,
-    Mapping,
 )
+from copy import deepcopy
 
 __author__ = "Christian Heider Lindbjerg"
 
 __all__ = ["NamedOrderedDictionary", "NOD"]
+
+from warg.data_structures.mappings import to_dict
 
 LOCALS = (
     "as_list",
@@ -157,7 +160,12 @@ class NamedOrderedDictionary(MutableMapping):
 
         :return:
         :rtype:"""
-        return self.__dict__
+
+        # dict_ = deepcopy(self.__dict__)
+
+        dict_ = to_dict(self.__dict__)
+
+        return dict_
 
     def as_tuples(self) -> List[Tuple[Any, Any]]:
         """

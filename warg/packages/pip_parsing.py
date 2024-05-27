@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Union
 from urllib.parse import urlparse
 
+logger = logging.getLogger(__name__)
 from warg.functions import sink
 
 __all__ = ["get_requirements_from_file"]
@@ -65,7 +66,7 @@ try:
         return [p for p in parsed_reqs if p]
 
 except (ModuleNotFoundError, ImportError) as e:
-    logging.error(e)
+    logger.error(e)
     get_requirements_from_file = sink
     # print('You version of python is to old!')
 

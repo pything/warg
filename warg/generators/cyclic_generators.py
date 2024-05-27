@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import itertools
-from math import sin, cos
+from math import cos, sin
 from typing import Iterable
 
 from warg import Number

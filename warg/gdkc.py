@@ -8,8 +8,11 @@ Generalised wrapper for delayed construction of class objects. Encapsulates kwar
 
 __all__ = ["GeneralisedDelayedKwargConstruction", "GDKC"]
 
+
 import logging
-from typing import Any, Mapping, MutableMapping, Sequence, Callable
+from typing import Any, Callable, Mapping, MutableMapping, Sequence
+
+logger = logging.getLogger(__name__)
 
 
 class GeneralisedDelayedKwargConstruction:
@@ -68,7 +71,7 @@ class GeneralisedDelayedKwargConstruction:
             ]
         )
         if war != "":
-            logging.warning(war)
+            logger.warning(war)
 
         self.kwargs.update(kwargs)
         try:

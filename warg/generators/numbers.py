@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import random
-from typing import Iterable, Tuple, Callable, List
+from typing import Callable, Iterable, List, Tuple
 
 from warg import Number
 

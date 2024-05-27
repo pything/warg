@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from typing import Mapping, Iterable, Hashable, Dict, Callable, MutableMapping
+from typing import Callable, Dict, Hashable, Iterable, Mapping, MutableMapping
 
 __all__ = [
     "invert_mapping",
@@ -106,10 +106,30 @@ def pivot_dict_object(d: Dict, key) -> Dict:  # TODO: HANDLE DUPLICATE KEYS; CON
     return {getattr(v, key): k for k, v in d.items()}
 
 
+def to_dict(m: Mapping) -> dict:
+    o = {}
+    for k, v in m.items():
+        if isinstance(v, Mapping):
+            o[k] = to_dict(v)
+        else:
+            o[k] = v
+    return o
+
+
 if __name__ == "__main__":
     print(invert_mapping({"a": 1, "b": 2}))
 
     print(invert_mapping({"a": 2, "b": 2, "c": 3, "d": 4}))
     print(invert_dict({"a": 2, "b": 2, "c": 3, "d": 4}))
+
+    def uhasdu():
+        from warg.data_structures.named_ordered_dictionary import NOD
+
+        a = NOD({"b": NOD(c=1)})
+
+        print(a)
+        print(a.as_dict())
+
+    uhasdu()
 
     # print(pivot_dict_object({"a": 2, "b": 2, "c": 3, "d": 4}, "id"))

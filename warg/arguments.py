@@ -21,6 +21,7 @@ __all__ = [
     "add_bool_arg",
     "check_for_duplicates_in_args",
     "UpperAttrMetaclass",
+    "str_to_bool",
 ]
 
 

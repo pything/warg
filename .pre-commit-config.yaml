@@ -1,7 +1,7 @@
 fail_fast: true
 repos:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.1
+    rev: v3.15.2
     hooks:
       - id: pyupgrade
         args:
@@ -9,18 +9,18 @@ repos:
           - --keep-runtime-typing
 
   - repo: https://github.com/ambv/black
-    rev: 24.2.0
+    rev: 24.4.2
     hooks:
       - id: black
         language_version: python3.10
 
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.16
+    rev: v0.18
     hooks:
       - id: validate-pyproject
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.8.0
+    rev: v1.10.0
     hooks:
       - id: mypy
         verbose: true
@@ -148,7 +148,7 @@ repos:
   #          ]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0 # Use the ref you want to point at
+    rev: v4.6.0 # Use the ref you want to point at
     hooks:
       - id: check-added-large-files
         name: check for added large files

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import json
-import logging
 
 try:
     from importlib.metadata import Distribution, PackageNotFoundError, PathDistribution
@@ -16,7 +15,9 @@ __all__ = [
 
 from pathlib import Path
 from typing import Optional
+import logging
 
+logger = logging.getLogger(__name__)
 VERBOSE = False
 
 
@@ -85,7 +86,7 @@ def package_is_editable(package_name: str) -> bool:
 
     except PackageNotFoundError as p:
         if VERBOSE:
-            logging.info(p)
+            logger.info(p)
 
 
 def get_package_location(package_name: str) -> Path:
@@ -96,7 +97,7 @@ def get_package_location(package_name: str) -> Path:
 
     except PackageNotFoundError as p:
         if VERBOSE:
-            logging.info(p)
+            logger.info(p)
 
 
 # noinspection PyProtectedMember

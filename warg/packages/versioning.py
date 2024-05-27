@@ -2,10 +2,11 @@
 
 __all__ = ["get_version"]
 
+import datetime
 import logging
 from pathlib import Path
-import datetime
-from logging import warning
+
+logger = logging.getLogger(__name__)
 
 
 class NotGitException(Exception):
@@ -15,6 +16,7 @@ class NotGitException(Exception):
 def get_version(version: str, append_time: bool = False, verbose: bool = False, context: Path = None) -> str:
     """
 
+    :param context:
     :param verbose:
     :param version:
     :param append_time:
@@ -32,12 +34,14 @@ def get_version(version: str, append_time: bool = False, verbose: bool = False, 
             import os
 
             caller_parent = Path(os.path.abspath((inspect.stack()[1])[1])).resolve().parent
+
         else:
             context = Path(context)
             if context.is_file():
                 caller_parent = context.parent
             else:
                 caller_parent = context
+
         if (caller_parent / ".git").exists() and (caller_parent / ".git").is_dir():
             git_version = (
                 subprocess.check_output(
@@ -53,6 +57,7 @@ def get_version(version: str, append_time: bool = False, verbose: bool = False, 
                 .strip()
                 .decode()
             )
+
             current_git_version = (
                 subprocess.check_output(
                     [
@@ -66,19 +71,23 @@ def get_version(version: str, append_time: bool = False, verbose: bool = False, 
                 .strip()
                 .decode()
             )
+
             if "dirty" in current_git_version:
-                warning(f"{caller_parent} git is dirty, {current_git_version}")
+                logger.warning(f"{caller_parent} git is dirty, {current_git_version}")
 
             if git_version.split("-")[0] != version:
                 msg = f"{caller_parent} git version {git_version} does not match __version__" f" {version}"
-                warning(msg)
+                logger.warning(msg)
                 assert git_version.split("-")[0] == version, msg
+
             else:
                 if verbose:
                     msg = f"{caller_parent} git version {git_version} matches __version__" f" {version}"
-                    logging.info(msg)
+                    logger.info(msg)
+
         else:
             raise NotGitException
+
     except:
         if append_time:
             now = datetime.datetime.utcnow()
@@ -101,7 +110,9 @@ def get_version(version: str, append_time: bool = False, verbose: bool = False, 
                 #
                 # Publications using datetime versions should only be made from master
                 # to represent the HEAD moving forward.
-                warning(f"Environment variable VERSION is not set, only using datetime: {date_version}")
+                logger.warning(
+                    f"Environment variable VERSION is not set, only using datetime: {date_version}"
+                )
 
                 # warn(f'Environment variable VERSION is not set, only using timestamp: {version}')
 
