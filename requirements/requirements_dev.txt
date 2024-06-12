@@ -2,7 +2,7 @@
 -r requirements_docs.txt
 -r requirements_setup.txt
 -r requirements_tests.txt
-black>=18.9b0
+black>=24.3.0
 coveralls>=1.6.0
 pip>=19.0.3
 pytest>=4.3.0
