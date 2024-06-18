@@ -9,7 +9,10 @@ __doc__ = r"""
 __all__ = ["ArgIdentifier", "get_arg_names", "cprinta", "cprintz"]
 
 import ast
+import logging
 from typing import Any, Callable, Optional
+
+logger = logging.getLogger(__name__)
 
 
 class ArgIdentifier(ast.NodeVisitor):
@@ -41,8 +44,8 @@ class ArgIdentifier(ast.NodeVisitor):
                     n = arg.id
                 elif isinstance(arg, ast.Call):
                     if isinstance(arg.func, ast.Attribute):
-                        # print(first_arg.func.value.value.id) # TODO: UNROLLING is possible, do some resursion
-                        # print(first_arg.func.value.attr) # TODO: SAME for full qualification in scope
+                        # logger.info(first_arg.func.value.value.id) # TODO: UNROLLING is possible, do some resursion
+                        # logger.info(first_arg.func.value.attr) # TODO: SAME for full qualification in scope
                         n = f"{arg.func.attr}"
                     else:
                         n = f"{arg.func.id}"
@@ -74,7 +77,7 @@ class ArgIdentifier(ast.NodeVisitor):
                     n = f"{{{kw_repr}}}"
                 else:  # No obvious name
                     if self.verbose:
-                        print(type(arg))
+                        logger.info(type(arg))
                         n = f"{ast.dump(arg)}"
                     else:
                         n = "iterable"
@@ -107,13 +110,13 @@ def get_arg_names(func_name: str, *, verbose=False, max_num_intermediate_unnamed
             if idx in fai.result[func_name]:
                 return fai.result[func_name][idx]
             elif verbose:
-                print(
+                logger.info(
                     f'Unexpected line number: {idx}, probably a wrong alias "{func_name}" was supplied, found {fai.result[func_name]}, in {inspect.getsourcefile(caller_frame)}'
                 )
         elif verbose:
-            print(f"{func_name} was not found in {fai.result}")
+            logger.info(f"{func_name} was not found in {fai.result}")
     except Exception as e:
-        print(e)
+        logger.info(e)
     return
 
 

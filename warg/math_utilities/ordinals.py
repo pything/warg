@@ -14,6 +14,9 @@ __all__ = [
     "prev_even",
     "prev_odd",
 ]
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def ceil_even(v: Number) -> Number:
@@ -121,4 +124,4 @@ if __name__ == "__main__":
             prev_even,
             prev_odd,
         ):
-            print(f.__name__, f(a))
+            logger.info(f.__name__, f(a))

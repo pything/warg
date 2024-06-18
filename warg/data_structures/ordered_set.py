@@ -15,6 +15,7 @@ and released under the MIT license.
 
 __all__ = ["OrderedSet"]
 
+import logging
 from typing import (
     Any,
     Dict,
@@ -29,6 +30,8 @@ from typing import (
     Union,
     overload,
 )
+
+logger = logging.getLogger(__name__)
 
 SLICE_ALL = slice(None)
 __version__ = "4.0.2"
@@ -184,7 +187,7 @@ class OrderedSet(MutableSet[T], Sequence[T]):
             >>> oset = OrderedSet()
             >>> oset.append(3)
             0
-            >>> print(oset)
+            >>> logger.info(oset)
             OrderedSet([3])
         """
         if key not in self.map:
@@ -203,7 +206,7 @@ class OrderedSet(MutableSet[T], Sequence[T]):
             >>> oset = OrderedSet([1, 2, 3])
             >>> oset.update([3, 1, 5, 1, 4])
             4
-            >>> print(oset)
+            >>> logger.info(oset)
             OrderedSet([1, 2, 3, 5, 4])
         """
         item_index = 0
@@ -269,10 +272,10 @@ class OrderedSet(MutableSet[T], Sequence[T]):
         Example:
             >>> oset = OrderedSet([1, 2, 3])
             >>> oset.discard(2)
-            >>> print(oset)
+            >>> logger.info(oset)
             OrderedSet([1, 3])
             >>> oset.discard(2)
-            >>> print(oset)
+            >>> logger.info(oset)
             OrderedSet([1, 3])
         """
         if key in self:
@@ -346,7 +349,7 @@ class OrderedSet(MutableSet[T], Sequence[T]):
 
         Example:
             >>> oset = OrderedSet.union(OrderedSet([3, 1, 4, 1, 5]), [1, 3], [2, 0])
-            >>> print(oset)
+            >>> logger.info(oset)
             OrderedSet([3, 1, 4, 5, 2, 0])
             >>> oset.union([8, 9])
             OrderedSet([3, 1, 4, 5, 2, 0, 8, 9])
@@ -369,7 +372,7 @@ class OrderedSet(MutableSet[T], Sequence[T]):
 
         Example:
             >>> oset = OrderedSet.intersection(OrderedSet([0, 1, 2, 3]), [1, 2, 3])
-            >>> print(oset)
+            >>> logger.info(oset)
             OrderedSet([1, 2, 3])
             >>> oset.intersection([2, 4, 5], [1, 2, 3, 4])
             OrderedSet([2])
@@ -473,12 +476,12 @@ class OrderedSet(MutableSet[T], Sequence[T]):
         Example:
             >>> this = OrderedSet([1, 2, 3])
             >>> this.difference_update(OrderedSet([2, 4]))
-            >>> print(this)
+            >>> logger.info(this)
             OrderedSet([1, 3])
 
             >>> this = OrderedSet([1, 2, 3, 4, 5])
             >>> this.difference_update(OrderedSet([2, 4]), OrderedSet([1, 4, 6]))
-            >>> print(this)
+            >>> logger.info(this)
             OrderedSet([3, 5])
         """
         items_to_remove = set()  # type: Set[T]
@@ -496,7 +499,7 @@ class OrderedSet(MutableSet[T], Sequence[T]):
             >>> this = OrderedSet([1, 4, 3, 5, 7])
             >>> other = OrderedSet([9, 7, 1, 3, 2])
             >>> this.intersection_update(other)
-            >>> print(this)
+            >>> logger.info(this)
             OrderedSet([1, 3, 7])
         """
         other = set(other)
@@ -511,7 +514,7 @@ class OrderedSet(MutableSet[T], Sequence[T]):
             >>> this = OrderedSet([1, 4, 3, 5, 7])
             >>> other = OrderedSet([9, 7, 1, 3, 2])
             >>> this.symmetric_difference_update(other)
-            >>> print(this)
+            >>> logger.info(this)
             OrderedSet([4, 5, 9, 2])
         """
         items_to_add = [item for item in other if item not in self]

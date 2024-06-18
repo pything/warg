@@ -10,7 +10,10 @@ __all__ = ["ContextWrapper", "NopContext"]
 
 import contextlib
 import inspect
+import logging
 from typing import Callable, ContextManager, Mapping, Optional, Sequence
+
+logger = logging.getLogger(__name__)
 
 
 class NopContext(contextlib.AbstractContextManager):
@@ -67,24 +70,24 @@ if __name__ == "__main__":
             self._message = message
 
         def __enter__(self):
-            print(self._message)
+            logger.info(self._message)
 
         def __exit__(self, exc_type, exc_val, exc_tb):
-            print(not self._message)  # False ;)
+            logger.info(not self._message)  # False ;)
 
     def main() -> None:
         """
         :rtype: None
         """
         with ContextWrapper(SampleContextManager, True):
-            print("with enabled")
+            logger.info("with enabled")
 
-        print()
+        logger.info()
         with ContextWrapper(SampleContextManager, False):
-            print("with disabled")
+            logger.info("with disabled")
 
-        print()
+        logger.info()
         with ContextWrapper(SampleContextManager, True):
-            print("with enabled, uninstantiated")
+            logger.info("with enabled, uninstantiated")
 
     main()

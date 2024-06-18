@@ -5,7 +5,9 @@ __doc__ = r"""
 
            Created on 15-12-2020
            """
+import logging
 
+logger = logging.getLogger(__name__)
 if __name__ == "__main__":
 
     def _main():
@@ -15,10 +17,10 @@ if __name__ == "__main__":
             """description"""
             import config1
 
-            print(config1.A_CONSTANT)
+            logger.info(config1.A_CONSTANT)
             return x * x
 
         with Pool(5) as p:
-            print(p.map(f, [1, 2, 3]))
+            logger.info(p.map(f, [1, 2, 3]))
 
     _main()

@@ -9,6 +9,11 @@ __doc__ = r"""
            """
 
 
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 def test_post_init_class():
     class MyTestingClass(metaclass=PostInit):
         """
@@ -16,13 +21,13 @@ def test_post_init_class():
 
         @drop_unused_kws
         def __init__(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
-            print(kwargs)
+            logger.info(kwargs)
 
         def __post_init__(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
-            print(args, kwargs)
+            logger.info(args, kwargs)
 
         def __call__(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
-            print("a")
+            logger.info("a")
 
     a = MyTestingClass("asdc", kas=2)
 
@@ -36,14 +41,14 @@ def test_post_init_no_kws_class():
 
         @drop_unused_kws
         def __init__(self, *args: Sequence):
-            print("Init class")
+            logger.info("Init class")
 
         @drop_unused_kws
         def __post_init__(self, *args: Sequence):
-            print(args)
+            logger.info(args)
 
         def __call__(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
-            print("a")
+            logger.info("a")
 
     a = MyTestingClass("asdc", kas=2)
 
@@ -56,10 +61,10 @@ def test_no_post_init_class():
         class with the metaclass passed as an argument"""
 
         def __init__(self):
-            print("Init class")
+            logger.info("Init class")
 
         def __call__(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
-            print("a")
+            logger.info("a")
 
     a = MyTestingClass()
 

@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 
 import itertools
+import logging
 from math import cos, sin
 from typing import Iterable
 
 from warg import Number
 
+logger = logging.getLogger(__name__)
 __all__ = ["sin_gen", "cos_gen", "loop"]
 
 loop = itertools.cycle
@@ -40,6 +42,6 @@ if __name__ == "__main__":
         import numpy
 
         for i in cos_gen(numpy.arange(0, 100, 0.1)):
-            print(i)
+            logger.info(i)
 
     assda()

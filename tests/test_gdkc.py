@@ -12,6 +12,10 @@ __doc__ = r"""
             kwargs until actual call.
            """
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class A:
     """description"""
@@ -22,19 +26,19 @@ class A:
 
     def something(self):
         """description"""
-        print(self.kwargs_a)
+        logger.info(self.kwargs_a)
 
     def something_else(self, *args: Sequence):
         """description"""
-        print(args, self.kwargs_a)
+        logger.info(args, self.kwargs_a)
 
     def another(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         """description"""
-        print(args, self.kwargs_a, kwargs)
+        logger.info(args, self.kwargs_a, kwargs)
 
     def clearly_something(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         """description"""
-        print(self.args_a, args, self.kwargs_a, kwargs)
+        logger.info(self.args_a, args, self.kwargs_a, kwargs)
 
 
 def test_not_both():

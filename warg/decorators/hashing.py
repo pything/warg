@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import copy
+import logging
 from typing import Any
 
+logger = logging.getLogger(__name__)
 DictProxyType = type(object.__dict__)
 
 __all__ = ["make_hash"]
@@ -41,18 +43,18 @@ def make_hash(o: Any) -> int:
 
 
 if __name__ == "__main__":
-    print(hash(1))
-    print(make_hash(1))
-    print(make_hash(1))
-    print(make_hash({1}))
-    print(make_hash([1]))
-    print(make_hash({1}))
-    print(make_hash({1, 2}))
-    print(make_hash([1, 2]))
-    print(make_hash((1, 2)))
-    print(make_hash({4}))
-    print(make_hash("1"))
-    print(make_hash({"2": 2}))
-    print(make_hash({"2": 3}))
-    print(make_hash({"3": 2}))
-    print(make_hash({"3": 3}))
+    logger.info(hash(1))
+    logger.info(make_hash(1))
+    logger.info(make_hash(1))
+    logger.info(make_hash({1}))
+    logger.info(make_hash([1]))
+    logger.info(make_hash({1}))
+    logger.info(make_hash({1, 2}))
+    logger.info(make_hash([1, 2]))
+    logger.info(make_hash((1, 2)))
+    logger.info(make_hash({4}))
+    logger.info(make_hash("1"))
+    logger.info(make_hash({"2": 2}))
+    logger.info(make_hash({"2": 3}))
+    logger.info(make_hash({"3": 2}))
+    logger.info(make_hash({"3": 3}))

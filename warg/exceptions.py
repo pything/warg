@@ -8,8 +8,11 @@ __doc__ = r"""
 
 __all__ = ["NoData", "IncompatiblePackageVersions"]
 
+import logging
 import types
 from typing import Iterable, Union
+
+logger = logging.getLogger(__name__)
 
 
 class NoData(Exception):

@@ -2,12 +2,15 @@ import time
 from typing import MutableMapping
 
 import numpy
-from benchmarks.benchmark_func import benchmark_func
-
-from draugr.multiprocessing_utilities.pooled_queue_processor import (
+from .helpers import benchmark_func
+from draugr.multiprocessing_utilities import (
     PooledQueueProcessor,
     PooledQueueTask,
 )
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class Zeroes(PooledQueueTask):
@@ -77,7 +80,7 @@ def pqp_benchmark() -> None:
         (0, samples * wait_time, 0, samples * wait_time),
     ):
         t, res = benchmark_func(func, samples)
-        print(f"{func.__name__}: {t - discount} seconds")
+        logger.info(f"{func.__name__}: {t - discount} seconds")
 
 
 if __name__ == "__main__":

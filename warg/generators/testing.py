@@ -4,6 +4,10 @@ from typing import Iterator, Optional
 
 __all__ = ["peek"]
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def peek(generator: Iterator) -> Optional[itertools.chain]:
     try:
@@ -13,5 +17,5 @@ def peek(generator: Iterator) -> Optional[itertools.chain]:
 
 
 if __name__ == "__main__":
-    print(peek(iter(range(0))))
-    print(peek(iter(range(1))))
+    logger.info(peek(iter(range(0))))
+    logger.info(peek(iter(range(1))))

@@ -6,8 +6,11 @@ __doc__ = r"""
            Created on 17/03/2020
            """
 
+import logging
 from itertools import cycle
 from typing import Callable, Iterable
+
+logger = logging.getLogger(__name__)
 
 
 def busy_indicator(

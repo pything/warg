@@ -17,11 +17,14 @@ __all__ = [
     "nand",
 ]
 
+import logging
 import math
 from typing import Any, Callable, Optional
 
 from warg import Number
 from warg.decorators import drop_unused_kws, passes_kws_to
+
+logger = logging.getLogger(__name__)
 
 
 @drop_unused_kws
@@ -200,13 +203,13 @@ if __name__ == "__main__":
     assert is_zero_or_mod_below(5, 3, 7) == True
     assert is_zero_or_mod_below(5, 2, 4) == False
     for i in range(9):
-        print(is_zero_or_mod_zero(1, i))
+        logger.info(is_zero_or_mod_zero(1, i))
     for i in range(9):
-        print(is_zero_or_mod_zero(2, i))
+        logger.info(is_zero_or_mod_zero(2, i))
 
-    print()
+    logger.info()
     for i in range(8):
-        print(is_none_or_zero_or_negative_or_mod_zero(None, i, residual_printer=print))
+        logger.info(is_none_or_zero_or_negative_or_mod_zero(None, i, residual_printer=print))
 
     for i in range(8):
-        print(is_none_or_zero_or_negative_or_mod_zero(True, 4 - i, residual_printer=print))
+        logger.info(is_none_or_zero_or_negative_or_mod_zero(True, 4 - i, residual_printer=print))

@@ -7,10 +7,13 @@ __doc__ = r"""
            """
 __all__ = ["PropertySettings"]
 
+import logging
 from collections.abc import Mapping
 from typing import Any, Dict, MutableMapping
 
 from warg import NOD
+
+logger = logging.getLogger(__name__)
 
 
 class PropertySettings(
@@ -114,5 +117,5 @@ class PropertySettings(
 if __name__ == "__main__":
     a = PropertySettings()
 
-    print({**a.__crystallise__()})
+    logger.info({**a.__crystallise__()})
     assert not "h" in a

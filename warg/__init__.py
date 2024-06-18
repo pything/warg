@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import logging
+
 try:
     from importlib.resources import files
     from importlib.metadata import PackageNotFoundError
@@ -10,7 +12,7 @@ except:
 __project__ = "Warg"
 
 __author__ = "Christian Heider Lindbjerg"
-__version__ = "1.4.5"
+__version__ = "1.4.6"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -19,6 +21,10 @@ Created on 27/04/2019
 """
 
 from pathlib import Path
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 with open(Path(__file__).parent / "README.md") as this_init_file:
     __doc__ += this_init_file.read()
@@ -62,11 +68,12 @@ try:
     from .packages import *
     from .iteration import *
     from .logging_utilities import *
+    from .modules import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = Path(__file__).parent.parent / f"requirements.txt"
     if this_package_reqs.exists():
-        print(
+        logger.info(
             f"Make sure requirements is installed for {this_package_name}, see {this_package_reqs}"
         )  # TODO: PARSE WHAT is missing and print
     raise ix
@@ -93,4 +100,4 @@ __version__ = get_version(__version__, append_time=DEVELOP)
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
 
 if __name__ == "__main__":
-    print(__version__)
+    logger.info(__version__)

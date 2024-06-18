@@ -7,8 +7,10 @@ __doc__ = r"""
            """
 
 import enum
+import logging
 import sys
 
+logger = logging.getLogger(__name__)
 __all__ = [
     "get_backend_module",
     "is_py3",
@@ -128,4 +130,4 @@ def is_py3() -> bool:
 
 
 if __name__ == "__main__":
-    print(get_backend_module("draugr", "python_utilities"))
+    logger.info(get_backend_module("draugr", "python_utilities"))

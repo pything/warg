@@ -9,9 +9,11 @@ __doc__ = r"""
 
 __all__ = ["color"]
 
+import logging
 import re
 from functools import partial
 
+logger = logging.getLogger(__name__)
 
 css_colors = {  # Map of CSS color names to RGB integer values.
     "aliceblue": (240, 248, 255),

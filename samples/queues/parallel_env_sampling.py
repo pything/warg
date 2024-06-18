@@ -10,6 +10,9 @@ import random
 import time
 from multiprocessing import Process, Queue, current_process, freeze_support
 from typing import Callable, Sequence
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def worker(i: Queue, output: Queue) -> None:
@@ -56,15 +59,15 @@ def stest():
     for i in range(number_of_processes):  # Start worker processes
         Process(target=worker, args=(task_queue, done_queue)).start()
 
-    print("Unordered results:")
+    logger.info("Unordered results:")
     for i in range(len(tasks1)):  # Get and print results
-        print("\t", done_queue.get())
+        logger.info("\t", done_queue.get())
 
     for task in tasks2:  # Add more tasks using `put()`
         task_queue.put(task)
 
     for i in range(len(tasks2)):  # Get and print some more results
-        print("\t", done_queue.get())
+        logger.info("\t", done_queue.get())
 
     for i in range(number_of_processes):  # Tell child processes to stop
         task_queue.put("STOP")

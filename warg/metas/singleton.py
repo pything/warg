@@ -10,8 +10,11 @@ Created on 27/04/2019
 __all__ = ["SingletonBase", "SingletonMeta", "key_singleton", "singleton"]
 
 import functools
+import logging
 from functools import wraps
 from typing import Any, Callable, MutableMapping, Sequence
+
+logger = logging.getLogger(__name__)
 
 
 class SingletonBase:
@@ -122,11 +125,11 @@ if __name__ == "__main__":
         pass
 
     # expected
-    print(SingletonBaseClass())  # same
-    print(SingletonBaseClass())  # same
-    print(S1())  # same
+    logger.info(SingletonBaseClass())  # same
+    logger.info(SingletonBaseClass())  # same
+    logger.info(S1())  # same
 
     # expected
-    print(SingletonBaseMeta())  # same
-    print(SingletonBaseMeta())  # same
-    print(S2())  # different
+    logger.info(SingletonBaseMeta())  # same
+    logger.info(SingletonBaseMeta())  # same
+    logger.info(S2())  # different

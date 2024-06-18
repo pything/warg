@@ -6,9 +6,11 @@ __doc__ = r"""
            Created on 18-01-2021
            """
 
+import logging
 from enum import Enum
 from typing import Any, Iterable
 
+logger = logging.getLogger(__name__)
 __all__ = ["FilterModeEnum", "symbol_filter"]
 
 
@@ -63,16 +65,16 @@ if __name__ == "__main__":
             " 12 329#9213",
         ]
         for s in symbol_filter(strings):
-            print(s)
+            logger.info(s)
 
-        print(" ")
+        logger.info(" ")
 
         for i, s in enumerate(symbol_filter(strings, exclusion_mode=FilterModeEnum.exclude_fully)):
-            print(i, s)
+            logger.info(i, s)
 
-        print(" ")
+        logger.info(" ")
 
         for s in symbol_filter(strings, exclusion_mode=FilterModeEnum.exclude_prefix):
-            print(s)
+            logger.info(s)
 
     asijsda()

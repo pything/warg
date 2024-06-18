@@ -8,7 +8,10 @@ __doc__ = r"""
 
 __all__ = ["PostInit"]
 
+import logging
 from typing import Any, MutableMapping, Sequence
+
+logger = logging.getLogger(__name__)
 
 
 class PostInit(type):
@@ -30,11 +33,11 @@ if __name__ == "__main__":
         """description"""
 
         def __init__(self):
-            print("init")
+            logger.info("init")
 
         def __post_init__(self) -> None:
             """description"""
-            print("post_init")
+            logger.info("post_init")
 
     SAD()
     SAD()

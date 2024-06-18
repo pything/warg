@@ -24,6 +24,10 @@ __all__ = [
     "str_to_bool",
 ]
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class UpperAttrMetaclass(type):
     """
@@ -255,9 +259,9 @@ if __name__ == "__main__":
             return a + b
 
         wq = add2(2, 4)
-        print(wq)
+        logger.info(wq)
 
         wc = add2(*c(4, 3))
-        print(wc)
+        logger.info(wc)
 
     _main()

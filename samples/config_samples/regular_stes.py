@@ -5,7 +5,9 @@ __doc__ = r"""
 
            Created on 15-12-2020
            """
+import logging
 
+logger = logging.getLogger(__name__)
 if __name__ == "__main__":
 
     def f() -> None:
@@ -14,9 +16,9 @@ if __name__ == "__main__":
         """
         import config1
 
-        print(config1.A_CONSTANT)
+        logger.info(config1.A_CONSTANT)
         import config1
 
-        print(config1.ANOTHER_CONSTANT)
+        logger.info(config1.ANOTHER_CONSTANT)
 
     f()

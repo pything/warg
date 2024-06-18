@@ -6,7 +6,11 @@ __doc__ = r"""
            Created on 21/12/2019
            """
 
-from warg.data_structures.auto_dict import AutoDict, recursive_default_dict_print, sanitise_auto_dict
+from warg import AutoDict, recursive_default_dict_print, sanitise_auto_dict
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def test_a():
@@ -23,9 +27,9 @@ def test_a():
     b = ad["b"]["a"]["gf"]["c"]
     c = ad["cd"]["v"]
 
-    print(a, b, c)
+    logger.info(a, b, c)
 
-    print(ad)
+    logger.info(ad)
 
     recursive_default_dict_print(ad)
 
@@ -44,7 +48,7 @@ def test_a():
 
     assert c == 412
 
-    print(d)
+    logger.info(d)
 
 
 if __name__ == "__main__":

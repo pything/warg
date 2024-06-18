@@ -10,6 +10,10 @@ __doc__ = r"""
 
 __all__ = []
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def this_is_barely_legal():
     try:
@@ -107,16 +111,16 @@ if __name__ == "__main__":
     # noinspection PyUnresolvedReferences
     import __hello__
 
-    print()
+    logger.info()
     import this
 
-    print()
+    logger.info()
     # noinspection PyUnresolvedReferences
     import antigravity
 
-    print()
-    print(this.i, this.d, this.c, this.s)
-    print()
+    logger.info()
+    logger.info(this.i, this.d, this.c, this.s)
+    logger.info()
 
     # noinspection PyUnresolvedReferences
     # import that  # pip install that

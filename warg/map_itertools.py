@@ -15,7 +15,10 @@ __all__ = [
 ]
 
 import itertools
+import logging
 from typing import Any, Mapping, Tuple
+
+logger = logging.getLogger(__name__)
 
 
 def map_value_product(dicts: Mapping) -> Any:
@@ -64,11 +67,13 @@ if __name__ == "__main__":
         from warg import NOD
 
         a = NOD(a=[1], b=[4], c=[8])
-        print(f"ValueMapProduct{str(list(map_value_product(a.as_dict())))}")
-        print(f"MapProduct{str(list(map_product(a.as_dict())))}")
-        print(f"map_combinations{str(list(map_combinations(a.as_dict())))}")
-        print(f"map_permutations{str(list(map_permutations(a.as_dict())))}")
-        print(f"map_combinations_with_replacement{str(list(map_combinations_with_replacement(a.as_dict())))}")
+        logger.info(f"ValueMapProduct{str(list(map_value_product(a.as_dict())))}")
+        logger.info(f"MapProduct{str(list(map_product(a.as_dict())))}")
+        logger.info(f"map_combinations{str(list(map_combinations(a.as_dict())))}")
+        logger.info(f"map_permutations{str(list(map_permutations(a.as_dict())))}")
+        logger.info(
+            f"map_combinations_with_replacement{str(list(map_combinations_with_replacement(a.as_dict())))}"
+        )
 
     def asdijhsadasdad() -> None:
         """
@@ -77,11 +82,13 @@ if __name__ == "__main__":
         from warg import NOD
 
         a = NOD(a=[1, 2, 8], b=[4, 3, 99])
-        print(f"ValueMapProduct{str(list(map_value_product(a.as_dict())))}")
-        print(f"MapProduct{str(list(map_product(a.as_dict())))}")
-        print(f"map_combinations{str(list(map_combinations(a.as_dict())))}")
-        print(f"map_permutations{str(list(map_permutations(a.as_dict())))}")
-        print(f"map_combinations_with_replacement{str(list(map_combinations_with_replacement(a.as_dict())))}")
+        logger.info(f"ValueMapProduct{str(list(map_value_product(a.as_dict())))}")
+        logger.info(f"MapProduct{str(list(map_product(a.as_dict())))}")
+        logger.info(f"map_combinations{str(list(map_combinations(a.as_dict())))}")
+        logger.info(f"map_permutations{str(list(map_permutations(a.as_dict())))}")
+        logger.info(
+            f"map_combinations_with_replacement{str(list(map_combinations_with_replacement(a.as_dict())))}"
+        )
 
     asdijha()
     # asdijhsadasdad()

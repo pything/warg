@@ -12,6 +12,10 @@ __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
            """
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def test_subclass_fully_qualified_no_args_or_kwargs():
     class BaseClass:
@@ -47,11 +51,11 @@ def test_subclass_fully_qualified_no_args_or_kwargs():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    print(inspect.signature(SubClass0.__init__))
-    print(inspect.signature(SubClass1.__init__))
+    logger.info(inspect.signature(SubClass0.__init__))
+    logger.info(inspect.signature(SubClass1.__init__))
 
-    print(vars(SubClass0(1, 1, 1, kwarg0=52)))
-    print(vars(SubClass1(2, 2, 1, kwarg0=52)))
+    logger.info(vars(SubClass0(1, 1, 1, kwarg0=52)))
+    logger.info(vars(SubClass1(2, 2, 1, kwarg0=52)))
 
 
 def test_with_args_and_kwargs_on_subclasses():
@@ -101,11 +105,11 @@ def test_with_args_and_kwargs_on_subclasses():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    print(inspect.signature(SubClass0.__init__))
-    print(inspect.signature(SubClass1.__init__))
+    logger.info(inspect.signature(SubClass0.__init__))
+    logger.info(inspect.signature(SubClass1.__init__))
 
-    print(vars(SubClass0(1, 1, 1, kwarg0=52)))
-    print(vars(SubClass1(2, 2, 1, kwarg0=52)))
+    logger.info(vars(SubClass0(1, 1, 1, kwarg0=52)))
+    logger.info(vars(SubClass1(2, 2, 1, kwarg0=52)))
 
 
 def test_subclass_with_kwargs():
@@ -142,11 +146,11 @@ def test_subclass_with_kwargs():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    print(inspect.signature(SubClass0.__init__))
-    print(inspect.signature(SubClass1.__init__))
+    logger.info(inspect.signature(SubClass0.__init__))
+    logger.info(inspect.signature(SubClass1.__init__))
 
-    print(vars(SubClass0(1, 1, 1, kwarg0=52)))
-    print(vars(SubClass1(2, 2, 1, kwarg0=52)))
+    logger.info(vars(SubClass0(1, 1, 1, kwarg0=52)))
+    logger.info(vars(SubClass1(2, 2, 1, kwarg0=52)))
 
 
 def test_subclass_with_args():
@@ -183,11 +187,11 @@ def test_subclass_with_args():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    print(inspect.signature(SubClass0.__init__))
-    print(inspect.signature(SubClass1.__init__))
+    logger.info(inspect.signature(SubClass0.__init__))
+    logger.info(inspect.signature(SubClass1.__init__))
 
-    print(vars(SubClass0(1, 1, 1, kwarg0=52)))
-    print(vars(SubClass1(2, 2, 1, kwarg0=52)))
+    logger.info(vars(SubClass0(1, 1, 1, kwarg0=52)))
+    logger.info(vars(SubClass1(2, 2, 1, kwarg0=52)))
 
 
 def test_base_with_kwargs():
@@ -224,11 +228,11 @@ def test_base_with_kwargs():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    print(inspect.signature(SubClass0.__init__))
-    print(inspect.signature(SubClass1.__init__))
+    logger.info(inspect.signature(SubClass0.__init__))
+    logger.info(inspect.signature(SubClass1.__init__))
 
-    print(vars(SubClass0(1, 1, 1, kwarg0=52)))
-    print(vars(SubClass1(2, 2, 1, kwarg0=52)))
+    logger.info(vars(SubClass0(1, 1, 1, kwarg0=52)))
+    logger.info(vars(SubClass1(2, 2, 1, kwarg0=52)))
 
 
 def test_base_with_args():
@@ -265,11 +269,11 @@ def test_base_with_args():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    print(inspect.signature(SubClass0.__init__))
-    print(inspect.signature(SubClass1.__init__))
+    logger.info(inspect.signature(SubClass0.__init__))
+    logger.info(inspect.signature(SubClass1.__init__))
 
-    print(vars(SubClass0(1, 1, 1, kwarg0=52)))
-    print(vars(SubClass1(2, 2, 1, kwarg0=52)))
+    logger.info(vars(SubClass0(1, 1, 1, kwarg0=52)))
+    logger.info(vars(SubClass1(2, 2, 1, kwarg0=52)))
 
 
 def test_base_with_args_and_mock_empty_dict():
@@ -306,11 +310,11 @@ def test_base_with_args_and_mock_empty_dict():
             self.arg2 = arg2
             self.kwarg2 = kwarg2
 
-    print(inspect.signature(SubClass0.__init__))
-    print(inspect.signature(SubClass1.__init__))
+    logger.info(inspect.signature(SubClass0.__init__))
+    logger.info(inspect.signature(SubClass1.__init__))
 
-    print(vars(SubClass0(1, 1, 1, kwarg0=52)))
-    print(vars(SubClass1(2, 2, 1, kwarg0=52)))
+    logger.info(vars(SubClass0(1, 1, 1, kwarg0=52)))
+    logger.info(vars(SubClass1(2, 2, 1, kwarg0=52)))
 
 
 def test_chaining_arbitrary_kwargs():
@@ -329,7 +333,7 @@ def test_chaining_arbitrary_kwargs():
         b(1, 2, **kwargs)
         l(**kwargs)
 
-    print(inspect.signature(a))
+    logger.info(inspect.signature(a))
     a(1, d=None, im_here=2)
 
 
@@ -349,7 +353,7 @@ def test_chaining_arbitrary_kwargs_keep():
         b(1, 2, **kwargs)
         l(**kwargs)
 
-    print(inspect.signature(a))
+    logger.info(inspect.signature(a))
     a(1, d=None, im_here=2)
 
 
@@ -379,7 +383,7 @@ def test_chaining_no_keep():
         b(1, 2, **kwargs)
         l(1, **kwargs)
 
-    print("a1", inspect.signature(a1))
+    logger.info("a1", inspect.signature(a1))
 
     @passes_kws_to(b, l)
     def a(e: int, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
@@ -388,7 +392,7 @@ def test_chaining_no_keep():
         b(1, 2, **kwargs)
         l(1, **kwargs)
 
-    print(inspect.signature(a))
+    logger.info(inspect.signature(a))
     a(1, d=None, im_here=None)
 
 
@@ -418,7 +422,7 @@ def test_chaining_no_keep_composed_drop_kws():
         b(1, 2, **kwargs)
         l(1, **kwargs)
 
-    print("a1", inspect.signature(a1))
+    logger.info("a1", inspect.signature(a1))
 
     @drop_unused_kws
     @passes_kws_to(b, l)
@@ -428,5 +432,5 @@ def test_chaining_no_keep_composed_drop_kws():
         b(1, 2, **kwargs)
         l(1, **kwargs)
 
-    print(inspect.signature(a))
+    logger.info(inspect.signature(a))
     a(1, d=None, im_here=None)

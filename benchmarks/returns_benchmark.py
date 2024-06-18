@@ -2,10 +2,13 @@ from collections import namedtuple
 from typing import Dict, List, Tuple
 
 import sorcery
-from benchmarks.benchmark_func import benchmark_func
+from .helpers import benchmark_func
 
-from warg import NamedOrderedDictionary
-from warg.data_structures.named_ordered_dictionary import NOD
+from warg import NamedOrderedDictionary, NOD
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def returns_benchmark() -> None:
@@ -77,7 +80,7 @@ def returns_benchmark() -> None:
         inferred_return,
     ):
         t, res = benchmark_func(func)
-        print(f"{func.__name__}: {t} seconds, {res}")
+        logger.info(f"{func.__name__}: {t} seconds, {res}")
 
 
 if __name__ == "__main__":

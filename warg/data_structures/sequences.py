@@ -6,8 +6,10 @@ __doc__ = r"""
            Created on 13/06/2020
            """
 
+import logging
 from typing import Sequence, Tuple
 
+logger = logging.getLogger(__name__)
 __all__ = ["split"]
 
 
@@ -24,6 +26,6 @@ def split(seq: Sequence) -> Tuple[Sequence, Sequence]:
 
 
 if __name__ == "__main__":
-    print(split(list(range(11))))
-    print(split(list(range(10))))
-    print(split(list(range(9))))
+    logger.info(split(list(range(11))))
+    logger.info(split(list(range(10))))
+    logger.info(split(list(range(9))))

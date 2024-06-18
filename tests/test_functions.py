@@ -8,18 +8,22 @@ __doc__ = r"""
 
 from warg import kws_sink, prod, sink
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def test_a():
-    print(kws_sink("str"))
-    print(kws_sink(2))
-    print(kws_sink(2.2))
+    logger.info(kws_sink("str"))
+    logger.info(kws_sink(2))
+    logger.info(kws_sink(2.2))
 
-    print(prod((2, 2)))
+    logger.info(prod((2, 2)))
 
-    print(prod((2.2, 2.2)))
+    logger.info(prod((2.2, 2.2)))
 
-    print(prod((2, 2.2)))
+    logger.info(prod((2, 2.2)))
 
-    print(prod((2.2, 2)))
+    logger.info(prod((2.2, 2)))
 
-    print(sink((2, 2), face=(2.2, 2)))
+    logger.info(sink((2, 2), face=(2.2, 2)))

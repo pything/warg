@@ -11,6 +11,9 @@ __all__ = [
 ]
 
 from typing import Any, Tuple
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class IterDictItemsMixin:
@@ -53,6 +56,6 @@ if __name__ == "__main__":
         a.d = 3
 
         for ca in a:
-            print(ca)
+            logger.info(ca)
 
     asdij()

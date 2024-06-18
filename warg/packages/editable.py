@@ -147,17 +147,17 @@ def get_dist_package_location(dist: Distribution) -> Optional[Path]:
 
 
 if __name__ == "__main__":
-    print(package_is_editable(package_name="draugr"))
-    print(get_package_location(package_name="draugr"))
+    logger.info(package_is_editable(package_name="draugr"))
+    logger.info(get_package_location(package_name="draugr"))
 
-    print(package_is_editable(package_name="warg"))
-    print(get_package_location(package_name="warg"))
+    logger.info(package_is_editable(package_name="warg"))
+    logger.info(get_package_location(package_name="warg"))
 
-    print(package_is_editable(package_name="apppath"))
-    print(get_package_location(package_name="apppath"))
+    logger.info(package_is_editable(package_name="apppath"))
+    logger.info(get_package_location(package_name="apppath"))
 
-    print(get_package_location(package_name="numpy"))
+    logger.info(get_package_location(package_name="numpy"))
 
-    print(package_is_editable(package_name="Pillow"))
-    print(get_package_location(package_name="Pillow"))
-    print(get_package_location(package_name="pillow"))
+    logger.info(package_is_editable(package_name="Pillow"))
+    logger.info(get_package_location(package_name="Pillow"))
+    logger.info(get_package_location(package_name="pillow"))

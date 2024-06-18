@@ -3,3 +3,7 @@
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
            """
+
+import logging
+
+logger = logging.getLogger(__name__)

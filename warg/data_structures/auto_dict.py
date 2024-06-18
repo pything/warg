@@ -6,9 +6,11 @@ __doc__ = r"""
            Created on 21/12/2019
            """
 
+import logging
 from collections import defaultdict
 from typing import Dict, Mapping, Optional
 
+logger = logging.getLogger(__name__)
 __all__ = [
     "AutoDict",
     "sanitise_auto_dict",
@@ -58,7 +60,7 @@ def recursive_default_dict() -> defaultdict:
     return defaultdict(recursive_default_dict)
 
 
-def recursive_default_dict_print(d: Mapping, depth: int = 1) -> None:
+def recursive_default_dict_print(d: Mapping, depth: int = 1, printer: callable = print) -> None:
     """
 
     :param d:
@@ -67,11 +69,11 @@ def recursive_default_dict_print(d: Mapping, depth: int = 1) -> None:
     :type depth:
     """
     for k, v in d.items():
-        print("-" * depth, k)
+        printer("-" * depth, k)
         if type(v) is defaultdict:
             recursive_default_dict_print(v, depth + 1)
         else:
-            print("-" * (depth + 1), v)
+            printer("-" * (depth + 1), v)
 
 
 if __name__ == "__main__":
@@ -85,8 +87,8 @@ if __name__ == "__main__":
     ad["cf"]["b6"] = None
     ad["cf"]["1"] = None
 
-    print(ad)
+    logger.info(ad)
 
     recursive_default_dict_print(ad)
 
-    print(sanitise_auto_dict(ad))
+    logger.info(sanitise_auto_dict(ad))

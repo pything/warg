@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
+import logging
 from typing import Any, Callable, Iterable, List, Sequence, Tuple
 
+logger = logging.getLogger(__name__)
 __all__ = ["pairs", "chunks", "leaf_apply", "leaf_type_apply"]
 
 
@@ -60,4 +62,4 @@ def chunks(lst: Sequence, n: int) -> Any:
 
 
 if __name__ == "__main__":
-    print(list(chunks(list(range(10)), 3)))
+    logger.info(list(chunks(list(range(10)), 3)))
