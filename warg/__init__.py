@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import logging
+
 try:
     from importlib.resources import files
     from importlib.metadata import PackageNotFoundError
@@ -19,6 +21,10 @@ Created on 27/04/2019
 """
 
 from pathlib import Path
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 with open(Path(__file__).parent / "README.md") as this_init_file:
     __doc__ += this_init_file.read()
