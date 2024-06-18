@@ -15,7 +15,10 @@ __all__ = [
 ]
 
 import itertools
+import logging
 from typing import Any, Mapping, Tuple
+
+logger = logging.getLogger(__name__)
 
 
 def map_value_product(dicts: Mapping) -> Any:

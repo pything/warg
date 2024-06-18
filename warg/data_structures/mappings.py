@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-from typing import Callable, Collection, Dict, Hashable, Iterable, Mapping, MutableMapping
+import logging
+from typing import Callable, Dict, Hashable, Iterable, Mapping, MutableMapping
 
+logger = logging.getLogger(__name__)
 __all__ = [
     "invert_mapping",
     "invert_dict",

@@ -10,6 +10,10 @@ __doc__ = r"""
 
 __all__ = []
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def this_is_barely_legal():
     try:

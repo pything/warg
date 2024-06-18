@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import logging
 from typing import (
     Any,
     ItemsView,
@@ -14,8 +15,8 @@ from typing import (
     TypeVar,
     ValuesView,
 )
-from copy import deepcopy
 
+logger = logging.getLogger(__name__)
 __author__ = "Christian Heider Lindbjerg"
 
 __all__ = ["NamedOrderedDictionary", "NOD"]

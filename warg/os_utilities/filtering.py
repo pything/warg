@@ -8,10 +8,13 @@ __doc__ = r"""
 
 __all__ = ["is_excluded", "is_python_package", "is_python_module", "negate"]
 
+import logging
 import re
 from functools import wraps
 from pathlib import Path
 from typing import Any, Callable, MutableMapping, Sequence, Union
+
+logger = logging.getLogger(__name__)
 
 
 def is_python_module(path: Path) -> bool:

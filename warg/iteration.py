@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
+import logging
 from typing import Any, Callable, Iterable, List, Sequence, Tuple
 
+logger = logging.getLogger(__name__)
 __all__ = ["pairs", "chunks", "leaf_apply", "leaf_type_apply"]
 
 

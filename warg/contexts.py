@@ -8,9 +8,12 @@ __doc__ = r"""
 __all__ = ["IgnoreInterruptSignal", "LambdaContext", "Suppress"]
 
 import contextlib
+import logging
 import signal
 
 from warg import AlsoDecorator
+
+logger = logging.getLogger(__name__)
 
 
 class LambdaContext(contextlib.AbstractContextManager):

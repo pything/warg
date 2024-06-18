@@ -7,11 +7,13 @@ __doc__ = r"""
            Created on 06/03/2020
            """
 
+import logging
 from time import sleep, time
 from typing import Any, Callable, Iterable, Mapping, MutableMapping, Sequence, Set, Tuple
 
 from warg.decorators.hashing import make_hash
 
+logger = logging.getLogger(__name__)
 global_table = {}
 
 __all__ = ["add_lut", "look_up", "look_up_args", "look_up_kws"]

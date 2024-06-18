@@ -14,6 +14,9 @@ __all__ = [
     "prev_even",
     "prev_odd",
 ]
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def ceil_even(v: Number) -> Number:

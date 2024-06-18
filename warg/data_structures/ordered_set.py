@@ -15,6 +15,7 @@ and released under the MIT license.
 
 __all__ = ["OrderedSet"]
 
+import logging
 from typing import (
     Any,
     Dict,
@@ -29,6 +30,8 @@ from typing import (
     Union,
     overload,
 )
+
+logger = logging.getLogger(__name__)
 
 SLICE_ALL = slice(None)
 __version__ = "4.0.2"

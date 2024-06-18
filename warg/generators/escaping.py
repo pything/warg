@@ -1,4 +1,7 @@
+import logging
 from typing import Any, Iterable, Union
+
+logger = logging.getLogger(__name__)
 
 
 def to_string_if_not_of_exact_type(gen: Iterable, type_: Iterable[type] = (int, float)) -> Union[str, Any]:

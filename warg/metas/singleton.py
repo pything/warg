@@ -10,8 +10,11 @@ Created on 27/04/2019
 __all__ = ["SingletonBase", "SingletonMeta", "key_singleton", "singleton"]
 
 import functools
+import logging
 from functools import wraps
 from typing import Any, Callable, MutableMapping, Sequence
+
+logger = logging.getLogger(__name__)
 
 
 class SingletonBase:

@@ -9,7 +9,10 @@ __doc__ = r"""
 __all__ = ["FirstArgIdentifier", "get_first_arg_name", "cprint"]
 
 import ast
+import logging
 from typing import Any, Callable, Optional
+
+logger = logging.getLogger(__name__)
 
 
 def recurse_first_args(args):

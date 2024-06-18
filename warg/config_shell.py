@@ -8,10 +8,13 @@ __doc__ = r"""
 __all__ = ["PlaybackShell", "ConfigShell"]
 
 import cmd
+import logging
 from pathlib import Path
 from typing import Callable, MutableMapping, Optional
 
 from warg import PropertySettings, passes_kws_to
+
+logger = logging.getLogger(__name__)
 
 
 class PlaybackShell(cmd.Cmd):

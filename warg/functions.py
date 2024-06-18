@@ -33,6 +33,7 @@ __all__ = [
 ]
 
 import ctypes
+import logging
 import operator
 import sys
 import webbrowser
@@ -49,6 +50,8 @@ import requests
 from warg.contexts import Suppress
 from warg.decorators import drop_unused_kws
 from warg.typing_extension import Number
+
+logger = logging.getLogger(__name__)
 
 
 def int_limits(c_int_type: Any) -> Tuple[int, int]:

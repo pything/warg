@@ -11,10 +11,13 @@ __all__ = ["timeit", "StopWatch"]
 
 import contextlib
 import functools
+import logging
 import time
 import typing
 from functools import wraps
 from typing import Any, MutableMapping, Sequence
+
+logger = logging.getLogger(__name__)
 
 
 def timeit(f: typing.Callable) -> typing.Callable:

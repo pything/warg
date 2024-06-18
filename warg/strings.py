@@ -8,7 +8,10 @@ __doc__ = r"""
 
 __all__ = ["indent_lines", "str_to_tuple", "clean_string"]
 
+import logging
 from typing import Any
+
+logger = logging.getLogger(__name__)
 
 
 def indent_lines(input_str: Any, indent_spaces_num: int = 2, ignore_single_lines: bool = False) -> str:

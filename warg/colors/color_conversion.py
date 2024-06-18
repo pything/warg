@@ -6,8 +6,10 @@ __doc__ = r"""
            Created on 30/03/2020
            """
 
+import logging
 from typing import Tuple
 
+logger = logging.getLogger(__name__)
 COLOR_RGB = Tuple[int, int, int]
 COLOR_RGBA = Tuple[int, int, int, int]
 COLOR_INT = Tuple[int, ...]

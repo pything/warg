@@ -7,10 +7,13 @@ __doc__ = r"""
            """
 __all__ = ["PropertySettings"]
 
+import logging
 from collections.abc import Mapping
 from typing import Any, Dict, MutableMapping
 
 from warg import NOD
+
+logger = logging.getLogger(__name__)
 
 
 class PropertySettings(

@@ -8,7 +8,10 @@ __doc__ = r"""
 
 __all__ = ["export"]
 
+import logging
 import sys
+
+logger = logging.getLogger(__name__)
 
 
 # @export # Sadly can not be used here as it not declared yet :/ ;)

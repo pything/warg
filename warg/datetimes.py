@@ -8,7 +8,9 @@ __doc__ = r"""
 __all__ = ["default_datetime_repr", "now_repr"]
 
 import datetime
+import logging
 
+logger = logging.getLogger(__name__)
 DEFAULT_REPRESENTATION = "%Y-%m-%d_%H:%M:%S.%f"
 
 

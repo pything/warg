@@ -17,11 +17,14 @@ __all__ = [
     "nand",
 ]
 
+import logging
 import math
 from typing import Any, Callable, Optional
 
 from warg import Number
 from warg.decorators import drop_unused_kws, passes_kws_to
+
+logger = logging.getLogger(__name__)
 
 
 @drop_unused_kws

@@ -6,9 +6,11 @@ __doc__ = r"""
            Created on 18-01-2021
            """
 
+import logging
 from enum import Enum
 from typing import Any, Iterable
 
+logger = logging.getLogger(__name__)
 __all__ = ["FilterModeEnum", "symbol_filter"]
 
 

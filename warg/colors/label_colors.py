@@ -8,9 +8,12 @@ __doc__ = r"""
 
 __all__ = ["compute_color_for_labels"]
 
+import logging
 from typing import Tuple
 
 from warg import TripleNumber
+
+logger = logging.getLogger(__name__)
 
 
 def compute_color_for_labels(label: int, palette: TripleNumber = (2**11 - 1, 2**15 - 1, 2**20 - 1)) -> Tuple:

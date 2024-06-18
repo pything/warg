@@ -5,9 +5,11 @@ __author__ = "Christian Heider Lindbjerg"
 __doc__ = """description"""
 __all__ = ["to_british_english", "deamericanise"]
 
+import logging
 from types import MappingProxyType
 from typing import Mapping
 
+logger = logging.getLogger(__name__)
 default_rules = MappingProxyType(
     {
         "ize": "ise",

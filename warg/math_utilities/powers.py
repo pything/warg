@@ -6,8 +6,12 @@ __doc__ = r"""
            Created on 13-01-2021
            """
 
+import logging
 from math import ceil, floor, log, log10, log2
 
+from warg import Number
+
+logger = logging.getLogger(__name__)
 __all__ = [
     "next_pow",
     "next_power",
@@ -19,8 +23,6 @@ __all__ = [
     "prev_pow_10",
     "prev_pow_2",
 ]
-
-from warg import Number
 
 
 def next_pow(x: Number, n: int = None) -> int:

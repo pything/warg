@@ -9,6 +9,10 @@ __doc__ = r"""
 
 __all__ = ["yield_and_map", "inner_map", "kw_map"]
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def yield_and_map(iterable: Iterable[Any], level: int = 0, func: Callable = print) -> Any:
     """

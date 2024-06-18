@@ -6,9 +6,11 @@ __doc__ = r"""
            Created on 21/12/2019
            """
 
+import logging
 from collections import defaultdict
 from typing import Dict, Mapping, Optional
 
+logger = logging.getLogger(__name__)
 __all__ = [
     "AutoDict",
     "sanitise_auto_dict",

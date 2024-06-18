@@ -10,6 +10,10 @@ __doc__ = r"""
 
 __all__ = ["unzip", "unzipper"]
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def unzip(iterable: Iterable[Any]) -> Iterable[Any]:
     """description"""

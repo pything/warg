@@ -6,6 +6,7 @@ __doc__ = r"""
            Created on 07-05-2021
            """
 
+import logging
 import os
 import subprocess
 from pathlib import Path
@@ -13,6 +14,7 @@ from typing import Optional
 
 from warg.os_utilities.os_platform import has_x_server, is_mac, is_windows
 
+logger = logging.getLogger(__name__)
 __all__ = ["latest_file", "exist_any_extension", "system_open_path"]
 
 

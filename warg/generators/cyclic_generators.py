@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 
 import itertools
+import logging
 from math import cos, sin
 from typing import Iterable
 
 from warg import Number
 
+logger = logging.getLogger(__name__)
 __all__ = ["sin_gen", "cos_gen", "loop"]
 
 loop = itertools.cycle

@@ -8,7 +8,10 @@ __doc__ = r"""
 
 __all__ = ["evaluate_context"]
 
+import logging
 from typing import Any, Callable, Dict, List, MutableMapping, Tuple
+
+logger = logging.getLogger(__name__)
 
 
 def evaluate_context(

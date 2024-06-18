@@ -8,7 +8,10 @@ __doc__ = r"""
 
 __all__ = ["PostInit"]
 
+import logging
 from typing import Any, MutableMapping, Sequence
+
+logger = logging.getLogger(__name__)
 
 
 class PostInit(type):

@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import copy
+import logging
 from typing import Any
 
+logger = logging.getLogger(__name__)
 DictProxyType = type(object.__dict__)
 
 __all__ = ["make_hash"]

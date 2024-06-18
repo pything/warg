@@ -8,7 +8,11 @@ __doc__ = r"""
 
 __all__ = ["recursive_flatten"]
 
+
+import logging
 from typing import Iterable, Sequence
+
+logger = logging.getLogger(__name__)
 
 
 def recursive_flatten_seq(seq: Sequence) -> Sequence:

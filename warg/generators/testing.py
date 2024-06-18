@@ -4,6 +4,10 @@ from typing import Iterator, Optional
 
 __all__ = ["peek"]
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def peek(generator: Iterator) -> Optional[itertools.chain]:
     try:

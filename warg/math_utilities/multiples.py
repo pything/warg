@@ -8,6 +8,10 @@ __doc__ = r"""
 
 __all__ = ["lcm"]
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 try:
     from math import lcm
 except:

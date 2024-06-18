@@ -10,7 +10,10 @@ __all__ = ["ContextWrapper", "NopContext"]
 
 import contextlib
 import inspect
+import logging
 from typing import Callable, ContextManager, Mapping, Optional, Sequence
+
+logger = logging.getLogger(__name__)
 
 
 class NopContext(contextlib.AbstractContextManager):

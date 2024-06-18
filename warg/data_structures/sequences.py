@@ -6,8 +6,10 @@ __doc__ = r"""
            Created on 13/06/2020
            """
 
+import logging
 from typing import Sequence, Tuple
 
+logger = logging.getLogger(__name__)
 __all__ = ["split"]
 
 

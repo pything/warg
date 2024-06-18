@@ -9,7 +9,10 @@ __doc__ = r"""
 
 __all__ = ["pre_decorate", "post_decorate"]
 
+import logging
 from typing import Callable
+
+logger = logging.getLogger(__name__)
 
 
 def pre_decorate(method: Callable, *callables: Callable) -> callable:

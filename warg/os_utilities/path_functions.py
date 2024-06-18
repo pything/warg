@@ -15,10 +15,13 @@ __all__ = [
 ]
 
 import collections
+import logging
 import os
 from itertools import cycle
 from pathlib import Path
 from typing import Callable, Iterable, Union
+
+logger = logging.getLogger(__name__)
 
 
 def path_join(*p: Union[Path, str]) -> Path:
