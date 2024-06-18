@@ -450,7 +450,7 @@ if __name__ == "__main__":
         :rtype: None
         """
         a = {"b": 1, "h": 2}
-        print(invert_shallow_mapping(a))
+        logger.info(invert_shallow_mapping(a))
 
     def asjdnasid() -> None:
         """
@@ -460,7 +460,7 @@ if __name__ == "__main__":
             "b": {"c": {"d": [0, 1, 2], "e": [3, 4, 5, 6]}, "f": [7, 8], "g": [9]},
             "h": {"j": [10, 11]},
         }
-        print(flip_two_level_mapping(a))
+        logger.info(flip_two_level_mapping(a))
 
     def asidj() -> None:
         """
@@ -471,15 +471,15 @@ if __name__ == "__main__":
             "b": {"c": {"g": 4, "h": 5}, "d": {"j": 6, "k": 7}},
         }
         result = swap_mapping_order(test_dict, [2, 0, 1])
-        print(result)
+        logger.info(result)
 
     def i8jsadij():
         ij = ([10, 29], [(2, 3, 4), [[12, 4, 5]], ((2, 92, 90))], [])
-        print(to_list(ij))
+        logger.info(to_list(ij))
 
     def i8jsadi2j():
         ij = ([10, 29], [(2, 3, 4), [[12, 4, 5]], ((2, 92, 90))], [])
-        print(to_tuple(ij))
+        logger.info(to_tuple(ij))
 
     # i8jsadij()
     # i8jsadi2j()
@@ -487,5 +487,5 @@ if __name__ == "__main__":
     # asidj()
     # asjdnasid()
 
-    # print(open_uri_resource(__file__))
-    print(open_uri_resource("dr.dk"))
+    # logger.info(open_uri_resource(__file__))
+    logger.info(open_uri_resource("dr.dk"))

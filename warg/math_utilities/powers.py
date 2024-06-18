@@ -70,5 +70,5 @@ next_power_2 = next_pow_2
 next_power_10 = next_pow_10
 
 if __name__ == "__main__":
-    print(next_pow(17, 5))
-    print(prev_pow(17, 5))
+    logger.info(next_pow(17, 5))
+    logger.info(prev_pow(17, 5))

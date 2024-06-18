@@ -6,6 +6,9 @@ __doc__ = r"""
            Created on 01/08/2020
            """
 
+import logging
+
+logger = logging.getLogger(__name__)
 __all__ = []
 
 from pathlib import Path
@@ -14,7 +17,7 @@ from pathlib import Path
 def test_import():
     import warg
 
-    print(warg.__version__)
+    logger.info(warg.__version__)
 
 
 def test_find_nearest_ancestral_relative():

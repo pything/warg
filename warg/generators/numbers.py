@@ -39,4 +39,4 @@ def n_uint_mix_generator_builder(*mix: Number) -> Callable:
 
 
 if __name__ == "__main__":
-    print([v for _, v in zip(range(9), iter(n_uint_mix_generator(255, 255)))])
+    logger.info([v for _, v in zip(range(9), iter(n_uint_mix_generator(255, 255)))])

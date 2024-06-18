@@ -9,14 +9,19 @@ __doc__ = r"""
 from warg import get_first_arg_name, identity
 
 
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 def test_ausdh3():
     from typing import Any
 
     def some_func(a: Any) -> None:
         """description"""
-        print(get_first_arg_name("some_func", verbose=True))
+        logger.info(get_first_arg_name("some_func", verbose=True))
 
-    some_func(print(2, sep="-"))
+    some_func(logger.info(2, sep="-"))
 
 
 def test_ausd2h3():
@@ -24,7 +29,7 @@ def test_ausd2h3():
 
     def some_func(a: Any) -> None:
         """description"""
-        print(get_first_arg_name("some_func", verbose=True))
+        logger.info(get_first_arg_name("some_func", verbose=True))
 
     some_func(identity(2))
 
@@ -34,7 +39,7 @@ def test_ausd2h34():
 
     def some_func(a: Any) -> None:
         """description"""
-        print(get_first_arg_name("some_func", verbose=True))
+        logger.info(get_first_arg_name("some_func", verbose=True))
 
     asd = 2
     some_func(identity(asd))
@@ -52,7 +57,7 @@ def test_ausd2h3213():
 
     def some_func(a: Any) -> None:
         """description"""
-        print(get_first_arg_name("some_func", verbose=True))
+        logger.info(get_first_arg_name("some_func", verbose=True))
 
     some_func(Ac.Bc.c(2))
 

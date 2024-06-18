@@ -43,8 +43,8 @@ def recursive_flatten(sequence: Iterable) -> Iterable:
 
 
 if __name__ == "__main__":
-    print(list(recursive_flatten((((2,), 2), (2,), 2))))
-    print(list(recursive_flatten(((("2",), 2), (2,), 2))))
-    print(list(recursive_flatten((([[None]], 2), (2,), 2))))
+    logger.info(list(recursive_flatten((((2,), 2), (2,), 2))))
+    logger.info(list(recursive_flatten(((("2",), 2), (2,), 2))))
+    logger.info(list(recursive_flatten((([[None]], 2), (2,), 2))))
 
-    print(list(recursive_flatten((([[None]], 2), (2,), 2))))
+    logger.info(list(recursive_flatten((([[None]], 2), (2,), 2))))

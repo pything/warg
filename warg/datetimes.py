@@ -36,4 +36,4 @@ def now_repr() -> str:
 
 
 if __name__ == "__main__":
-    print(now_repr())
+    logger.info(now_repr())

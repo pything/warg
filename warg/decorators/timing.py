@@ -41,7 +41,7 @@ def timeit(f: typing.Callable) -> typing.Callable:
         start_time = time.time()
         result = f(*args, **kwds)
         elapsed_time = time.time() - start_time
-        print(f"{f} took {elapsed_time:.3f} seconds to compute")
+        logger.info(f"{f} took {elapsed_time:.3f} seconds to compute")
         return elapsed_time, result
 
     return wrapper
@@ -57,13 +57,13 @@ class StopWatch(contextlib.AbstractContextManager):
 
       with Timer() as timer:
           ... # your operations
-          print(timer) # __str__ calls timer.time() internally
+          logger.info(timer) # __str__ calls timer.time() internally
           timer.checkpoint() # register checkpoint
           ... # more operations
-          print(timer.checkpoint()) # time since last timer.checkpoint() call
+          logger.info(timer.checkpoint()) # time since last timer.checkpoint() call
 
       ... # even more operations
-      print(timer) # time taken for the block, will not be updated outside of it
+      logger.info(timer) # time taken for the block, will not be updated outside of it
 
     When execution leaves the block, timer will be blocked. Last checkpoint and time taken
     to execute whole block will be returned by `checkpoint()` and `time()` methods respectively.
@@ -225,34 +225,34 @@ class StopWatch(contextlib.AbstractContextManager):
 
 if __name__ == "__main__":
     a = StopWatch()
-    print(f"Timer str rep: {a}")
-    print(a.tick())
-    print(a.tick())
-    print(a // 2)
-    print()
+    logger.info(f"Timer str rep: {a}")
+    logger.info(a.tick())
+    logger.info(a.tick())
+    logger.info(a // 2)
+    logger.info()
 
     with StopWatch(auto_start_on_enter=False) as timer1:
-        print(timer1)  # __str__ calls timer.time() internally
+        logger.info(timer1)  # __str__ calls timer.time() internally
         timer1.tick()  # register checkpoint
-        print(timer1.tick())  # time since last timer.checkpoint() call
+        logger.info(timer1.tick())  # time since last timer.checkpoint() call
 
-    print()
+    logger.info()
     with StopWatch() as timer4:
-        print(timer4)  # __str__ calls timer.time() internally
+        logger.info(timer4)  # __str__ calls timer.time() internally
         timer4.tick()  # register checkpoint
-        print(timer4.tick())  # time since last timer.checkpoint() call
+        logger.info(timer4.tick())  # time since last timer.checkpoint() call
 
-    print()
-    print(timer4)  # time since start
-    print(timer4.tick())  # time taken for the block, will not be updated outside of it
-    print(timer4.tick())  # time taken for the block, will not be updated outside of it
-    print(timer4)  # ime since start, will not be updated outside of it
-    print()
+    logger.info()
+    logger.info(timer4)  # time since start
+    logger.info(timer4.tick())  # time taken for the block, will not be updated outside of it
+    logger.info(timer4.tick())  # time taken for the block, will not be updated outside of it
+    logger.info(timer4)  # ime since start, will not be updated outside of it
+    logger.info()
 
     with StopWatch(auto_start_on_construction=True, auto_start_on_enter=False) as timer2:
-        print(timer2)  # __str__ calls timer.time() internally
-        print(timer2.tick())  # time since last timer.checkpoint() call
-        print(timer2)
+        logger.info(timer2)  # __str__ calls timer.time() internally
+        logger.info(timer2.tick())  # time since last timer.checkpoint() call
+        logger.info(timer2)
 
     @StopWatch()
     def foo() -> int:
@@ -262,4 +262,4 @@ if __name__ == "__main__":
         return 42
 
     value, time = foo()
-    print(f"foo time: {time}, value: {value}")
+    logger.info(f"foo time: {time}, value: {value}")

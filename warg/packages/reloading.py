@@ -407,7 +407,7 @@ if __name__ == "__main__":
         s = deepcopy(sys.path)
         ensure_in_sys_path(Path(__file__).parent)
         s2 = sys.path
-        print(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
+        logger.info(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
 
     def iajsd():
         from copy import deepcopy
@@ -415,10 +415,10 @@ if __name__ == "__main__":
         s = deepcopy(sys.path)
         clean_sys_path()
         s2 = sys.path
-        print(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
+        logger.info(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
 
     def asuhdsaud():
-        print(find_ancestral_relatives("queues", context=__file__))
+        logger.info(find_ancestral_relatives("queues", context=__file__))
 
     # _main()
     # aisjdi()

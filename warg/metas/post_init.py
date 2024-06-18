@@ -33,11 +33,11 @@ if __name__ == "__main__":
         """description"""
 
         def __init__(self):
-            print("init")
+            logger.info("init")
 
         def __post_init__(self) -> None:
             """description"""
-            print("post_init")
+            logger.info("post_init")
 
     SAD()
     SAD()

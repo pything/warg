@@ -1,6 +1,9 @@
 import json
 import sys
 from typing import Any, Dict, Generator, Iterable, Mapping, Sequence
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def json_chucked_in_num_bytes_fancy(json_body: Iterable, num_bytes: int) -> Generator[Dict, Any, None]:
@@ -45,16 +48,16 @@ def json_seq_chunked_in_num_bytes(json_body: Sequence, num_bytes: int) -> Genera
 if __name__ == "__main__":
     s = iter(json_chucked_in_num_bytes_fancy({"a": 1, "b": 2}, 30 * 1024 * 1024))
     for a in s:
-        print(a)
+        logger.info(a)
 
     asd = [{"a": 1, "b": 2}, {"c": 3}]
-    print(sys.getsizeof(json.dumps(asd)))
+    logger.info(sys.getsizeof(json.dumps(asd)))
     s = iter(json_chucked_in_num_bytes_fancy(asd, 40))
     for a in s:
-        print(a)
+        logger.info(a)
 
-    print(isinstance({1: 2}, Sequence))
+    logger.info(isinstance({1: 2}, Sequence))
 
     s = iter(json_seq_chunked_in_num_bytes(asd, 40))
     for a in s:
-        print(a)
+        logger.info(a)

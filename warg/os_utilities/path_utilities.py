@@ -31,7 +31,7 @@ def system_open_path(path: Path, *, verbose: bool = False) -> None:
     """
     if has_x_server():
         if verbose:
-            print(f"Opening ({path}) using the systems default handler")
+            logger.info(f"Opening ({path}) using the systems default handler")
 
         if is_windows():
             if path.is_dir():
@@ -47,7 +47,7 @@ def system_open_path(path: Path, *, verbose: bool = False) -> None:
             subprocess.Popen(["xdg-open", path])
             # except OSError:
     else:
-        print("Target display not set")
+        logger.info("Target display not set")
 
 
 def latest_file(
@@ -75,7 +75,7 @@ def latest_file(
         msg = f"Found no previous files with extension {extension} in {directory}"
         if raise_on_failure:
             raise FileNotFoundError(msg)
-        print(f"{msg}, returning None!")
+        logger.info(f"{msg}, returning None!")
         return
     return max(list_of_files, key=os.path.getctime)  # USES CREATION TIME
 
@@ -95,12 +95,12 @@ def exist_any_extension(p: Path) -> bool:
 
 
 if __name__ == "__main__":
-    print(latest_file(Path(__file__).parent, recurse=True))
-    print(exist_any_extension(Path(__file__)))
-    print(exist_any_extension(Path.cwd() / "__init__.py"))
-    print(exist_any_extension(Path.cwd() / "__init__"))
-    print(exist_any_extension(Path.cwd() / "__init__.test"))
-    print(exist_any_extension(Path.cwd() / "__init___.py"))
+    logger.info(latest_file(Path(__file__).parent, recurse=True))
+    logger.info(exist_any_extension(Path(__file__)))
+    logger.info(exist_any_extension(Path.cwd() / "__init__.py"))
+    logger.info(exist_any_extension(Path.cwd() / "__init__"))
+    logger.info(exist_any_extension(Path.cwd() / "__init__.test"))
+    logger.info(exist_any_extension(Path.cwd() / "__init___.py"))
 
     system_open_path(Path("__init__.py"))
     # system_open_path(Path(__file__).parent)

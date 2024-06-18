@@ -53,7 +53,7 @@ def deamericanise(text: str) -> str:
 
 
 if __name__ == "__main__":
-    print(
+    logger.info(
         deamericanise(
             "I analyzed websites in order to recognize the correct spelling of international organizations"
         )

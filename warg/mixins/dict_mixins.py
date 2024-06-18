@@ -56,6 +56,6 @@ if __name__ == "__main__":
         a.d = 3
 
         for ca in a:
-            print(ca)
+            logger.info(ca)
 
     asdij()

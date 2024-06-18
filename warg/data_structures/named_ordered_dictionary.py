@@ -393,7 +393,7 @@ return nod
                 args_dict[key] = arg
         else:
             args_dict = {}
-            # print('no args where supplied')
+            # logger.info('no args where supplied')
 
         args_dict.update(kwargs)
 
@@ -461,154 +461,154 @@ if __name__ == "__main__":
 
     ccc = count()
 
-    print(f"\n{next(ccc):#^9}")  # 0
+    logger.info(f"\n{next(ccc):#^9}")  # 0
     nodict = NamedOrderedDictionary()
     nodict.paramA = "str_parameter"
     nodict.paramB = 10
-    print(nodict)
+    logger.info(nodict)
     assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
     from copy import deepcopy, copy
 
-    print(f"\n{next(ccc):#^9}")  # 1
+    logger.info(f"\n{next(ccc):#^9}")  # 1
     b = copy(nodict)
-    print(b)
+    logger.info(b)
     assert b.paramB == 10
     assert b.paramB == nodict.paramB
 
-    print(f"\n{next(ccc):#^9}")  # 2
+    logger.info(f"\n{next(ccc):#^9}")  # 2
     a = deepcopy(nodict)
-    print(a)
+    logger.info(a)
     assert a.paramB == 10
     assert a.paramB == nodict.paramB
 
-    print(f"\n{next(ccc):#^9}")  # 3
+    logger.info(f"\n{next(ccc):#^9}")  # 3
     c = NOD()
     c[nodict.keys()] = nodict.values()
-    print(c)
+    logger.info(c)
     d = deepcopy(c)
-    print(d)
+    logger.info(d)
 
-    print(f"\n{next(ccc):#^9}")  # 4
+    logger.info(f"\n{next(ccc):#^9}")  # 4
     nodict = NamedOrderedDictionary()
     nodict.paramA = {"s": "str_parameter"}
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA.s)
+    logger.info(nodict)
+    logger.info(nodict.paramA.s)
 
-    print(f"\n{next(ccc):#^9}")  # 5
+    logger.info(f"\n{next(ccc):#^9}")  # 5
     nodict = NamedOrderedDictionary()
     nodict.paramA = {}
     nodict.paramA["s"] = "str_parameter"
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA.s)
+    logger.info(nodict)
+    logger.info(nodict.paramA.s)
 
-    print(f"\n{next(ccc):#^9}")  # 6
+    logger.info(f"\n{next(ccc):#^9}")  # 6
     nodict = NamedOrderedDictionary()
     nodict.paramA = {}
     nodict.paramA.s = "str_parameter"
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA.s)
+    logger.info(nodict)
+    logger.info(nodict.paramA.s)
 
-    print(f"\n{next(ccc):#^9}")  # 7
+    logger.info(f"\n{next(ccc):#^9}")  # 7
     nodict = NamedOrderedDictionary()
     nodict.paramA = {}
     nodict.paramA["s"] = [{"sd": "str_parameter"}]
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA.s)
+    logger.info(nodict)
+    logger.info(nodict.paramA.s)
 
-    print(f"\n{next(ccc):#^9}")  # 8
+    logger.info(f"\n{next(ccc):#^9}")  # 8
     nodict = NamedOrderedDictionary()
     nodict.paramA = {}
     nodict.paramA.s = [{"sd": "str_parameter"}]
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA.s)
+    logger.info(nodict)
+    logger.info(nodict.paramA.s)
 
-    print(f"\n{next(ccc):#^9}")  # 9
+    logger.info(f"\n{next(ccc):#^9}")  # 9
     nodict = NamedOrderedDictionary()
     nodict.paramA = [{"s": {"sd": "str_parameter"}}]
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    logger.info(nodict)
+    logger.info(nodict.paramA)
 
-    print(f"\n{next(ccc):#^9}")  # 10
+    logger.info(f"\n{next(ccc):#^9}")  # 10
     nodict = NamedOrderedDictionary()
     nodict.paramA = [{"s": ({"sd": "str_parameter"},)}]
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    logger.info(nodict)
+    logger.info(nodict.paramA)
 
-    print(f"\n{next(ccc):#^9}")  # 11
+    logger.info(f"\n{next(ccc):#^9}")  # 11
     nodict = NamedOrderedDictionary()
     nodict.paramA = [{"sd": "str_parameter"}]
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    logger.info(nodict)
+    logger.info(nodict.paramA)
 
-    print(f"\n{next(ccc):#^9}")  # 12
+    logger.info(f"\n{next(ccc):#^9}")  # 12
     nodict = NamedOrderedDictionary()
     nodict.paramA = {}
     nodict.paramA.a = [{"s": {"sd": "str_parameter"}}]
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    logger.info(nodict)
+    logger.info(nodict.paramA)
 
-    print(f"\n{next(ccc):#^9}")  # 13
+    logger.info(f"\n{next(ccc):#^9}")  # 13
     nodict = NamedOrderedDictionary()
     nodict.paramA = {}
     nodict.paramA.a = [{"s": ({"sd": "str_parameter"},)}]
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA.a)
+    logger.info(nodict)
+    logger.info(nodict.paramA.a)
 
-    print(f"\n{next(ccc):#^9}")  # 14
+    logger.info(f"\n{next(ccc):#^9}")  # 14
     nodict = NamedOrderedDictionary()
     nodict.paramA = {}
     nodict.paramA.a = [{"s": [{"sd": "str_parameter"}]}]
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    logger.info(nodict)
+    logger.info(nodict.paramA)
 
-    print(f"\n{next(ccc):#^9}")  # 15
+    logger.info(f"\n{next(ccc):#^9}")  # 15
     nodict = NamedOrderedDictionary()
     nodict.paramA = [{"s": {"sd": "str_parameter"}}, {"sfd": 1}]
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    logger.info(nodict)
+    logger.info(nodict.paramA)
 
-    print(f"\n{next(ccc):#^9}")  # 16
+    logger.info(f"\n{next(ccc):#^9}")  # 16
     nodict = NamedOrderedDictionary()
     nodict.paramA = {"s": {"sd": {"sfd": 1}}}
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    print(nodict)
-    print(nodict.paramA)
+    logger.info(nodict)
+    logger.info(nodict.paramA)

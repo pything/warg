@@ -52,5 +52,5 @@ def clean_string(s: str) -> str:
 
 if __name__ == "__main__":
     a = "slasc\nsaffasd\n2dasf"
-    print(a)
-    print(indent_lines(a))
+    logger.info(a)
+    logger.info(indent_lines(a))

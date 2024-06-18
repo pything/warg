@@ -111,7 +111,7 @@ def precompute_lut(f: Callable, arg_sets: Set[Tuple[Iterable, Mapping]], *, verb
     for arg_set, kws_set in arg_sets:
         res = look_up(f, *arg_set, **kws_set)
         if verbose:
-            print(f"precompute {f},{arg_set},{kws_set}->{res}")
+            logger.info(f"precompute {f},{arg_set},{kws_set}->{res}")
     return f
 
 
@@ -129,7 +129,7 @@ def precompute_lut_args(f: Callable, arg_sets: Set[Iterable], *, verbose=False) 
     for arg_set in arg_sets:
         res = look_up_args(f, *arg_set)
         if verbose:
-            print(f"precompute {f},{arg_sets}->{res}")
+            logger.info(f"precompute {f},{arg_sets}->{res}")
     return f
 
 
@@ -147,7 +147,7 @@ def precompute_lut_kws(f: Callable, arg_sets: Set[Mapping], *, verbose=False) ->
     for arg_set in arg_sets:
         res = look_up_kws(f, **arg_set)
         if verbose:
-            print(f"precompute {f},{arg_sets}->{res}")
+            logger.info(f"precompute {f},{arg_sets}->{res}")
     return f
 
 
@@ -212,9 +212,9 @@ if __name__ == "__main__":
         return foo + bar
 
     result = look_up_args(my_function, 0, 8)
-    print(result)
+    logger.info(result)
     result = look_up_args(my_function, 8, 0)
-    print(result)
+    logger.info(result)
 
     @precompute_lut_args_dec(list(zip(range(9), list(range(9))[::-1])))
     def my_function2(foo, bar):
@@ -231,31 +231,31 @@ if __name__ == "__main__":
 
     a = time()
     look_up_args(my_function2, 0, 8)
-    print(time() - a)
+    logger.info(time() - a)
     a = time()
     look_up_args(my_function2, 8, 0)
-    print(time() - a)
+    logger.info(time() - a)
 
     result = look_up(my_function2, 14, bar=21)
-    print(result)
+    logger.info(result)
 
     result = look_up(my_function2, 14, bar=21)
-    print(result)
+    logger.info(result)
 
     result = look_up(my_function2, 104, bar=2)
-    print(result)
+    logger.info(result)
 
     result = look_up_args(my_function, 1, 2)
-    print(result)
+    logger.info(result)
 
     result = look_up_args(my_function, 1, 2)
-    print(result)
+    logger.info(result)
 
     result = look_up_args(my_function, 12, 2)
-    print(result)
+    logger.info(result)
 
     result = look_up_args(my_function2, 1, 2)
-    print(result)
+    logger.info(result)
 
     result = look_up_kws(my_function2, foo=1, bar=2)
-    print(result)
+    logger.info(result)

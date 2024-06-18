@@ -68,7 +68,7 @@ try:
 except (ModuleNotFoundError, ImportError) as e:
     logger.error(e)
     get_requirements_from_file = sink
-    # print('You version of python is to old!')
+    # logger.info('You version of python is to old!')
 
 if __name__ == "__main__":
-    print(get_requirements_from_file(Path(__file__).parent.parent.parent / "requirements.txt"))
+    logger.info(get_requirements_from_file(Path(__file__).parent.parent.parent / "requirements.txt"))

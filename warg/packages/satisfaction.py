@@ -225,4 +225,4 @@ def install_requirements_from_file(
 
 
 if __name__ == "__main__":
-    print(get_embedded_python_interpreter_path())
+    logger.info(get_embedded_python_interpreter_path())

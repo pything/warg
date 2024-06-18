@@ -123,19 +123,19 @@ def to_dict(m: Mapping) -> dict:
 
 
 if __name__ == "__main__":
-    print(invert_mapping({"a": 1, "b": 2}))
+    logger.info(invert_mapping({"a": 1, "b": 2}))
 
-    print(invert_mapping({"a": 2, "b": 2, "c": 3, "d": 4}))
-    print(invert_dict({"a": 2, "b": 2, "c": 3, "d": 4}))
+    logger.info(invert_mapping({"a": 2, "b": 2, "c": 3, "d": 4}))
+    logger.info(invert_dict({"a": 2, "b": 2, "c": 3, "d": 4}))
 
     def uhasdu():
         from warg.data_structures.named_ordered_dictionary import NOD
 
         a = NOD({"b": NOD(c=1)}, d="usahfo7uyhaouw", f=[NOD(p="m")])
 
-        print(a)
-        print(a.as_dict())
+        logger.info(a)
+        logger.info(a.as_dict())
 
     uhasdu()
 
-    # print(pivot_dict_object({"a": 2, "b": 2, "c": 3, "d": 4}, "id"))
+    # logger.info(pivot_dict_object({"a": 2, "b": 2, "c": 3, "d": 4}, "id"))

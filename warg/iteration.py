@@ -62,4 +62,4 @@ def chunks(lst: Sequence, n: int) -> Any:
 
 
 if __name__ == "__main__":
-    print(list(chunks(list(range(10)), 3)))
+    logger.info(list(chunks(list(range(10)), 3)))

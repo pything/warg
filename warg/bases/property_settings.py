@@ -117,5 +117,5 @@ class PropertySettings(
 if __name__ == "__main__":
     a = PropertySettings()
 
-    print({**a.__crystallise__()})
+    logger.info({**a.__crystallise__()})
     assert not "h" in a

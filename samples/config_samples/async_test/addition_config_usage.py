@@ -5,6 +5,9 @@ __doc__ = r"""
 
            Created on 11-12-2020
            """
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 async def b() -> None:
@@ -13,7 +16,7 @@ async def b() -> None:
     """
     import config2
 
-    print(config2.A_CONSTANT)
+    logger.info(config2.A_CONSTANT)
 
 
 if __name__ == "__main__":

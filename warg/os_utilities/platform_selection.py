@@ -130,4 +130,4 @@ def is_py3() -> bool:
 
 
 if __name__ == "__main__":
-    print(get_backend_module("draugr", "python_utilities"))
+    logger.info(get_backend_module("draugr", "python_utilities"))

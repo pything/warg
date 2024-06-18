@@ -77,11 +77,11 @@ def negate(f: Callable) -> Callable:
 
 
 if __name__ == "__main__":
-    # print(negate(is_excluded("/iods/excludes/osad.py")))
-    print(negate(is_excluded)("/iods/excludes/osad.py"))
-    print(is_excluded("/s/excludes/a.py"))
-    print(is_excluded("/s/exclud/a.py"))
-    print(is_excluded("/s/exclude/a.py"))
-    print(is_excluded("/s/Exclude/a.py"))
-    print(is_excluded("/s/excluded/a.py"))
-    print(is_excluded("/s/Excluded/a.py"))
+    # logger.info(negate(is_excluded("/iods/excludes/osad.py")))
+    logger.info(negate(is_excluded)("/iods/excludes/osad.py"))
+    logger.info(is_excluded("/s/excludes/a.py"))
+    logger.info(is_excluded("/s/exclud/a.py"))
+    logger.info(is_excluded("/s/exclude/a.py"))
+    logger.info(is_excluded("/s/Exclude/a.py"))
+    logger.info(is_excluded("/s/excluded/a.py"))
+    logger.info(is_excluded("/s/Excluded/a.py"))

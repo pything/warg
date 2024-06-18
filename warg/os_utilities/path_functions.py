@@ -137,7 +137,7 @@ def ensure_existence(
 
         if not out.parent.exists():
             if verbose:
-                print("Creating parents")
+                logger.info("Creating parents")
             out.parent.mkdir(parents=True, exist_ok=True)
 
         if out.is_file() or ("." in out.name and ".d" not in out.name) or declare_file:
@@ -147,7 +147,7 @@ def ensure_existence(
                 and ((declare_file and overwrite_on_wrong_type) or force_overwrite)
             ):
                 if verbose:
-                    print("Removing tree")
+                    logger.info("Removing tree")
                 path_rmtree(out)
             if out.is_file() and not out.exists():
                 out.touch(exist_ok=True)
@@ -158,7 +158,7 @@ def ensure_existence(
                 and ((not declare_file and overwrite_on_wrong_type) or force_overwrite)
             ):
                 if verbose:
-                    print("Deleting file")
+                    logger.info("Deleting file")
                 out.unlink()  # missing_ok=True)
             if not out.exists():
                 out.mkdir(parents=True, exist_ok=True)
@@ -221,7 +221,7 @@ if __name__ == "__main__":
         """
         pa = Path.cwd() / "uhas.asudh ojas.a." / "....  a -." / "   b.ci"
 
-        print(pa, sanitise_path(pa))
+        logger.info(pa, sanitise_path(pa))
 
     def clean_naughty_dir() -> None:
         """
@@ -229,7 +229,7 @@ if __name__ == "__main__":
         """
         pa = Path.cwd() / "uhas.asudh ojas.a." / "....  a -." / "   bci"
 
-        print(pa, sanitise_path(pa))
+        logger.info(pa, sanitise_path(pa))
 
     # clean_naughty_file()
     # clean_naughty_dir()

@@ -300,7 +300,7 @@ def pack_args(
         else:
             if pack_name in kwargs:
                 if verbose:
-                    print(f"{pack_name} was extended, careful!")
+                    logger.info(f"{pack_name} was extended, careful!")
                 a = kwargs.pop(pack_name, None)
                 # noinspection PyTypeChecker
                 new_kwargs[pack_name] = (*a, *args)
@@ -346,7 +346,7 @@ def pack_kws(
         else:  # TODO: else keyword can be removed, but branch remain
             if pack_name in kwargs:
                 if verbose:
-                    print(f"{pack_name} was extended, careful!")
+                    logger.info(f"{pack_name} was extended, careful!")
                 k = kwargs.pop(pack_name, None)
                 new_kwargs[pack_name] = {**k, **kwargs}
             else:
@@ -390,7 +390,7 @@ def pack_args_and_kws(
         else:  # TODO: else keyword can be removed, but branch remain
             if pack_name in kwargs:
                 if verbose:
-                    print(f"{pack_name} was extended, careful!")
+                    logger.info(f"{pack_name} was extended, careful!")
                 a, k = kwargs.pop(pack_name, None)
                 # noinspection PyTypeChecker
                 new_kwargs[pack_name] = ((*a, *args), {**k, **kwargs})
@@ -543,7 +543,7 @@ if __name__ == "__main__":
 
             :param a:
             :type a:"""
-            print(a)
+            logger.info(a)
 
         @drop_unused_kws
         def some_other_func(*, a, **kwargs: MutableMapping):
@@ -553,7 +553,7 @@ if __name__ == "__main__":
             :type a:
             :param kwargs:
             :type kwargs:"""
-            print(a, kwargs)
+            logger.info(a, kwargs)
 
         @drop_unused_kws
         def some_different_func(*, a, b):
@@ -563,19 +563,19 @@ if __name__ == "__main__":
             :type a:
             :param b:
             :type b:"""
-            print(a, b)
+            logger.info(a, b)
 
-        print(inspect.signature(SubClass0.__init__))
-        print(inspect.signature(SubClass1.__init__))
-        print(inspect.signature(SubClass2.__init__))
-        print(inspect.signature(SubClass12.__init__))
+        logger.info(inspect.signature(SubClass0.__init__))
+        logger.info(inspect.signature(SubClass1.__init__))
+        logger.info(inspect.signature(SubClass2.__init__))
+        logger.info(inspect.signature(SubClass12.__init__))
 
-        print(vars(SubClass0(1, 1, 1, kwarg0=52)))
-        print(vars(SubClass1(2, 2, 1, kwarg0=52)))
-        print(vars(SubClass2(1, 1, 1, kwarg0=52)))
-        print(vars(SubClass12(1, 1, 1, kwarg1=52)))
-        # print(vars(SubClass12(1, 1, 1, kwarg0=52))) # Throws exception, intentional
-        print(inspect.getmro(SubClass0))
+        logger.info(vars(SubClass0(1, 1, 1, kwarg0=52)))
+        logger.info(vars(SubClass1(2, 2, 1, kwarg0=52)))
+        logger.info(vars(SubClass2(1, 1, 1, kwarg0=52)))
+        logger.info(vars(SubClass12(1, 1, 1, kwarg1=52)))
+        # logger.info(vars(SubClass12(1, 1, 1, kwarg0=52))) # Throws exception, intentional
+        logger.info(inspect.getmro(SubClass0))
 
         some_func(a=1, b=2, c=3)
 

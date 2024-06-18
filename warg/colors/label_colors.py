@@ -24,4 +24,4 @@ def compute_color_for_labels(label: int, palette: TripleNumber = (2**11 - 1, 2**
 
 if __name__ == "__main__":
     for i in range(9):
-        print(compute_color_for_labels(i))
+        logger.info(compute_color_for_labels(i))

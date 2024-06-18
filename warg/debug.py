@@ -35,4 +35,4 @@ def evaluate_context(
 
 
 if __name__ == "__main__":
-    print(evaluate_context(print, 2, 2))
+    logger.info(evaluate_context(print, 2, 2))

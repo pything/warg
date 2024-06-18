@@ -124,4 +124,4 @@ if __name__ == "__main__":
             prev_even,
             prev_odd,
         ):
-            print(f.__name__, f(a))
+            logger.info(f.__name__, f(a))

@@ -3,9 +3,11 @@
 
 import sys
 from pathlib import Path
+import logging
 
+logger = logging.getLogger(__name__)
 PACKAGE_ROOT = Path(__file__).parent.parent.parent  # / "warg"
-print(f"PACKAGE_ROOT: {PACKAGE_ROOT}")
+logger.info(f"PACKAGE_ROOT: {PACKAGE_ROOT}")
 sys.path.insert(0, str(PACKAGE_ROOT.absolute()))
 
 from warg import (

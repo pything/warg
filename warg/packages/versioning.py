@@ -124,5 +124,5 @@ def get_version(version: str, append_time: bool = False, verbose: bool = False, 
 if __name__ == "__main__":
     from warg import __version__
 
-    print(__version__)
-    print(get_version("1.2.7", verbose=True))
+    logger.info(__version__)
+    logger.info(get_version("1.2.7", verbose=True))

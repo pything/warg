@@ -67,6 +67,6 @@ def get_dynamic_plugins(
 
 
 if __name__ == "__main__":
-    print(get_plugins("warg"))
+    logger.info(get_plugins("warg"))
 
-    print(entry_points())
+    logger.info(entry_points())

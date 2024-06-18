@@ -110,6 +110,6 @@ if __name__ == "__main__":
         # TODO
 
         sadd = {a: b for a, b in zip("abcdef", range(6))}
-        print(select_dict(sadd, "a", "d"))
+        logger.info(select_dict(sadd, "a", "d"))
 
     uahsd()

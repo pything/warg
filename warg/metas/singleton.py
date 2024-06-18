@@ -125,11 +125,11 @@ if __name__ == "__main__":
         pass
 
     # expected
-    print(SingletonBaseClass())  # same
-    print(SingletonBaseClass())  # same
-    print(S1())  # same
+    logger.info(SingletonBaseClass())  # same
+    logger.info(SingletonBaseClass())  # same
+    logger.info(S1())  # same
 
     # expected
-    print(SingletonBaseMeta())  # same
-    print(SingletonBaseMeta())  # same
-    print(S2())  # different
+    logger.info(SingletonBaseMeta())  # same
+    logger.info(SingletonBaseMeta())  # same
+    logger.info(S2())  # different

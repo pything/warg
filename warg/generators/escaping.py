@@ -39,6 +39,6 @@ def solve_type(d: Any) -> str:
 
 
 if __name__ == "__main__":
-    print(solve_type(True))
+    logger.info(solve_type(True))
 
-    print(list(to_string_if_not_of_exact_type([True, 1, "A", 2.0])))
+    logger.info(list(to_string_if_not_of_exact_type([True, 1, "A", 2.0])))

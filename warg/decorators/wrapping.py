@@ -38,13 +38,13 @@ if __name__ == "__main__":
 
     def juahsdu() -> None:
         def c(d):
-            print(d)
+            logger.info(d)
             return f"c_{d}"
 
-        a = pre_decorate(c, lambda *args, **kwargs: print(f"pre {args, kwargs}"))
-        b = post_decorate(c, lambda *args, **kwargs: print(f"post {args, kwargs}"))
+        a = pre_decorate(c, lambda *args, **kwargs: logger.info(f"pre {args, kwargs}"))
+        b = post_decorate(c, lambda *args, **kwargs: logger.info(f"post {args, kwargs}"))
 
-        print(a("yo"))
-        print(b("bro"))
+        logger.info(a("yo"))
+        logger.info(b("bro"))
 
     juahsdu()

@@ -67,7 +67,7 @@ except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = Path(__file__).parent.parent / f"requirements.txt"
     if this_package_reqs.exists():
-        print(
+        logger.info(
             f"Make sure requirements is installed for {this_package_name}, see {this_package_reqs}"
         )  # TODO: PARSE WHAT is missing and print
     raise ix
@@ -94,4 +94,4 @@ __version__ = get_version(__version__, append_time=DEVELOP)
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
 
 if __name__ == "__main__":
-    print(__version__)
+    logger.info(__version__)

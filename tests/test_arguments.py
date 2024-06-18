@@ -10,7 +10,7 @@ __doc__ = r"""
 from _pytest.capture import CaptureFixture
 
 
-def test_print(capsys: CaptureFixture[str]) -> None:
+def test_print_info(capsys: CaptureFixture[str]) -> None:
     """Correct my_name argument prints"""
     text = "hello"
     err = "world"
@@ -22,4 +22,4 @@ def test_print(capsys: CaptureFixture[str]) -> None:
 
 
 if __name__ == "__main__":
-    test_print()
+    test_print_info()

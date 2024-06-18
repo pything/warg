@@ -42,6 +42,6 @@ if __name__ == "__main__":
         import numpy
 
         for i in cos_gen(numpy.arange(0, 100, 0.1)):
-            print(i)
+            logger.info(i)
 
     assda()

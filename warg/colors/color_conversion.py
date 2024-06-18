@@ -94,6 +94,6 @@ if __name__ == "__main__":
         a = RGB(1, 50, 100)
         b = color_to_str(a)
         c = color_from_str(b)
-        print(c)
+        logger.info(c)
 
     main()
