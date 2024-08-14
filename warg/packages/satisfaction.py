@@ -29,7 +29,7 @@ VERBOSE = False
 
 
 # @passes_kws_to(subprocess.check_call)
-def catching_callable(*args, **kwargs):
+def catching_callable(*args, **kwargs) -> None:
     try:
         # subprocess.check_call(*args, **kwargs)
         output = subprocess.check_output(*args, **kwargs)
@@ -50,7 +50,7 @@ class InstallStrategyEnum(Enum):
     just_install = auto()
 
 
-def is_pip_installed():
+def is_pip_installed() -> bool:
     pip_present = True
     try:
         import pip
@@ -99,7 +99,7 @@ def get_embedded_python_interpreter_path() -> Optional[Path]:
 
 def install_pip_if_not_present(
     always_upgrade: bool = True, install_strategy: InstallStrategyEnum = InstallStrategyEnum.just_install
-):
+) -> None:
     if install_strategy == InstallStrategyEnum.uninstall_first:
         ...  # TODO: Implement
 
@@ -145,7 +145,7 @@ class UpgradeStrategyEnum(Enum):
 # ADDITIONAL_PIPE_KWS = dict(stderr=subprocess.PIPE,stdout=subprocess.PIPE, stdin=subprocess.PIPE)
 
 
-def pip_programatic_install(package):
+def pip_programmatic_install2(package: str) -> None:
     """
     not supported
     :param package:

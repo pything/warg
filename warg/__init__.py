@@ -1,18 +1,11 @@
 #!/usr/bin/env python3
 import logging
 
-try:
-    from importlib.resources import files
-    from importlib.metadata import PackageNotFoundError
-except:
-    from importlib_metadata import PackageNotFoundError
-    from importlib_resources import files
-
 
 __project__ = "Warg"
 
 __author__ = "Christian Heider Lindbjerg"
-__version__ = "1.4.7"
+__version__ = "1.4.8"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -89,12 +82,27 @@ __url__ = f"https://github.com/{PROJECT_ORGANISATION}/{PROJECT_NAME}"
 # from apppath import AppPath # CAREFUL CIRCULAR DEPENDENCY WARNING!
 # PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR) # NOT USED!
 
-PACKAGE_DATA_PATH = files(PROJECT_NAME) / "data"
-
+import_issue_found = False
 try:
-    DEVELOP = package_is_editable(PROJECT_NAME)
-except PackageNotFoundError as e:
-    DEVELOP = True
+    from importlib.resources import files
+    from importlib.metadata import PackageNotFoundError
+except:
+    try:
+        from importlib_metadata import PackageNotFoundError
+        from importlib_resources import files
+    except:
+        import_issue_found = True
+
+if import_issue_found:
+    PACKAGE_DATA_PATH = Path(__file__).parent / "data"
+    DEVELOP = False
+else:
+    PACKAGE_DATA_PATH = files(PROJECT_NAME) / "data"
+
+    try:
+        DEVELOP = package_is_editable(PROJECT_NAME)
+    except PackageNotFoundError as e:
+        DEVELOP = True
 
 __version__ = get_version(__version__, append_time=DEVELOP)
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
