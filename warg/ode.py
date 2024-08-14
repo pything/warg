@@ -111,16 +111,16 @@ if __name__ == "__main__":
     # noinspection PyUnresolvedReferences
     import __hello__
 
-    logger.info()
+    print()
     import this
 
-    logger.info()
+    print()
     # noinspection PyUnresolvedReferences
     import antigravity
 
-    logger.info()
-    logger.info(this.i, this.d, this.c, this.s)
-    logger.info()
+    print()
+    print(this.i, this.d, this.c, this.s)
+    print()
 
     # noinspection PyUnresolvedReferences
     # import that  # pip install that

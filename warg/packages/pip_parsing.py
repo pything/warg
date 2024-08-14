@@ -42,8 +42,10 @@ try:
         if req.is_editable:  # parse out egg=... fragment from VCS URL
             parsed = urlparse(req_)
             egg_name = parsed.fragment.partition("egg=")[-1]
+
             if not egg_name:
                 egg_name = parsed.path.split("/")[-1]
+
             without_fragment = parsed._replace(fragment="").geturl()
             req_parsed = f"{egg_name} @ {without_fragment}"
         else:
@@ -65,7 +67,7 @@ try:
 
         return [p for p in parsed_reqs if p]
 
-except (ModuleNotFoundError, ImportError) as e:
+except Exception as e:  # (ModuleNotFoundError, ImportError) as e: #KeyError occurred
     logger.error(e)
     get_requirements_from_file = sink
     # logger.info('You version of python is to old!')
