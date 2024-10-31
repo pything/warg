@@ -2,7 +2,7 @@ apppath
 requests>=2.32.2 # not directly required, pinned by Snyk to avoid a vulnerability
 
 #mistune==0.8.4
-setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
+setuptools>=70.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
 sphinx
 #m2r2
 sphinxcontrib-programoutput
