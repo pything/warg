@@ -422,7 +422,7 @@ def open_uri_resource(uri: str) -> str:
         webbrowser.open_new_tab(uri)
     else:
         try:
-            uri = f'https://{uri.lstrip("https://")}'
+            uri = f'https://{uri.replace("https://","")}'
             r = requests.head(uri)
             if r.ok:  # it is a boolean
                 try:

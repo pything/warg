@@ -3,13 +3,7 @@ import logging
 from typing import Callable, Dict, Hashable, Iterable, Mapping, MutableMapping
 
 logger = logging.getLogger(__name__)
-__all__ = [
-    "invert_mapping",
-    "invert_dict",
-    "AppendingDict",
-    "pivot_dict_object",
-    "pivot_dict",
-]
+__all__ = ["invert_mapping", "invert_dict", "AppendingDict", "pivot_dict_object", "pivot_dict", "to_dict"]
 
 
 def append_to_dict(d: Dict, key, value) -> Dict:
