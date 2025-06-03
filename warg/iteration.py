@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import logging
-from typing import Any, Callable, Generator, Iterable, List, Sequence, Sized, Tuple
+from typing import Any, Callable, Generator, Iterable, List, Sequence, Sized, Tuple, Type
 
 try:
     from itertools import pairwise
@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 __all__ = ["pairs", "chunks", "leaf_apply", "leaf_type_apply"]
 
 
-def pairs(s: Iterable) -> Generator[tuple[Any, Any], None, None]:
+def pairs(s: Iterable) -> Generator[Tuple[Any, Any], None, None]:
     """
 
     NOTE: Just use itertools.pairwise....
@@ -59,7 +59,7 @@ def leaf_apply(seq: Iterable, func: Callable) -> List:
     return sub
 
 
-def leaf_type_apply(seq: Iterable, func: Callable, leaf_type: type = tuple) -> List:
+def leaf_type_apply(seq: Iterable, func: Callable, leaf_type: Type = Tuple) -> List:
     sub = []
     for element in seq:
         if not isinstance(element, leaf_type):
