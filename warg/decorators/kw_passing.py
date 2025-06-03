@@ -116,6 +116,7 @@ def passes_kws_to(
     a receiver function. No call graph checks if this actually enforces this yet. Also all receiver kwargs
     must be able to be received by receivers if multiple contracts are use
 
+    :param no_pass_filter:
     :param receiver_funcs:
     :param keep_from_var_kw:
     :return:"""

@@ -9,6 +9,7 @@ __doc__ = r"""
 __all__ = [
     "map_value_product",
     "map_product",
+    "map_sorted",
     "map_permutations",
     "map_combinations",
     "map_combinations_with_replacement",
@@ -16,45 +17,97 @@ __all__ = [
 
 import itertools
 import logging
-from typing import Any, Mapping, Tuple
+from typing import Any, Generator, Mapping, Optional, Tuple
 
 logger = logging.getLogger(__name__)
 
 
-def map_value_product(dicts: Mapping) -> Any:
-    """description"""
-    return (dict(zip(dicts, x)) for x in itertools.product(*dicts.values()))
+def map_value_product(mappings: Optional[Mapping]) -> Optional[Generator[dict, None, None]]:
+    """
+
+    :param mappings:
+    :return:
+    """
+    if mappings is None:
+        return None
+
+    return (dict(zip(mappings, x)) for x in itertools.product(*mappings.values()))
 
 
-def map_product(dicts: Mapping, repeat: int = 2) -> Any:
+def map_reversed(mapping: Optional[Mapping]) -> Optional[dict]:
+    """
+
+    :param mapping:
+    :return:
+    """
+    if mapping is None:
+        return None
+
+    return dict(reversed(list(mapping.items())))
+
+
+def map_sorted(mapping: Optional[Mapping], **kwargs) -> Optional[dict]:
+    """
+
+    :param mapping:
+    :param kwargs:
+    :return:
+    """
+    if mapping is None:
+        return None
+
+    return dict(sorted(mapping.items(), **kwargs))
+
+
+def map_product(mapping: Mapping, repeat: int = 2) -> Any:
     """description"""
     yield from zip(
-        itertools.product(dicts.keys(), repeat=repeat),
-        itertools.product(dicts.values(), repeat=repeat),
+        itertools.product(mapping.keys(), repeat=repeat),
+        itertools.product(mapping.values(), repeat=repeat),
     )
 
 
-def map_permutations(dicts: Mapping, repeat: int = 2) -> Tuple:
-    """description"""
+def map_permutations(mapping: Mapping, repeat: int = 2) -> Generator[Tuple[Any, ...], None, None]:
+    """
+
+    :param mapping:
+    :param repeat:
+    :return:
+    """
     yield from zip(
-        itertools.permutations(dicts.keys(), repeat),
-        itertools.permutations(dicts.values(), repeat),
+        itertools.permutations(mapping.keys(), repeat),
+        itertools.permutations(mapping.values(), repeat),
     )
 
 
-def map_combinations(dicts: Mapping, repeat: int = 2) -> Tuple:
-    """description"""
+def map_combinations(mapping: Mapping, repeat: int = 2) -> Generator[Tuple[Any, ...], None, None]:
+    """
+
+    :param mapping:
+    :param repeat:
+    :return:
+    """
     yield from zip(
-        itertools.combinations(dicts.keys(), repeat),
-        itertools.combinations(dicts.values(), repeat),
+        itertools.combinations(mapping.keys(), repeat),
+        itertools.combinations(mapping.values(), repeat),
     )
 
 
-def map_combinations_with_replacement(dicts: Mapping, repeat: int = 2) -> Tuple:
-    """description"""
+def map_combinations_with_replacement(
+    mappings: Mapping, repeat: int = 2
+) -> Generator[Tuple[Any, ...], None, None]:
+    """
+
+    :param mappings:
+    :param repeat:
+    :return:
+    """
+    if mappings is None:
+        return None
+
     yield from zip(
-        itertools.combinations_with_replacement(dicts.keys(), repeat),
-        itertools.combinations_with_replacement(dicts.values(), repeat),
+        itertools.combinations_with_replacement(mappings.keys(), repeat),
+        itertools.combinations_with_replacement(mappings.values(), repeat),
     )
 
 

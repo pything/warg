@@ -4,7 +4,7 @@
 __project__ = "Warg"
 
 __author__ = "Christian Heider Lindbjerg"
-__version__ = "1.4.8"
+__version__ = "1.4.9"
 __doc__ = r"""
 Created on 27/04/2019
 

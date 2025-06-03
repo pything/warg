@@ -90,7 +90,10 @@ def get_version(version: str, append_time: bool = False, verbose: bool = False, 
 
     except:
         if append_time:
-            now = datetime.datetime.utcnow()
+            try:
+                now = datetime.datetime.now(datetime.UTC)
+            except:
+                now = datetime.datetime.utcnow()
             date_version = now.strftime("%Y%m%d%H%M%S")
             # date_version = time.time()
 
