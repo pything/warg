@@ -1,14 +1,28 @@
 #!/usr/bin/env python3
 
 import logging
-from itertools import pairwise
-from typing import Any, Callable, Iterable, List, Sequence, Sized, Tuple
+from typing import Any, Callable, Generator, Iterable, List, Sequence, Sized, Tuple
+
+try:
+    from itertools import pairwise
+except:
+
+    def pairwise(iterable: Iterable) -> Generator:
+        # pairwise('ABCDEFG') → AB BC CD DE EF FG
+
+        iterator = iter(iterable)
+        a = next(iterator, None)
+
+        for b in iterator:
+            yield a, b
+            a = b
+
 
 logger = logging.getLogger(__name__)
 __all__ = ["pairs", "chunks", "leaf_apply", "leaf_type_apply"]
 
 
-def pairs(s: Iterable) -> Tuple[Any, Any]:
+def pairs(s: Iterable) -> Generator[tuple[Any, Any], None, None]:
     """
 
     NOTE: Just use itertools.pairwise....
