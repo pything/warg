@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import logging
 from typing import Callable, Dict, Hashable, Iterable, Mapping, MutableMapping
+from collections import defaultdict
+
 
 logger = logging.getLogger(__name__)
 __all__ = [
@@ -9,6 +11,8 @@ __all__ = [
     "AppendingDict",
     "pivot_dict_object",
     "pivot_dict",
+    "to_dict",
+    "nested_dict",
 ]
 
 
@@ -121,6 +125,8 @@ def to_dict(m: Mapping) -> dict:
             o[k] = v
     return o
 
+
+nested_dict = lambda: defaultdict(nested_dict)
 
 if __name__ == "__main__":
     logger.info(invert_mapping({"a": 1, "b": 2}))

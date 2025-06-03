@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 
 import logging
-from typing import Any, Callable, Iterable, List, Sequence, Tuple
+from itertools import pairwise
+from typing import Any, Callable, Iterable, List, Sequence, Sized, Tuple
 
 logger = logging.getLogger(__name__)
 __all__ = ["pairs", "chunks", "leaf_apply", "leaf_type_apply"]
 
 
-def pairs(s: Sequence) -> Tuple[Any, Any]:
+def pairs(s: Iterable) -> Tuple[Any, Any]:
     """
+
+    NOTE: Just use itertools.pairwise....
+
     Iterate over a list in overlapping pairs.
 
     Usage:
@@ -21,12 +25,14 @@ def pairs(s: Sequence) -> Tuple[Any, Any]:
     :param s: An iterable/list
     :return: Yields a pair of consecutive elements (lst[k], lst[k+1]) of lst. Last call yields (lst[-2], lst[-1]).
     """
-    i = iter(s)
-    prev = next(i)
+    yield from pairwise(s)
 
-    for item in i:
-        yield prev, item
-        prev = item
+    # i = iter(s)
+    # prev = next(i)
+    #
+    # for item in i:
+    #     yield prev, item
+    #     prev = item
 
 
 def leaf_apply(seq: Iterable, func: Callable) -> List:
@@ -49,7 +55,7 @@ def leaf_type_apply(seq: Iterable, func: Callable, leaf_type: type = tuple) -> L
     return sub
 
 
-def chunks(lst: Sequence, n: int) -> Any:
+def chunks(lst: Sized, n: int) -> Any:
     """
     Yield successive n-sized chunks from lst.
 
@@ -63,3 +69,4 @@ def chunks(lst: Sequence, n: int) -> Any:
 
 if __name__ == "__main__":
     logger.info(list(chunks(list(range(10)), 3)))
+    logger.warning(list(pairs(list(range(10)))))
