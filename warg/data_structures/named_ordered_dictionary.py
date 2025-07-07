@@ -19,7 +19,7 @@ from typing import (
 logger = logging.getLogger(__name__)
 __author__ = "Christian Heider Lindbjerg"
 
-__all__ = ["NamedOrderedDictionary", "NOD"]
+__all__ = ["NamedOrderedDictionary", "NOD", "IllegalAttributeKey"]
 
 from warg.data_structures.mappings import to_dict
 
