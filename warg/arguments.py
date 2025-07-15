@@ -2,7 +2,7 @@
 import argparse
 from collections import namedtuple
 from pathlib import Path, PosixPath
-from typing import Mapping, Tuple
+from typing import Mapping, Optional, Tuple
 from warnings import warn
 
 from warg.data_structures.named_ordered_dictionary import NOD
@@ -230,13 +230,16 @@ def check_for_duplicates_in_args(**kwargs) -> None:
             warn(f"Config contains hiding duplicates of {key} and {k_lowered}, {occur} times")
 
 
-def str_to_bool(s: str, truthy_values: Tuple[str, ...] = ("true", "1")) -> bool:
+def str_to_bool(s: Optional[str], truthy_values: Tuple[str, ...] = ("true", "1")) -> bool:
     """
 
 
     :param truthy_values:
     :param s:
     :return:"""
+    if s is None:
+        return False
+
     return s.lower() in truthy_values
 
 
