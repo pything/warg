@@ -1,13 +1,12 @@
-__all__ = ["add_logging_handler_once"]
-
-from logging import Logger
+__all__ = ["add_logging_handler_once", "SinkWriter"]
 
 import logging
+from typing import Any
 
 _logger = logging.getLogger(__name__)
 
 
-def add_logging_handler_once(_logger: Logger, handler: object) -> bool:
+def add_logging_handler_once(_logger: logging.Logger, handler: object) -> bool:
     """A helper to add a handler to a logger, ensuring there are no duplicates.
 
     :param _logger: Logger that should have a handler added.
@@ -27,3 +26,9 @@ def add_logging_handler_once(_logger: Logger, handler: object) -> bool:
 
     _logger.addHandler(handler)
     return True
+
+
+class SinkWriter:
+
+    def write(self, text: Any) -> None:
+        pass

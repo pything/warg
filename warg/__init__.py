@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
-
 __project__ = "Warg"
 
 __author__ = "Christian Heider Lindbjerg"
-__version__ = "1.4.9"
+__version__ = "1.5.0"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -12,24 +11,15 @@ Created on 27/04/2019
 
 """
 
-from pathlib import Path
-
 import logging
+from pathlib import Path
 
 _logger = logging.getLogger(__name__)
 
 with open(Path(__file__).parent / "README.md") as this_init_file:
     __doc__ += this_init_file.read()
-# del Path
-
-# with open(Path(__file__).parent.parent / "README.md", "r") as this_init_file:
-#    __doc__ += this_init_file.read()
-
-# __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"] # let everything be accessible
-# from base warg import
 
 try:
-    # from .ode import * # Silly thing
     from .data_structures import *
     from .arguments import *
     from .gdkc import *
@@ -77,9 +67,6 @@ PROJECT_AUTHOR = clean_string(__author__)
 PROJECT_ORGANISATION = clean_string("Pything")
 
 __url__ = f"https://github.com/{PROJECT_ORGANISATION}/{PROJECT_NAME}"
-
-# from apppath import AppPath # CAREFUL CIRCULAR DEPENDENCY WARNING!
-# PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR) # NOT USED!
 
 import_issue_found = False
 try:
