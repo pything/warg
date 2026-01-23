@@ -1,7 +1,7 @@
 import logging
 from typing import Any, Iterable, Union
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def to_string_if_not_of_exact_type(gen: Iterable, type_: Iterable[type] = (int, float)) -> Union[str, Any]:
@@ -39,6 +39,6 @@ def solve_type(d: Any) -> str:
 
 
 if __name__ == "__main__":
-    logger.info(solve_type(True))
+    _logger.info(solve_type(True))
 
-    logger.info(list(to_string_if_not_of_exact_type([True, 1, "A", 2.0])))
+    _logger.info(list(to_string_if_not_of_exact_type([True, 1, "A", 2.0])))

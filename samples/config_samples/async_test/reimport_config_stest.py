@@ -7,7 +7,7 @@ __doc__ = r"""
            """
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 if __name__ == "__main__":
 
     async def a() -> None:
@@ -19,7 +19,7 @@ if __name__ == "__main__":
         await addition_config_usage.b()
         import config2
 
-        logger.info(config2.ANOTHER_CONSTANT)
+        _logger.info(config2.ANOTHER_CONSTANT)
 
     import asyncio
 

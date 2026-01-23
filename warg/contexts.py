@@ -13,7 +13,7 @@ import signal
 
 from warg import AlsoDecorator
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 class LambdaContext(contextlib.AbstractContextManager):

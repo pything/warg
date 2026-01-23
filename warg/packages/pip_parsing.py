@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-import logging
 from pathlib import Path
+
+import logging
 from typing import Union
 from urllib.parse import urlparse
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 from warg.functions import sink
 
 __all__ = ["get_requirements_from_file"]
@@ -68,9 +69,9 @@ try:
         return [p for p in parsed_reqs if p]
 
 except Exception as e:  # (ModuleNotFoundError, ImportError) as e: #KeyError occurred
-    logger.error(e)
+    _logger.error(e)
     get_requirements_from_file = sink
     # logger.info('You version of python is to old!')
 
 if __name__ == "__main__":
-    logger.info(get_requirements_from_file(Path(__file__).parent.parent.parent / "requirements.txt"))
+    _logger.info(get_requirements_from_file(Path(__file__).parent.parent.parent / "requirements.txt"))

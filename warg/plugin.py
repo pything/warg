@@ -19,7 +19,7 @@ else:
 from typing import Tuple, Generator, Any
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 __all__ = ["get_plugins", "get_static_plugins", "get_dynamic_plugins"]
 
 
@@ -67,6 +67,6 @@ def get_dynamic_plugins(
 
 
 if __name__ == "__main__":
-    logger.info(get_plugins("warg"))
+    _logger.info(get_plugins("warg"))
 
-    logger.info(entry_points())
+    _logger.info(entry_points())

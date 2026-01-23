@@ -12,7 +12,7 @@ __all__ = ["unzip", "unzipper"]
 
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def unzip(iterable: Iterable[Any]) -> Iterable[Any]:
@@ -69,30 +69,30 @@ if __name__ == "__main__":
         """
         r = range(4)
 
-        logger.info(0)
+        _logger.info(0)
 
         a = [[[*r] for _ in r] for _ in r]
-        logger.info(a)
+        _logger.info(a)
 
-        logger.info(1)
+        _logger.info(1)
 
         for _, assd in zip(r, unzipper(a)):
-            logger.info()
-            logger.info(recursive_eval(assd))
-            logger.info()
+            _logger.info()
+            _logger.info(recursive_eval(assd))
+            _logger.info()
 
         for _, (a, *_) in zip(r, unzipper(a)):
-            logger.info()
-            logger.info(recursive_eval(a))
-            logger.info()
+            _logger.info()
+            _logger.info(recursive_eval(a))
+            _logger.info()
 
-        logger.info(2)
+        _logger.info(2)
 
     def skad23() -> None:
         """
         :rtype: None
         """
-        logger.info(0)
+        _logger.info(0)
         zippy_once = zip(range(6), range(3))
         dsadsa = list(deepcopy(zippy_once))
         zippy_twice = zip(dsadsa, dsadsa)
@@ -101,38 +101,38 @@ if __name__ == "__main__":
         zippy_trice = zip(asds, asds)
         zippy_trice_copy = deepcopy(zippy_trice)
 
-        logger.info(1)
+        _logger.info(1)
 
         for aa in zippy_twice:
-            logger.info(recursive_eval(aa))
+            _logger.info(recursive_eval(aa))
 
-        logger.info(2)
+        _logger.info(2)
 
         for a1 in unzip(zippy_twice_copy):
-            logger.info(recursive_eval(a1))
+            _logger.info(recursive_eval(a1))
 
-        logger.info(3)
+        _logger.info(3)
 
         for a1 in unzip(zippy_once):
-            logger.info(recursive_eval(a1))
+            _logger.info(recursive_eval(a1))
 
-        logger.info(4)
+        _logger.info(4)
 
         for a1 in zippy_trice:
-            logger.info(recursive_eval(a1))
+            _logger.info(recursive_eval(a1))
 
-        logger.info(5)
+        _logger.info(5)
 
         for a1 in unzip(zippy_trice_copy):
-            logger.info(recursive_eval(a1))
+            _logger.info(recursive_eval(a1))
 
-        logger.info(6)
+        _logger.info(6)
 
     def skad() -> None:
         """
         :rtype: None
         """
-        logger.info(0)
+        _logger.info(0)
         zippy_once = zip(zip(range(6), range(3)))
         zippy_once_copy = deepcopy(zippy_once)
         dsadsa = list(deepcopy(zippy_once))
@@ -145,53 +145,53 @@ if __name__ == "__main__":
         zippy_quad = zip(asds2323, asds2323)
         zippy_quad_copy = deepcopy(zippy_quad)
 
-        logger.info(1)
+        _logger.info(1)
 
         for aa in zippy_twice:
-            logger.info(recursive_eval(aa))
+            _logger.info(recursive_eval(aa))
 
-        logger.info(2)
+        _logger.info(2)
 
         for a1 in unzipper(zippy_twice_copy):
-            logger.info(recursive_eval(a1))
+            _logger.info(recursive_eval(a1))
 
-        logger.info(3)
+        _logger.info(3)
 
         for a1 in zippy_once_copy:
-            logger.info(recursive_eval(a1))
+            _logger.info(recursive_eval(a1))
 
-        logger.info(4)
+        _logger.info(4)
 
         for a1 in unzipper(zippy_once):
-            logger.info(recursive_eval(a1))
+            _logger.info(recursive_eval(a1))
 
-        logger.info(5)
+        _logger.info(5)
 
         for a1 in zippy_trice:
-            logger.info(recursive_eval(a1))
+            _logger.info(recursive_eval(a1))
 
-        logger.info(6)
+        _logger.info(6)
 
         for a1 in unzipper(zippy_trice_copy):
-            logger.info(recursive_eval(a1))
+            _logger.info(recursive_eval(a1))
 
-        logger.info(7)
+        _logger.info(7)
 
         for a1 in zippy_quad:
-            logger.info(recursive_eval(a1))
+            _logger.info(recursive_eval(a1))
 
-        logger.info(8)
+        _logger.info(8)
 
         for a1 in unzipper(zippy_quad_copy):
-            logger.info(recursive_eval(a1))
+            _logger.info(recursive_eval(a1))
 
-        logger.info(9)
+        _logger.info(9)
 
     aasda()
 
-    logger.info()
-    logger.info("asafasdw")
-    logger.info()
+    _logger.info()
+    _logger.info("asafasdw")
+    _logger.info()
 
     skad()
     # skad23()

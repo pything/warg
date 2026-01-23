@@ -11,7 +11,7 @@ __all__ = [
 import logging
 from typing import Any, Union
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 class OrdinalIndexingDictMixin:

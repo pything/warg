@@ -3,7 +3,7 @@ import logging
 import os
 import sys
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""

@@ -9,7 +9,7 @@ import logging
 from types import MappingProxyType
 from typing import Mapping
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 default_rules = MappingProxyType(
     {
         "ize": "ise",
@@ -53,7 +53,7 @@ def deamericanise(text: str) -> str:
 
 
 if __name__ == "__main__":
-    logger.info(
+    _logger.info(
         deamericanise(
             "I analyzed websites in order to recognize the correct spelling of international organizations"
         )

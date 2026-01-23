@@ -6,15 +6,16 @@ __doc__ = r"""
            Created on 07-05-2021
            """
 
+from pathlib import Path
+
 import logging
 import os
 import subprocess
-from pathlib import Path
 from typing import Optional
 
 from warg.os_utilities.os_platform import has_x_server, is_mac, is_windows
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 __all__ = ["latest_file", "exist_any_extension", "system_open_path"]
 
 
@@ -31,7 +32,7 @@ def system_open_path(path: Path, *, verbose: bool = False) -> None:
     """
     if has_x_server():
         if verbose:
-            logger.info(f"Opening ({path}) using the systems default handler")
+            _logger.info(f"Opening ({path}) using the systems default handler")
 
         if is_windows():
             if path.is_dir():
@@ -47,7 +48,7 @@ def system_open_path(path: Path, *, verbose: bool = False) -> None:
             subprocess.Popen(["xdg-open", path])
             # except OSError:
     else:
-        logger.info("Target display not set")
+        _logger.info("Target display not set")
 
 
 def latest_file(
@@ -75,7 +76,7 @@ def latest_file(
         msg = f"Found no previous files with extension {extension} in {directory}"
         if raise_on_failure:
             raise FileNotFoundError(msg)
-        logger.info(f"{msg}, returning None!")
+        _logger.info(f"{msg}, returning None!")
         return
     return max(list_of_files, key=os.path.getctime)  # USES CREATION TIME
 
@@ -95,12 +96,12 @@ def exist_any_extension(p: Path) -> bool:
 
 
 if __name__ == "__main__":
-    logger.info(latest_file(Path(__file__).parent, recurse=True))
-    logger.info(exist_any_extension(Path(__file__)))
-    logger.info(exist_any_extension(Path.cwd() / "__init__.py"))
-    logger.info(exist_any_extension(Path.cwd() / "__init__"))
-    logger.info(exist_any_extension(Path.cwd() / "__init__.test"))
-    logger.info(exist_any_extension(Path.cwd() / "__init___.py"))
+    _logger.info(latest_file(Path(__file__).parent, recurse=True))
+    _logger.info(exist_any_extension(Path(__file__)))
+    _logger.info(exist_any_extension(Path.cwd() / "__init__.py"))
+    _logger.info(exist_any_extension(Path.cwd() / "__init__"))
+    _logger.info(exist_any_extension(Path.cwd() / "__init__.test"))
+    _logger.info(exist_any_extension(Path.cwd() / "__init___.py"))
 
     system_open_path(Path("__init__.py"))
     # system_open_path(Path(__file__).parent)

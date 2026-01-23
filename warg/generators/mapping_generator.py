@@ -11,7 +11,7 @@ __all__ = ["yield_and_map", "inner_map", "kw_map"]
 
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def yield_and_map(iterable: Iterable[Any], level: int = 0, func: Callable = print) -> Any:
@@ -110,6 +110,6 @@ if __name__ == "__main__":
         # TODO
 
         sadd = {a: b for a, b in zip("abcdef", range(6))}
-        logger.info(select_dict(sadd, "a", "d"))
+        _logger.info(select_dict(sadd, "a", "d"))
 
     uahsd()

@@ -6,11 +6,12 @@ __doc__ = r"""
            Created on 21/12/2019
            """
 
-import logging
 from collections import defaultdict
-from typing import Dict, Mapping, Optional
 
-logger = logging.getLogger(__name__)
+import logging
+from typing import Callable, Dict, Mapping, Optional
+
+_logger = logging.getLogger(__name__)
 __all__ = [
     "AutoDict",
     "sanitise_auto_dict",
@@ -60,9 +61,10 @@ def recursive_default_dict() -> defaultdict:
     return defaultdict(recursive_default_dict)
 
 
-def recursive_default_dict_print(d: Mapping, depth: int = 1, printer: callable = print) -> None:
+def recursive_default_dict_print(d: Mapping, depth: int = 1, printer: Callable = print) -> None:
     """
 
+    :param printer:
     :param d:
     :type d:
     :param depth:
@@ -87,8 +89,8 @@ if __name__ == "__main__":
     ad["cf"]["b6"] = None
     ad["cf"]["1"] = None
 
-    logger.info(ad)
+    _logger.info(ad)
 
     recursive_default_dict_print(ad)
 
-    logger.info(sanitise_auto_dict(ad))
+    _logger.info(sanitise_auto_dict(ad))

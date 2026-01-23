@@ -9,7 +9,7 @@ __all__ = ["n_uint_mix", "n_uint_mix_generator_builder", "n_uint_mix_generator"]
 
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def n_uint_mix(mix_max: Iterable[Number], mix_min: Optional[Iterable[Number]] = None) -> List[Number]:
@@ -50,5 +50,5 @@ def n_uint_mix_generator_builder(*mix: Number, mix_min: Optional[Iterable[Number
 
 
 if __name__ == "__main__":
-    logger.info([v for _, v in zip(range(9), iter(n_uint_mix_generator(255, 255)))])
+    _logger.info([v for _, v in zip(range(9), iter(n_uint_mix_generator(255, 255)))])
     print([v for _, v in zip(range(9), iter(n_uint_mix_generator(255, 255, mix_min=(200, 200))))])

@@ -31,7 +31,7 @@ from typing import (
     overload,
 )
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 SLICE_ALL = slice(None)
 __version__ = "4.0.2"
@@ -184,11 +184,11 @@ class OrderedSet(MutableSet[T], Sequence[T]):
         had.
 
         Example:
-            >>> oset = OrderedSet()
-            >>> oset.append(3)
-            0
-            >>> logger.info(oset)
-            OrderedSet([3])
+              >>> oset = OrderedSet()
+              >>> oset.append(3)
+              0
+              >>> _logger.info(oset)
+              OrderedSet([3])
         """
         if key not in self.map:
             self.map[key] = len(self.items)
@@ -203,11 +203,11 @@ class OrderedSet(MutableSet[T], Sequence[T]):
         of the last element inserted.
 
         Example:
-            >>> oset = OrderedSet([1, 2, 3])
-            >>> oset.update([3, 1, 5, 1, 4])
-            4
-            >>> logger.info(oset)
-            OrderedSet([1, 2, 3, 5, 4])
+              >>> oset = OrderedSet([1, 2, 3])
+              >>> oset.update([3, 1, 5, 1, 4])
+              4
+              >>> _logger.info(oset)
+              OrderedSet([1, 2, 3, 5, 4])
         """
         item_index = 0
         try:
@@ -270,13 +270,13 @@ class OrderedSet(MutableSet[T], Sequence[T]):
         *does* raise an error when asked to remove a non-existent item.
 
         Example:
-            >>> oset = OrderedSet([1, 2, 3])
-            >>> oset.discard(2)
-            >>> logger.info(oset)
-            OrderedSet([1, 3])
-            >>> oset.discard(2)
-            >>> logger.info(oset)
-            OrderedSet([1, 3])
+              >>> oset = OrderedSet([1, 2, 3])
+              >>> oset.discard(2)
+              >>> _logger.info(oset)
+              OrderedSet([1, 3])
+              >>> oset.discard(2)
+              >>> _logger.info(oset)
+              OrderedSet([1, 3])
         """
         if key in self:
             i = self.map[key]
@@ -348,13 +348,13 @@ class OrderedSet(MutableSet[T], Sequence[T]):
         Each items order is defined by its first appearance.
 
         Example:
-            >>> oset = OrderedSet.union(OrderedSet([3, 1, 4, 1, 5]), [1, 3], [2, 0])
-            >>> logger.info(oset)
-            OrderedSet([3, 1, 4, 5, 2, 0])
-            >>> oset.union([8, 9])
-            OrderedSet([3, 1, 4, 5, 2, 0, 8, 9])
-            >>> oset | {10}
-            OrderedSet([3, 1, 4, 5, 2, 0, 10])
+              >>> oset = OrderedSet.union(OrderedSet([3, 1, 4, 1, 5]), [1, 3], [2, 0])
+              >>> _logger.info(oset)
+              OrderedSet([3, 1, 4, 5, 2, 0])
+              >>> oset.union([8, 9])
+              OrderedSet([3, 1, 4, 5, 2, 0, 8, 9])
+              >>> oset | {10}
+              OrderedSet([3, 1, 4, 5, 2, 0, 10])
         """
         cls = self.__class__ if isinstance(self, OrderedSet) else OrderedSet
         containers = map(list, it.chain([self], sets))
@@ -371,13 +371,13 @@ class OrderedSet(MutableSet[T], Sequence[T]):
         by the first set.
 
         Example:
-            >>> oset = OrderedSet.intersection(OrderedSet([0, 1, 2, 3]), [1, 2, 3])
-            >>> logger.info(oset)
-            OrderedSet([1, 2, 3])
-            >>> oset.intersection([2, 4, 5], [1, 2, 3, 4])
-            OrderedSet([2])
-            >>> oset.intersection()
-            OrderedSet([1, 2, 3])
+              >>> oset = OrderedSet.intersection(OrderedSet([0, 1, 2, 3]), [1, 2, 3])
+              >>> _logger.info(oset)
+              OrderedSet([1, 2, 3])
+              >>> oset.intersection([2, 4, 5], [1, 2, 3, 4])
+              OrderedSet([2])
+              >>> oset.intersection()
+              OrderedSet([1, 2, 3])
         """
         cls = self.__class__ if isinstance(self, OrderedSet) else OrderedSet
         if sets:
@@ -474,15 +474,15 @@ class OrderedSet(MutableSet[T], Sequence[T]):
         Update this OrderedSet to remove items from one or more other sets.
 
         Example:
-            >>> this = OrderedSet([1, 2, 3])
-            >>> this.difference_update(OrderedSet([2, 4]))
-            >>> logger.info(this)
-            OrderedSet([1, 3])
+              >>> this = OrderedSet([1, 2, 3])
+              >>> this.difference_update(OrderedSet([2, 4]))
+              >>> _logger.info(this)
+              OrderedSet([1, 3])
 
-            >>> this = OrderedSet([1, 2, 3, 4, 5])
-            >>> this.difference_update(OrderedSet([2, 4]), OrderedSet([1, 4, 6]))
-            >>> logger.info(this)
-            OrderedSet([3, 5])
+              >>> this = OrderedSet([1, 2, 3, 4, 5])
+              >>> this.difference_update(OrderedSet([2, 4]), OrderedSet([1, 4, 6]))
+              >>> _logger.info(this)
+              OrderedSet([3, 5])
         """
         items_to_remove = set()  # type: Set[T]
         for other in sets:
@@ -496,11 +496,11 @@ class OrderedSet(MutableSet[T], Sequence[T]):
         their order in this set.
 
         Example:
-            >>> this = OrderedSet([1, 4, 3, 5, 7])
-            >>> other = OrderedSet([9, 7, 1, 3, 2])
-            >>> this.intersection_update(other)
-            >>> logger.info(this)
-            OrderedSet([1, 3, 7])
+              >>> this = OrderedSet([1, 4, 3, 5, 7])
+              >>> other = OrderedSet([9, 7, 1, 3, 2])
+              >>> this.intersection_update(other)
+              >>> _logger.info(this)
+              OrderedSet([1, 3, 7])
         """
         other = set(other)
         self._update_items([item for item in self.items if item in other])
@@ -511,11 +511,11 @@ class OrderedSet(MutableSet[T], Sequence[T]):
         add items from the other set that were not present in this set.
 
         Example:
-            >>> this = OrderedSet([1, 4, 3, 5, 7])
-            >>> other = OrderedSet([9, 7, 1, 3, 2])
-            >>> this.symmetric_difference_update(other)
-            >>> logger.info(this)
-            OrderedSet([4, 5, 9, 2])
+              >>> this = OrderedSet([1, 4, 3, 5, 7])
+              >>> other = OrderedSet([9, 7, 1, 3, 2])
+              >>> this.symmetric_difference_update(other)
+              >>> _logger.info(this)
+              OrderedSet([4, 5, 9, 2])
         """
         items_to_add = [item for item in other if item not in self]
         items_to_remove = set(other)

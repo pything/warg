@@ -14,7 +14,7 @@ import logging
 from functools import wraps
 from typing import Any, Callable, MutableMapping, Sequence
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 class SingletonBase:
@@ -125,11 +125,11 @@ if __name__ == "__main__":
         pass
 
     # expected
-    logger.info(SingletonBaseClass())  # same
-    logger.info(SingletonBaseClass())  # same
-    logger.info(S1())  # same
+    _logger.info(SingletonBaseClass())  # same
+    _logger.info(SingletonBaseClass())  # same
+    _logger.info(S1())  # same
 
     # expected
-    logger.info(SingletonBaseMeta())  # same
-    logger.info(SingletonBaseMeta())  # same
-    logger.info(S2())  # different
+    _logger.info(SingletonBaseMeta())  # same
+    _logger.info(SingletonBaseMeta())  # same
+    _logger.info(S2())  # different

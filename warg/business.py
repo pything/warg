@@ -10,7 +10,7 @@ import logging
 from itertools import cycle
 from typing import Callable, Iterable
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def busy_indicator(

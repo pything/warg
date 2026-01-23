@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
 
-import sys
 from pathlib import Path
-import logging
 
-logger = logging.getLogger(__name__)
+import logging
+import sys
+
+_logger = logging.getLogger(__name__)
 PACKAGE_ROOT = Path(__file__).parent.parent.parent  # / "warg"
-logger.info(f"PACKAGE_ROOT: {PACKAGE_ROOT}")
+_logger.info(f"PACKAGE_ROOT: {PACKAGE_ROOT}")
 sys.path.insert(0, str(PACKAGE_ROOT.absolute()))
 
 from warg import (

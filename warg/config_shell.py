@@ -7,14 +7,15 @@ __doc__ = r"""
            """
 __all__ = ["PlaybackShell", "ConfigShell"]
 
+from pathlib import Path
+
 import cmd
 import logging
-from pathlib import Path
 from typing import Callable, MutableMapping, Optional
 
 from warg import PropertySettings, passes_kws_to
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 class PlaybackShell(cmd.Cmd):
@@ -47,7 +48,7 @@ class PlaybackShell(cmd.Cmd):
         """
         line = line.lower()
         if self.file and "playback" not in line:
-            logger.info(line, file=self.file)
+            _logger.info(line, file=self.file)
         return line
 
     def close(self) -> None:
@@ -58,7 +59,7 @@ class PlaybackShell(cmd.Cmd):
 
     def do_exit(self, arg) -> bool:
         """If recording, stop, close file, close window, and exit:"""
-        logger.info("Exiting")
+        _logger.info("Exiting")
         self.close()
         return True
 
@@ -89,7 +90,7 @@ class ConfigShell(PlaybackShell):
         try:
             return super().onecmd(line)
         except Exception as e:
-            logger.info(e)
+            _logger.info(e)
             return False  # don't stop
 
     @passes_kws_to(cmd.Cmd.__init__)
@@ -106,7 +107,7 @@ class ConfigShell(PlaybackShell):
         for p in ps.__iter_keys__():
             prop = getattr(ps.__class__, p)
             if isinstance(prop, property):
-                getter = lambda *e: logger.info(prop.fget(ps))
+                getter = lambda *e: _logger.info(prop.fget(ps))
                 getter.__doc__ = prop.fget.__doc__
                 setter = lambda *e: prop.fset(ps, *e)
                 setter.__doc__ = prop.fset.__doc__
@@ -175,7 +176,6 @@ if __name__ == "__main__":
                 :return:
                 :rtype:
                 """
-                global SOME
                 return SOME
 
             @some.setter
@@ -195,7 +195,6 @@ if __name__ == "__main__":
                 :return:
                 :rtype:
                 """
-                global SOME
                 del SOME
 
             @property
@@ -205,7 +204,7 @@ if __name__ == "__main__":
                 :return:
                 :rtype:
                 """
-                global A
+
                 return A
 
             @other.setter
@@ -235,8 +234,7 @@ if __name__ == "__main__":
             :param e:
             :type e:
             """
-            global A
-            logger.info(A)
+            _logger.info(A)
 
         cs = ConfigShell()
         cs.add_option("a", getter=get_A, setter=set_A)

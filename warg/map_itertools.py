@@ -19,7 +19,7 @@ import itertools
 import logging
 from typing import Any, Generator, Mapping, Optional, Tuple
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def map_value_product(mappings: Optional[Mapping]) -> Optional[Generator[dict, None, None]]:
@@ -120,11 +120,11 @@ if __name__ == "__main__":
         from warg import NOD
 
         a = NOD(a=[1], b=[4], c=[8])
-        logger.info(f"ValueMapProduct{str(list(map_value_product(a.as_dict())))}")
-        logger.info(f"MapProduct{str(list(map_product(a.as_dict())))}")
-        logger.info(f"map_combinations{str(list(map_combinations(a.as_dict())))}")
-        logger.info(f"map_permutations{str(list(map_permutations(a.as_dict())))}")
-        logger.info(
+        _logger.info(f"ValueMapProduct{str(list(map_value_product(a.as_dict())))}")
+        _logger.info(f"MapProduct{str(list(map_product(a.as_dict())))}")
+        _logger.info(f"map_combinations{str(list(map_combinations(a.as_dict())))}")
+        _logger.info(f"map_permutations{str(list(map_permutations(a.as_dict())))}")
+        _logger.info(
             f"map_combinations_with_replacement{str(list(map_combinations_with_replacement(a.as_dict())))}"
         )
 
@@ -135,11 +135,11 @@ if __name__ == "__main__":
         from warg import NOD
 
         a = NOD(a=[1, 2, 8], b=[4, 3, 99])
-        logger.info(f"ValueMapProduct{str(list(map_value_product(a.as_dict())))}")
-        logger.info(f"MapProduct{str(list(map_product(a.as_dict())))}")
-        logger.info(f"map_combinations{str(list(map_combinations(a.as_dict())))}")
-        logger.info(f"map_permutations{str(list(map_permutations(a.as_dict())))}")
-        logger.info(
+        _logger.info(f"ValueMapProduct{str(list(map_value_product(a.as_dict())))}")
+        _logger.info(f"MapProduct{str(list(map_product(a.as_dict())))}")
+        _logger.info(f"map_combinations{str(list(map_combinations(a.as_dict())))}")
+        _logger.info(f"map_permutations{str(list(map_permutations(a.as_dict())))}")
+        _logger.info(
             f"map_combinations_with_replacement{str(list(map_combinations_with_replacement(a.as_dict())))}"
         )
 

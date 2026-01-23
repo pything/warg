@@ -10,16 +10,16 @@ __all__ = [
     "install_requirements_from_file",
 ]
 
-import logging
+from pathlib import Path
 
+import logging
 import os
 import subprocess
 import sys
 from enum import Enum, auto
-from pathlib import Path
 from typing import Optional
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 # from warg import is_windows # avoid dependency import not standard python pkgs.
 CUR_OS = sys.platform
@@ -36,7 +36,7 @@ def catching_callable(*args, **kwargs) -> None:
         # subprocess.run(*args,**kwargs)
     except subprocess.CalledProcessError as e:
         output = (e.stderr, e.stdout, e)
-    logger.warning(output)
+    _logger.warning(output)
 
 
 SP_CALLABLE = catching_callable  # subprocess.call
@@ -73,7 +73,7 @@ def get_embedded_python_interpreter_path() -> Optional[Path]:
         if not try_path.exists():
             try_path = interpreter_path.parent / "python3.exe"
             if not try_path.exists():
-                logger.error(f"Could not find python {try_path}")
+                _logger.error(f"Could not find python {try_path}")
                 if not fallback:
                     return None
             else:
@@ -86,7 +86,7 @@ def get_embedded_python_interpreter_path() -> Optional[Path]:
         if not try_path.exists():
             try_path = interpreter_path.parent / "bin" / "python3"
             if not try_path.exists():
-                logger.error(f"Could not find python {try_path}")
+                _logger.error(f"Could not find python {try_path}")
                 if not fallback:
                     return None
             else:
@@ -221,8 +221,8 @@ def install_requirements_from_file(
             SP_CALLABLE([str(get_embedded_python_interpreter_path()), "-m", "pip", *args])
 
         else:
-            logger.info("PIP IS STILL MISSING!")
+            _logger.info("PIP IS STILL MISSING!")
 
 
 if __name__ == "__main__":
-    logger.info(get_embedded_python_interpreter_path())
+    _logger.info(get_embedded_python_interpreter_path())

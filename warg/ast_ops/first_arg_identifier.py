@@ -12,7 +12,7 @@ import ast
 import logging
 from typing import Any, Callable, Optional
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def recurse_first_args(args):
@@ -104,7 +104,7 @@ class FirstArgIdentifier(ast.NodeVisitor):
                 iter_name = f"{{{kw_repr}}}"
             else:  # No obvious name
                 if self.verbose:
-                    logger.info(type(first_arg))
+                    _logger.info(type(first_arg))
                     iter_name = f"{ast.dump(first_arg)}"
                 else:
                     iter_name = "iterable"
@@ -146,15 +146,15 @@ def get_first_arg_name(
                 return fai.result[func_name][idx]
 
             elif verbose:
-                logger.info(
+                _logger.info(
                     f'Unexpected line number: {idx}, probably a wrong alias "{func_name}" was supplied, found {fai.result[func_name]}, in {inspect.getsourcefile(caller_frame)}'
                 )
 
         elif verbose:
-            logger.info(f"{func_name} was not found in {fai.result}")
+            _logger.info(f"{func_name} was not found in {fai.result}")
 
     except Exception as e:
-        logger.info(e)
+        _logger.info(e)
 
     return
 
@@ -220,7 +220,7 @@ if __name__ == "__main__":
             fai.visit(call_nodes)
             snippet_offset = caller_src_code_lines[1] - 1
             desc = fai.result["some_func"][caller_frame.f_lineno - snippet_offset]
-            logger.info(desc)
+            _logger.info(desc)
 
         this_name_is_in_another_frame = 5
         this_func_is_in_another_frame = lambda x: x
@@ -259,7 +259,7 @@ if __name__ == "__main__":
             fai.visit(call_nodes)
             snippet_offset = caller_src_code_lines[1] - 1
             desc = fai.result["some_func"][caller_frame.f_lineno - snippet_offset]
-            logger.info(desc)
+            _logger.info(desc)
 
         some_func({1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10})
 
@@ -271,7 +271,7 @@ if __name__ == "__main__":
 
         def some_func(a: Any) -> None:
             """description"""
-            logger.info(get_first_arg_name("some_func", verbose=True))
+            _logger.info(get_first_arg_name("some_func", verbose=True))
 
         some_func(cprint(2, deliminator="-"))
 
@@ -284,7 +284,7 @@ if __name__ == "__main__":
 
         def some_func(a: Any) -> None:
             """description"""
-            logger.info(get_first_arg_name("some_func", verbose=True))
+            _logger.info(get_first_arg_name("some_func", verbose=True))
 
         some_func(warg.identity(2))
 
@@ -303,7 +303,7 @@ if __name__ == "__main__":
 
         def some_func(a: Any) -> None:
             """description"""
-            logger.info(get_first_arg_name("some_func", verbose=True))
+            _logger.info(get_first_arg_name("some_func", verbose=True))
 
         some_func(Ac.Bc.c(2))
 

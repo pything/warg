@@ -13,7 +13,7 @@ from typing import Tuple
 
 from warg import TripleNumber
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def compute_color_for_labels(label: int, palette: TripleNumber = (2**11 - 1, 2**15 - 1, 2**20 - 1)) -> Tuple:
@@ -24,4 +24,4 @@ def compute_color_for_labels(label: int, palette: TripleNumber = (2**11 - 1, 2**
 
 if __name__ == "__main__":
     for i in range(9):
-        logger.info(compute_color_for_labels(i))
+        _logger.info(compute_color_for_labels(i))

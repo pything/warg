@@ -10,7 +10,7 @@ __all__ = ["lcm"]
 
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 try:
     from math import lcm

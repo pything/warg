@@ -1,9 +1,10 @@
 __all__ = ["add_logging_handler_once"]
 
-import logging
 from logging import Logger
 
-logger = logging.getLogger(__name__)
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 def add_logging_handler_once(_logger: Logger, handler: object) -> bool:

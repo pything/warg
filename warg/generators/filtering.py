@@ -10,7 +10,7 @@ import logging
 from enum import Enum
 from typing import Any, Iterable
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 __all__ = ["FilterModeEnum", "symbol_filter"]
 
 
@@ -65,16 +65,16 @@ if __name__ == "__main__":
             " 12 329#9213",
         ]
         for s in symbol_filter(strings):
-            logger.info(s)
+            _logger.info(s)
 
-        logger.info(" ")
+        _logger.info(" ")
 
         for i, s in enumerate(symbol_filter(strings, exclusion_mode=FilterModeEnum.exclude_fully)):
-            logger.info(i, s)
+            _logger.info(i, s)
 
-        logger.info(" ")
+        _logger.info(" ")
 
         for s in symbol_filter(strings, exclusion_mode=FilterModeEnum.exclude_prefix):
-            logger.info(s)
+            _logger.info(s)
 
     asijsda()

@@ -13,7 +13,7 @@ from typing import Sequence, Union
 
 from warg import Number
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def replicate(x: Union[Sequence, Number], times: int = 2) -> Sequence:
@@ -38,10 +38,10 @@ if __name__ == "__main__":
         """
         :rtype: None
         """
-        logger.info(replicate(2))
-        logger.info(replicate(2, 4))
+        _logger.info(replicate(2))
+        _logger.info(replicate(2, 4))
 
-        logger.info(replicate((2, 3)))
-        logger.info(replicate((2, 3), times=4))
+        _logger.info(replicate((2, 3)))
+        _logger.info(replicate((2, 3), times=4))
 
     asdaa()

@@ -21,18 +21,19 @@ __all__ = [
     "reload_module",
 ]
 
+from importlib import reload
+from pathlib import Path
+
 import importlib
 import logging
 import sys
-from importlib import reload
 from importlib.util import find_spec
-from pathlib import Path
 from typing import Any, Callable, Iterable, List, Optional, Union
 from warnings import warn
 
 from warg.decorators import passes_kws_to
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 IGNORE = """
 PRELOADED_MODULES = set()
@@ -113,10 +114,10 @@ def reload_all_modules(catch_exceptions: bool = True, verbose: bool = VERBOSE) -
             reload(mod)
     except Exception as e:
         if verbose:
-            logger.error(mod)
+            _logger.error(mod)
         if catch_exceptions:
             if verbose:
-                logger.error(e)
+                _logger.error(e)
         else:
             raise e
 
@@ -344,7 +345,7 @@ def ensure_in_sys_path(
             sys.path.append(str_path)
     else:
         if verbose:
-            logger.warning(f"{path} is already in sys path")
+            _logger.warning(f"{path} is already in sys path")
 
 
 def is_module_available(module: str) -> bool:
@@ -407,7 +408,7 @@ if __name__ == "__main__":
         s = deepcopy(sys.path)
         ensure_in_sys_path(Path(__file__).parent)
         s2 = sys.path
-        logger.info(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
+        _logger.info(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
 
     def iajsd():
         from copy import deepcopy
@@ -415,10 +416,10 @@ if __name__ == "__main__":
         s = deepcopy(sys.path)
         clean_sys_path()
         s2 = sys.path
-        logger.info(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
+        _logger.info(s == s2, set(s2) - set(s), set(s) - set(s2), s2)
 
     def asuhdsaud():
-        logger.info(find_ancestral_relatives("queues", context=__file__))
+        _logger.info(find_ancestral_relatives("queues", context=__file__))
 
     # _main()
     # aisjdi()

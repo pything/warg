@@ -2,11 +2,12 @@
 
 __all__ = ["get_version"]
 
-import datetime
-import logging
 from pathlib import Path
 
-logger = logging.getLogger(__name__)
+import datetime
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class NotGitException(Exception):
@@ -73,17 +74,17 @@ def get_version(version: str, append_time: bool = False, verbose: bool = False, 
             )
 
             if "dirty" in current_git_version:
-                logger.warning(f"{caller_parent} git is dirty, {current_git_version}")
+                _logger.warning(f"{caller_parent} git is dirty, {current_git_version}")
 
             if git_version.split("-")[0] != version:
                 msg = f"{caller_parent} git version {git_version} does not match __version__" f" {version}"
-                logger.warning(msg)
+                _logger.warning(msg)
                 assert git_version.split("-")[0] == version, msg
 
             else:
                 if verbose:
                     msg = f"{caller_parent} git version {git_version} matches __version__" f" {version}"
-                    logger.info(msg)
+                    _logger.info(msg)
 
         else:
             raise NotGitException
@@ -113,7 +114,7 @@ def get_version(version: str, append_time: bool = False, verbose: bool = False, 
                 #
                 # Publications using datetime versions should only be made from master
                 # to represent the HEAD moving forward.
-                logger.warning(
+                _logger.warning(
                     f"Environment variable VERSION is not set, only using datetime: {date_version}"
                 )
 
@@ -127,5 +128,5 @@ def get_version(version: str, append_time: bool = False, verbose: bool = False, 
 if __name__ == "__main__":
     from warg import __version__
 
-    logger.info(__version__)
-    logger.info(get_version("1.2.7", verbose=True))
+    _logger.info(__version__)
+    _logger.info(get_version("1.2.7", verbose=True))

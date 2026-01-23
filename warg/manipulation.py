@@ -12,7 +12,7 @@ __all__ = ["recursive_flatten"]
 import logging
 from typing import Iterable, Sequence
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def recursive_flatten_seq(seq: Sequence) -> Sequence:
@@ -43,8 +43,8 @@ def recursive_flatten(sequence: Iterable) -> Iterable:
 
 
 if __name__ == "__main__":
-    logger.info(list(recursive_flatten((((2,), 2), (2,), 2))))
-    logger.info(list(recursive_flatten(((("2",), 2), (2,), 2))))
-    logger.info(list(recursive_flatten((([[None]], 2), (2,), 2))))
+    _logger.info(list(recursive_flatten((((2,), 2), (2,), 2))))
+    _logger.info(list(recursive_flatten(((("2",), 2), (2,), 2))))
+    _logger.info(list(recursive_flatten((([[None]], 2), (2,), 2))))
 
-    logger.info(list(recursive_flatten((([[None]], 2), (2,), 2))))
+    _logger.info(list(recursive_flatten((([[None]], 2), (2,), 2))))

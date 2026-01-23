@@ -13,7 +13,7 @@ from typing import Any, Dict, MutableMapping
 
 from warg import NOD
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 class PropertySettings(
@@ -117,5 +117,5 @@ class PropertySettings(
 if __name__ == "__main__":
     a = PropertySettings()
 
-    logger.info({**a.__crystallise__()})
+    _logger.info({**a.__crystallise__()})
     assert not "h" in a

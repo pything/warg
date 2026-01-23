@@ -17,7 +17,7 @@ import typing
 from functools import wraps
 from typing import Any, MutableMapping, Sequence
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def timeit(f: typing.Callable) -> typing.Callable:
@@ -41,7 +41,7 @@ def timeit(f: typing.Callable) -> typing.Callable:
         start_time = time.time()
         result = f(*args, **kwds)
         elapsed_time = time.time() - start_time
-        logger.info(f"{f} took {elapsed_time:.3f} seconds to compute")
+        _logger.info(f"{f} took {elapsed_time:.3f} seconds to compute")
         return elapsed_time, result
 
     return wrapper
@@ -225,34 +225,34 @@ class StopWatch(contextlib.AbstractContextManager):
 
 if __name__ == "__main__":
     a = StopWatch()
-    logger.info(f"Timer str rep: {a}")
-    logger.info(a.tick())
-    logger.info(a.tick())
-    logger.info(a // 2)
-    logger.info()
+    _logger.info(f"Timer str rep: {a}")
+    _logger.info(a.tick())
+    _logger.info(a.tick())
+    _logger.info(a // 2)
+    _logger.info()
 
     with StopWatch(auto_start_on_enter=False) as timer1:
-        logger.info(timer1)  # __str__ calls timer.time() internally
+        _logger.info(timer1)  # __str__ calls timer.time() internally
         timer1.tick()  # register checkpoint
-        logger.info(timer1.tick())  # time since last timer.checkpoint() call
+        _logger.info(timer1.tick())  # time since last timer.checkpoint() call
 
-    logger.info()
+    _logger.info()
     with StopWatch() as timer4:
-        logger.info(timer4)  # __str__ calls timer.time() internally
+        _logger.info(timer4)  # __str__ calls timer.time() internally
         timer4.tick()  # register checkpoint
-        logger.info(timer4.tick())  # time since last timer.checkpoint() call
+        _logger.info(timer4.tick())  # time since last timer.checkpoint() call
 
-    logger.info()
-    logger.info(timer4)  # time since start
-    logger.info(timer4.tick())  # time taken for the block, will not be updated outside of it
-    logger.info(timer4.tick())  # time taken for the block, will not be updated outside of it
-    logger.info(timer4)  # ime since start, will not be updated outside of it
-    logger.info()
+    _logger.info()
+    _logger.info(timer4)  # time since start
+    _logger.info(timer4.tick())  # time taken for the block, will not be updated outside of it
+    _logger.info(timer4.tick())  # time taken for the block, will not be updated outside of it
+    _logger.info(timer4)  # ime since start, will not be updated outside of it
+    _logger.info()
 
     with StopWatch(auto_start_on_construction=True, auto_start_on_enter=False) as timer2:
-        logger.info(timer2)  # __str__ calls timer.time() internally
-        logger.info(timer2.tick())  # time since last timer.checkpoint() call
-        logger.info(timer2)
+        _logger.info(timer2)  # __str__ calls timer.time() internally
+        _logger.info(timer2.tick())  # time since last timer.checkpoint() call
+        _logger.info(timer2)
 
     @StopWatch()
     def foo() -> int:
@@ -262,4 +262,4 @@ if __name__ == "__main__":
         return 42
 
     value, time = foo()
-    logger.info(f"foo time: {time}, value: {value}")
+    _logger.info(f"foo time: {time}, value: {value}")

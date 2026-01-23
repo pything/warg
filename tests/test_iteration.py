@@ -1,19 +1,18 @@
-from warg import leaf_apply, leaf_type_apply
-
-
 import logging
 
-logger = logging.getLogger(__name__)
+from warg import leaf_apply, leaf_type_apply
+
+_logger = logging.getLogger(__name__)
 
 
 def test_leaf_apply():
     asd = [1, 2, 3, 4, 5, 6, 7, 8, 9, [2, 3], [[323, 525], [323, 525], [323]]]
-    logger.info(leaf_apply(asd, lambda a: a + 1))
+    _logger.info(leaf_apply(asd, lambda a: a + 1))
 
 
 def test_leaf_type_apply():
     asd = [(1, 2), [(3, 4), (3, 4)], [(323, 525)], [[(323, 525), (323, 39)]]]
-    logger.info(leaf_type_apply(asd, lambda a: ((a[0] + a[1]), 1), tuple))
+    _logger.info(leaf_type_apply(asd, lambda a: ((a[0] + a[1]), 1), tuple))
 
 
 def test_reversed_ok():

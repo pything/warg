@@ -6,7 +6,7 @@ __all__ = ["peek"]
 
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def peek(generator: Iterator) -> Optional[itertools.chain]:
@@ -17,5 +17,5 @@ def peek(generator: Iterator) -> Optional[itertools.chain]:
 
 
 if __name__ == "__main__":
-    logger.info(peek(iter(range(0))))
-    logger.info(peek(iter(range(1))))
+    _logger.info(peek(iter(range(0))))
+    _logger.info(peek(iter(range(1))))

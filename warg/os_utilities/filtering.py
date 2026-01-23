@@ -8,13 +8,14 @@ __doc__ = r"""
 
 __all__ = ["is_excluded", "is_python_package", "is_python_module", "negate"]
 
+from pathlib import Path
+
 import logging
 import re
 from functools import wraps
-from pathlib import Path
 from typing import Any, Callable, MutableMapping, Sequence, Union
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def is_python_module(path: Path) -> bool:
@@ -78,10 +79,10 @@ def negate(f: Callable) -> Callable:
 
 if __name__ == "__main__":
     # logger.info(negate(is_excluded("/iods/excludes/osad.py")))
-    logger.info(negate(is_excluded)("/iods/excludes/osad.py"))
-    logger.info(is_excluded("/s/excludes/a.py"))
-    logger.info(is_excluded("/s/exclud/a.py"))
-    logger.info(is_excluded("/s/exclude/a.py"))
-    logger.info(is_excluded("/s/Exclude/a.py"))
-    logger.info(is_excluded("/s/excluded/a.py"))
-    logger.info(is_excluded("/s/Excluded/a.py"))
+    _logger.info(negate(is_excluded)("/iods/excludes/osad.py"))
+    _logger.info(is_excluded("/s/excludes/a.py"))
+    _logger.info(is_excluded("/s/exclud/a.py"))
+    _logger.info(is_excluded("/s/exclude/a.py"))
+    _logger.info(is_excluded("/s/Exclude/a.py"))
+    _logger.info(is_excluded("/s/excluded/a.py"))
+    _logger.info(is_excluded("/s/Excluded/a.py"))

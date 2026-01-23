@@ -9,7 +9,7 @@ __doc__ = r"""
 import logging
 from typing import Tuple
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 COLOR_RGB = Tuple[int, int, int]
 COLOR_RGBA = Tuple[int, int, int, int]
 COLOR_INT = Tuple[int, ...]
@@ -94,6 +94,6 @@ if __name__ == "__main__":
         a = RGB(1, 50, 100)
         b = color_to_str(a)
         c = color_from_str(b)
-        logger.info(c)
+        _logger.info(c)
 
     main()

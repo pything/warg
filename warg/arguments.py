@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-import argparse
 from collections import namedtuple
 from pathlib import Path, PosixPath
+
+import argparse
 from typing import Mapping, Optional, Tuple
 from warnings import warn
 
@@ -26,7 +27,7 @@ __all__ = [
 
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 class UpperAttrMetaclass(type):
@@ -262,9 +263,9 @@ if __name__ == "__main__":
             return a + b
 
         wq = add2(2, 4)
-        logger.info(wq)
+        _logger.info(wq)
 
         wc = add2(*c(4, 3))
-        logger.info(wc)
+        _logger.info(wc)
 
     _main()

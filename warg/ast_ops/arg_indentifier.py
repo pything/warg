@@ -12,7 +12,7 @@ import ast
 import logging
 from typing import Any, Callable, Optional
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 class ArgIdentifier(ast.NodeVisitor):
@@ -77,7 +77,7 @@ class ArgIdentifier(ast.NodeVisitor):
                     n = f"{{{kw_repr}}}"
                 else:  # No obvious name
                     if self.verbose:
-                        logger.info(type(arg))
+                        _logger.info(type(arg))
                         n = f"{ast.dump(arg)}"
                     else:
                         n = "iterable"
@@ -110,13 +110,13 @@ def get_arg_names(func_name: str, *, verbose=False, max_num_intermediate_unnamed
             if idx in fai.result[func_name]:
                 return fai.result[func_name][idx]
             elif verbose:
-                logger.info(
+                _logger.info(
                     f'Unexpected line number: {idx}, probably a wrong alias "{func_name}" was supplied, found {fai.result[func_name]}, in {inspect.getsourcefile(caller_frame)}'
                 )
         elif verbose:
-            logger.info(f"{func_name} was not found in {fai.result}")
+            _logger.info(f"{func_name} was not found in {fai.result}")
     except Exception as e:
-        logger.info(e)
+        _logger.info(e)
     return
 
 

@@ -8,7 +8,7 @@ __doc__ = r"""
 
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def test_singleton_class():

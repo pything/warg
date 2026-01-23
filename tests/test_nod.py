@@ -9,7 +9,7 @@ __doc__ = r"""Testing of NamedOrderedDictionary class"""
 
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def test_attribute_assignment():
@@ -230,7 +230,7 @@ def test_nested():
 
     cfg.ADSA = 203182
 
-    logger.info(cfg)
+    _logger.info(cfg)
 
 
 def test_copy():
@@ -241,12 +241,12 @@ def test_copy():
     nodict.paramB = 10
 
     b = copy(nodict)
-    logger.info(b)
+    _logger.info(b)
     assert b.paramB == 10
     assert b.paramB == nodict.paramB
 
     a = deepcopy(nodict)
-    logger.info(a)
+    _logger.info(a)
     assert a.paramB == 10
     assert a.paramB == nodict.paramB
 
@@ -312,8 +312,8 @@ def test_recurse_conversion_of_dicts1():
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    logger.info(nodict)
-    logger.info(nodict.paramA.s)
+    _logger.info(nodict)
+    _logger.info(nodict.paramA.s)
 
 
 def test_recurse_conversion_of_dicts2():
@@ -323,8 +323,8 @@ def test_recurse_conversion_of_dicts2():
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    logger.info(nodict)
-    logger.info(nodict.paramA.s)
+    _logger.info(nodict)
+    _logger.info(nodict.paramA.s)
 
 
 def test_recurse_conversion_of_dicts3():
@@ -334,8 +334,8 @@ def test_recurse_conversion_of_dicts3():
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
-    logger.info(nodict)
-    logger.info(nodict.paramA.s)
+    _logger.info(nodict)
+    _logger.info(nodict.paramA.s)
     assert isinstance(nodict.paramA.s, NOD)
 
 
@@ -346,8 +346,8 @@ def test_recurse_conversion_of_dicts4():
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
-    logger.info(no_dict)
-    logger.info(no_dict.paramA.s)
+    _logger.info(no_dict)
+    _logger.info(no_dict.paramA.s)
 
     # 6
     no_dict = NOD()
@@ -356,8 +356,8 @@ def test_recurse_conversion_of_dicts4():
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
-    logger.info(no_dict)
-    logger.info(no_dict.paramA.s)
+    _logger.info(no_dict)
+    _logger.info(no_dict.paramA.s)
 
     # 7
     no_dict = NOD()
@@ -366,8 +366,8 @@ def test_recurse_conversion_of_dicts4():
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
-    logger.info(no_dict)
-    logger.info(no_dict.paramA.s)
+    _logger.info(no_dict)
+    _logger.info(no_dict.paramA.s)
 
     # 8
     no_dict = NOD()
@@ -376,8 +376,8 @@ def test_recurse_conversion_of_dicts4():
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
-    logger.info(no_dict)
-    logger.info(no_dict.paramA.s)
+    _logger.info(no_dict)
+    _logger.info(no_dict.paramA.s)
 
     # 9
     no_dict = NOD()
@@ -385,8 +385,8 @@ def test_recurse_conversion_of_dicts4():
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
-    logger.info(no_dict)
-    logger.info(no_dict.paramA)
+    _logger.info(no_dict)
+    _logger.info(no_dict.paramA)
 
     # 10
     no_dict = NOD()
@@ -394,8 +394,8 @@ def test_recurse_conversion_of_dicts4():
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
-    logger.info(no_dict)
-    logger.info(no_dict.paramA)
+    _logger.info(no_dict)
+    _logger.info(no_dict.paramA)
 
     # 11
     no_dict = NOD()
@@ -403,8 +403,8 @@ def test_recurse_conversion_of_dicts4():
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
-    logger.info(no_dict)
-    logger.info(no_dict.paramA)
+    _logger.info(no_dict)
+    _logger.info(no_dict.paramA)
 
     # 12
     no_dict = NOD()
@@ -413,8 +413,8 @@ def test_recurse_conversion_of_dicts4():
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
-    logger.info(no_dict)
-    logger.info(no_dict.paramA)
+    _logger.info(no_dict)
+    _logger.info(no_dict.paramA)
 
     # 13
     no_dict = NOD()
@@ -423,8 +423,8 @@ def test_recurse_conversion_of_dicts4():
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
-    logger.info(no_dict)
-    logger.info(no_dict.paramA.a)
+    _logger.info(no_dict)
+    _logger.info(no_dict.paramA.a)
 
     # 14
     no_dict = NOD()
@@ -433,8 +433,8 @@ def test_recurse_conversion_of_dicts4():
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
-    logger.info(no_dict)
-    logger.info(no_dict.paramA)
+    _logger.info(no_dict)
+    _logger.info(no_dict.paramA)
 
     # 15
     no_dict = NOD()
@@ -442,8 +442,8 @@ def test_recurse_conversion_of_dicts4():
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
-    logger.info(no_dict)
-    logger.info(no_dict.paramA)
+    _logger.info(no_dict)
+    _logger.info(no_dict.paramA)
 
     # 16
     no_dict = NOD()
@@ -451,8 +451,8 @@ def test_recurse_conversion_of_dicts4():
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
-    logger.info(no_dict)
-    logger.info(no_dict.paramA.s.sd.sfd)
+    _logger.info(no_dict)
+    _logger.info(no_dict.paramA.s.sd.sfd)
     no_dict.paramA.s.sd.sfd = 2
     assert no_dict.paramA.s.sd.sfd == 2
 

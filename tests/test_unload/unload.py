@@ -1,10 +1,8 @@
+from pathlib import Path
+
 import gc
 import os
 import shutil
-import sys
-
-from pathlib import Path
-from stat import filemode
 
 from warg.runtime import unload_modules
 

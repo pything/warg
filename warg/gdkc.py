@@ -12,7 +12,7 @@ __all__ = ["GeneralisedDelayedKwargConstruction", "GDKC"]
 import logging
 from typing import Any, Callable, Mapping, MutableMapping, Sequence
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 class GeneralisedDelayedKwargConstruction:
@@ -71,7 +71,7 @@ class GeneralisedDelayedKwargConstruction:
             ]
         )
         if war != "":
-            logger.warning(war)
+            _logger.warning(war)
 
         self.kwargs.update(kwargs)
         try:

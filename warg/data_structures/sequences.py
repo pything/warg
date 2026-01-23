@@ -9,7 +9,7 @@ __doc__ = r"""
 import logging
 from typing import Sequence, Tuple
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 __all__ = ["split"]
 
 
@@ -26,6 +26,6 @@ def split(seq: Sequence) -> Tuple[Sequence, Sequence]:
 
 
 if __name__ == "__main__":
-    logger.info(split(list(range(11))))
-    logger.info(split(list(range(10))))
-    logger.info(split(list(range(9))))
+    _logger.info(split(list(range(11))))
+    _logger.info(split(list(range(10))))
+    _logger.info(split(list(range(9))))

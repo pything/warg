@@ -7,7 +7,7 @@ __doc__ = r"""
            """
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 if __name__ == "__main__":
 
     def f() -> None:
@@ -16,9 +16,9 @@ if __name__ == "__main__":
         """
         import config1
 
-        logger.info(config1.A_CONSTANT)
+        _logger.info(config1.A_CONSTANT)
         import config1
 
-        logger.info(config1.ANOTHER_CONSTANT)
+        _logger.info(config1.ANOTHER_CONSTANT)
 
     f()

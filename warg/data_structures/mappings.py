@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-import logging
-from typing import Callable, Dict, Hashable, Iterable, Mapping, MutableMapping
 from collections import defaultdict
 
+import logging
+from typing import Callable, Dict, Hashable, Iterable, Mapping, MutableMapping
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 __all__ = [
     "invert_mapping",
     "invert_dict",
@@ -129,18 +129,18 @@ def to_dict(m: Mapping) -> dict:
 nested_dict = lambda: defaultdict(nested_dict)
 
 if __name__ == "__main__":
-    logger.info(invert_mapping({"a": 1, "b": 2}))
+    _logger.info(invert_mapping({"a": 1, "b": 2}))
 
-    logger.info(invert_mapping({"a": 2, "b": 2, "c": 3, "d": 4}))
-    logger.info(invert_dict({"a": 2, "b": 2, "c": 3, "d": 4}))
+    _logger.info(invert_mapping({"a": 2, "b": 2, "c": 3, "d": 4}))
+    _logger.info(invert_dict({"a": 2, "b": 2, "c": 3, "d": 4}))
 
     def uhasdu():
         from warg.data_structures.named_ordered_dictionary import NOD
 
         a = NOD({"b": NOD(c=1)}, d="usahfo7uyhaouw", f=[NOD(p="m")])
 
-        logger.info(a)
-        logger.info(a.as_dict())
+        _logger.info(a)
+        _logger.info(a.as_dict())
 
     uhasdu()
 

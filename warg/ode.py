@@ -12,7 +12,7 @@ __all__ = []
 
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def this_is_barely_legal():

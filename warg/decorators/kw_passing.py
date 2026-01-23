@@ -28,7 +28,7 @@ __all__ = [
 ]
 
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 # noinspection PyUnresolvedReferences
@@ -95,7 +95,7 @@ def eval_sig_kw_params(
             if v.kind == inspect._ParameterKind.VAR_KEYWORD:
                 no_var_kw = False
         if no_var_kw:
-            logger.warning(
+            _logger.warning(
                 f"Receiver {receiver_func} with {receiver_params} does not acceptable arbitrary kwargs although "
                 f"from_func will pass "
                 f"all "
@@ -133,7 +133,7 @@ def passes_kws_to(
                     if k in new_params:
                         new_params.pop(k)
                     else:
-                        logger.warning(f"{k} is not in signature of {rf}")
+                        _logger.warning(f"{k} is not in signature of {rf}")
             passing_sig = passing_sig.replace(parameters=list(new_params.values()))
         passing_func.__signature__ = passing_sig
         return passing_func
@@ -301,7 +301,7 @@ def pack_args(
         else:
             if pack_name in kwargs:
                 if verbose:
-                    logger.info(f"{pack_name} was extended, careful!")
+                    _logger.info(f"{pack_name} was extended, careful!")
                 a = kwargs.pop(pack_name, None)
                 # noinspection PyTypeChecker
                 new_kwargs[pack_name] = (*a, *args)
@@ -347,7 +347,7 @@ def pack_kws(
         else:  # TODO: else keyword can be removed, but branch remain
             if pack_name in kwargs:
                 if verbose:
-                    logger.info(f"{pack_name} was extended, careful!")
+                    _logger.info(f"{pack_name} was extended, careful!")
                 k = kwargs.pop(pack_name, None)
                 new_kwargs[pack_name] = {**k, **kwargs}
             else:
@@ -391,7 +391,7 @@ def pack_args_and_kws(
         else:  # TODO: else keyword can be removed, but branch remain
             if pack_name in kwargs:
                 if verbose:
-                    logger.info(f"{pack_name} was extended, careful!")
+                    _logger.info(f"{pack_name} was extended, careful!")
                 a, k = kwargs.pop(pack_name, None)
                 # noinspection PyTypeChecker
                 new_kwargs[pack_name] = ((*a, *args), {**k, **kwargs})
@@ -453,7 +453,7 @@ def drop_unused_kws(f: Callable) -> Callable:
             if k in from_sig.parameters.keys():
                 kept[k] = v
             else:
-                logger.warning(f"dropped {k} with value {v} from call of {f}")
+                _logger.warning(f"dropped {k} with value {v} from call of {f}")
 
         return f(*args, **kept)
 
@@ -544,7 +544,7 @@ if __name__ == "__main__":
 
             :param a:
             :type a:"""
-            logger.info(a)
+            _logger.info(a)
 
         @drop_unused_kws
         def some_other_func(*, a, **kwargs: MutableMapping):
@@ -554,7 +554,7 @@ if __name__ == "__main__":
             :type a:
             :param kwargs:
             :type kwargs:"""
-            logger.info(a, kwargs)
+            _logger.info(a, kwargs)
 
         @drop_unused_kws
         def some_different_func(*, a, b):
@@ -564,19 +564,19 @@ if __name__ == "__main__":
             :type a:
             :param b:
             :type b:"""
-            logger.info(a, b)
+            _logger.info(a, b)
 
-        logger.info(inspect.signature(SubClass0.__init__))
-        logger.info(inspect.signature(SubClass1.__init__))
-        logger.info(inspect.signature(SubClass2.__init__))
-        logger.info(inspect.signature(SubClass12.__init__))
+        _logger.info(inspect.signature(SubClass0.__init__))
+        _logger.info(inspect.signature(SubClass1.__init__))
+        _logger.info(inspect.signature(SubClass2.__init__))
+        _logger.info(inspect.signature(SubClass12.__init__))
 
-        logger.info(vars(SubClass0(1, 1, 1, kwarg0=52)))
-        logger.info(vars(SubClass1(2, 2, 1, kwarg0=52)))
-        logger.info(vars(SubClass2(1, 1, 1, kwarg0=52)))
-        logger.info(vars(SubClass12(1, 1, 1, kwarg1=52)))
+        _logger.info(vars(SubClass0(1, 1, 1, kwarg0=52)))
+        _logger.info(vars(SubClass1(2, 2, 1, kwarg0=52)))
+        _logger.info(vars(SubClass2(1, 1, 1, kwarg0=52)))
+        _logger.info(vars(SubClass12(1, 1, 1, kwarg1=52)))
         # logger.info(vars(SubClass12(1, 1, 1, kwarg0=52))) # Throws exception, intentional
-        logger.info(inspect.getmro(SubClass0))
+        _logger.info(inspect.getmro(SubClass0))
 
         some_func(a=1, b=2, c=3)
 

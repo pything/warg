@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import logging
-from typing import Any, Callable, Generator, Iterable, List, Sequence, Sized, Tuple, Type
+from typing import Any, Callable, Generator, Iterable, List, Sized, Tuple, Type
 
 try:
     from itertools import pairwise
@@ -18,8 +18,8 @@ except:
             a = b
 
 
-logger = logging.getLogger(__name__)
-__all__ = ["pairs", "chunks", "leaf_apply", "leaf_type_apply"]
+_logger = logging.getLogger(__name__)
+__all__ = ["pairs", "chunks", "leaf_apply", "leaf_type_apply", "first", "last"]
 
 
 def pairs(s: Iterable) -> Generator[Tuple[Any, Any], None, None]:
@@ -47,6 +47,16 @@ def pairs(s: Iterable) -> Generator[Tuple[Any, Any], None, None]:
     # for item in i:
     #     yield prev, item
     #     prev = item
+
+
+def first(a: Iterable[Any]) -> Any:
+    e, *_ = a
+    return e
+
+
+def last(a: Iterable[Any]) -> Any:
+    *_, e = a
+    return e
 
 
 def leaf_apply(seq: Iterable, func: Callable) -> List:
@@ -82,5 +92,5 @@ def chunks(lst: Sized, n: int) -> Any:
 
 
 if __name__ == "__main__":
-    logger.info(list(chunks(list(range(10)), 3)))
-    logger.warning(list(pairs(list(range(10)))))
+    _logger.info(list(chunks(list(range(10)), 3)))
+    _logger.warning(list(pairs(list(range(10)))))

@@ -14,7 +14,7 @@ __all__ = ["cached_property"]
 import logging
 from typing import Any
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 # cached_property = property
 
 ################################################################################

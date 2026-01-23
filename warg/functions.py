@@ -32,26 +32,26 @@ __all__ = [
     "mappings_agreement_reduce",
 ]
 
+from collections import defaultdict
+from pathlib import Path
+
 import ctypes
 import logging
 import operator
+import requests
 import sys
 import webbrowser
-from collections import defaultdict
 from copy import deepcopy
 from difflib import SequenceMatcher
 from functools import reduce
 from itertools import product
-from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, Iterator, List, Mapping, Optional, Sequence, Tuple, Union
-
-import requests
 
 from warg.contexts import Suppress
 from warg.decorators import drop_unused_kws
 from warg.typing_extension import Number
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 def int_limits(c_int_type: Any) -> Tuple[int, int]:
@@ -450,7 +450,7 @@ if __name__ == "__main__":
         :rtype: None
         """
         a = {"b": 1, "h": 2}
-        logger.info(invert_shallow_mapping(a))
+        _logger.info(invert_shallow_mapping(a))
 
     def asjdnasid() -> None:
         """
@@ -460,7 +460,7 @@ if __name__ == "__main__":
             "b": {"c": {"d": [0, 1, 2], "e": [3, 4, 5, 6]}, "f": [7, 8], "g": [9]},
             "h": {"j": [10, 11]},
         }
-        logger.info(flip_two_level_mapping(a))
+        _logger.info(flip_two_level_mapping(a))
 
     def asidj() -> None:
         """
@@ -471,15 +471,15 @@ if __name__ == "__main__":
             "b": {"c": {"g": 4, "h": 5}, "d": {"j": 6, "k": 7}},
         }
         result = swap_mapping_order(test_dict, [2, 0, 1])
-        logger.info(result)
+        _logger.info(result)
 
     def i8jsadij():
         ij = ([10, 29], [(2, 3, 4), [[12, 4, 5]], ((2, 92, 90))], [])
-        logger.info(to_list(ij))
+        _logger.info(to_list(ij))
 
     def i8jsadi2j():
         ij = ([10, 29], [(2, 3, 4), [[12, 4, 5]], ((2, 92, 90))], [])
-        logger.info(to_tuple(ij))
+        _logger.info(to_tuple(ij))
 
     # i8jsadij()
     # i8jsadi2j()
@@ -488,4 +488,4 @@ if __name__ == "__main__":
     # asjdnasid()
 
     # logger.info(open_uri_resource(__file__))
-    logger.info(open_uri_resource("dr.dk"))
+    _logger.info(open_uri_resource("dr.dk"))

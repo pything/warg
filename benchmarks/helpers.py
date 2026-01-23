@@ -3,10 +3,10 @@
 __author__ = "Christian Heider Lindbjerg"
 
 import time
-from typing import Tuple
+from typing import Tuple, Callable
 
 
-def benchmark_func(func: callable, times: int = 100000) -> Tuple[float, float]:
+def benchmark_func(func: Callable, times: int = 100000) -> Tuple[float, float]:
     """description"""
     start = time.time()
     result = None

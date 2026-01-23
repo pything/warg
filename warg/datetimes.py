@@ -10,7 +10,7 @@ __all__ = ["default_datetime_repr", "now_repr"]
 import datetime
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 DEFAULT_REPRESENTATION = "%Y-%m-%d_%H:%M:%S.%f"
 
 
@@ -36,4 +36,4 @@ def now_repr() -> str:
 
 
 if __name__ == "__main__":
-    logger.info(now_repr())
+    _logger.info(now_repr())

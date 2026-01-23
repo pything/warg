@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-from typing import Any, MutableMapping, Sequence
-
 import pytest
+from typing import Any, MutableMapping, Sequence
 
 from warg.gdkc import GeneralisedDelayedKwargConstruction
 
@@ -14,7 +13,7 @@ __doc__ = r"""
 
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 class A:
@@ -26,19 +25,19 @@ class A:
 
     def something(self):
         """description"""
-        logger.info(self.kwargs_a)
+        _logger.info(self.kwargs_a)
 
     def something_else(self, *args: Sequence):
         """description"""
-        logger.info(args, self.kwargs_a)
+        _logger.info(args, self.kwargs_a)
 
     def another(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         """description"""
-        logger.info(args, self.kwargs_a, kwargs)
+        _logger.info(args, self.kwargs_a, kwargs)
 
     def clearly_something(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         """description"""
-        logger.info(self.args_a, args, self.kwargs_a, kwargs)
+        _logger.info(self.args_a, args, self.kwargs_a, kwargs)
 
 
 def test_not_both():

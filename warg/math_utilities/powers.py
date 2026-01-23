@@ -11,7 +11,7 @@ from math import ceil, floor, log, log10, log2
 
 from warg import Number
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 __all__ = [
     "next_pow",
     "next_power",
@@ -70,5 +70,5 @@ next_power_2 = next_pow_2
 next_power_10 = next_pow_10
 
 if __name__ == "__main__":
-    logger.info(next_pow(17, 5))
-    logger.info(prev_pow(17, 5))
+    _logger.info(next_pow(17, 5))
+    _logger.info(prev_pow(17, 5))

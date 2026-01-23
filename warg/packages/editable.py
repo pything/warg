@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Optional
 import logging
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 VERBOSE = False
 
 
@@ -86,7 +86,7 @@ def package_is_editable(package_name: str) -> bool:
 
     except PackageNotFoundError as p:
         if VERBOSE:
-            logger.info(p)
+            _logger.info(p)
 
 
 def get_package_location(package_name: str) -> Path:
@@ -97,7 +97,7 @@ def get_package_location(package_name: str) -> Path:
 
     except PackageNotFoundError as p:
         if VERBOSE:
-            logger.info(p)
+            _logger.info(p)
 
 
 # noinspection PyProtectedMember
@@ -147,17 +147,17 @@ def get_dist_package_location(dist: Distribution) -> Optional[Path]:
 
 
 if __name__ == "__main__":
-    logger.info(package_is_editable(package_name="draugr"))
-    logger.info(get_package_location(package_name="draugr"))
+    _logger.info(package_is_editable(package_name="draugr"))
+    _logger.info(get_package_location(package_name="draugr"))
 
-    logger.info(package_is_editable(package_name="warg"))
-    logger.info(get_package_location(package_name="warg"))
+    _logger.info(package_is_editable(package_name="warg"))
+    _logger.info(get_package_location(package_name="warg"))
 
-    logger.info(package_is_editable(package_name="apppath"))
-    logger.info(get_package_location(package_name="apppath"))
+    _logger.info(package_is_editable(package_name="apppath"))
+    _logger.info(get_package_location(package_name="apppath"))
 
-    logger.info(get_package_location(package_name="numpy"))
+    _logger.info(get_package_location(package_name="numpy"))
 
-    logger.info(package_is_editable(package_name="Pillow"))
-    logger.info(get_package_location(package_name="Pillow"))
-    logger.info(get_package_location(package_name="pillow"))
+    _logger.info(package_is_editable(package_name="Pillow"))
+    _logger.info(get_package_location(package_name="Pillow"))
+    _logger.info(get_package_location(package_name="pillow"))
