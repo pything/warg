@@ -6,14 +6,15 @@ __doc__ = r"""
            Created on 21/12/2019
            """
 
-from collections import defaultdict
-
 import logging
+from collections import defaultdict
 from typing import Callable, Dict, Mapping, Optional
 
 _logger = logging.getLogger(__name__)
 __all__ = [
     "AutoDict",
+    "autodict",
+    "AD",
     "sanitise_auto_dict",
     "recursive_default_dict_print",
     "recursive_default_dict",
