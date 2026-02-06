@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 from typing import Any, Callable, Iterable, Mapping, Tuple
 
 __author__ = "Christian Heider Lindbjerg"

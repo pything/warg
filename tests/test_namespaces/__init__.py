@@ -1,6 +1,6 @@
 import logging
 
-import ok_namespace
+from . import ok_namespace
 
 _logger = logging.getLogger(__name__)
 

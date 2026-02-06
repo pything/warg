@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = """
 Generalised wrapper for delayed construction of class objects. Encapsulates kwargs and callable constructor with the option of modifying construction arguments before construction is finally performed.

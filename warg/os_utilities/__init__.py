@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 __doc__ = r"""
 
            Created on 17/02/2020

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 from warg.metas.singleton import SingletonBase, SingletonMeta
 
 __author__ = "Christian Heider Lindbjerg"

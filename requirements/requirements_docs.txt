@@ -6,5 +6,5 @@ setuptools>=70.0.0 # not directly required, pinned by Snyk to avoid a vulnerabil
 sphinx
 #m2r2
 sphinxcontrib-programoutput
-warg
 urllib3>=2.5.0 # not directly required, pinned by Snyk to avoid a vulnerability
+warg

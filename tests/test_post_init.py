@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 from typing import Any, MutableMapping, Sequence
 
 from warg import drop_unused_kws

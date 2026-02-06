@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-
-
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""
           This file is not for general use. Ode to python

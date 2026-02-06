@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-
-
 __author__ = "heider"
 __doc__ = r"""
 

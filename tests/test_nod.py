@@ -1,7 +1,11 @@
-#!/usr/bin/env python3
 import pytest
 
-from warg.data_structures.named_ordered_dictionary import IllegalAttributeKey, NOD
+from warg.data_structures.named_ordered_dictionary import (
+    DISABLE_DICT_KEYS,
+    DISABLE_DICT_VALUES,
+    IllegalAttributeKey,
+    NOD,
+)
 
 __author__ = "Christian Heider Lindbjerg"
 __doc__ = r"""Testing of NamedOrderedDictionary class"""
@@ -307,8 +311,7 @@ def test_recurse_conversion_of_dicts():
 
 def test_recurse_conversion_of_dicts1():
     nodict = NOD()
-    nodict.paramA = {}
-    nodict.paramA["s"] = "str_parameter"
+    nodict.paramA = {"s": "str_parameter"}
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
@@ -329,8 +332,7 @@ def test_recurse_conversion_of_dicts2():
 
 def test_recurse_conversion_of_dicts3():
     nodict = NOD()
-    nodict.paramA = {}
-    nodict.paramA["s"] = {"sd": "str_parameter"}
+    nodict.paramA = {"s": {"sd": "str_parameter"}}
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
@@ -341,8 +343,7 @@ def test_recurse_conversion_of_dicts3():
 
 def test_recurse_conversion_of_dicts4():
     no_dict = NOD()
-    no_dict.paramA = {}
-    no_dict.paramA["s"] = "str_parameter"
+    no_dict.paramA = {"s": "str_parameter"}
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
@@ -361,8 +362,7 @@ def test_recurse_conversion_of_dicts4():
 
     # 7
     no_dict = NOD()
-    no_dict.paramA = {}
-    no_dict.paramA["s"] = [{"sd": "str_parameter"}]
+    no_dict.paramA = {"s": [{"sd": "str_parameter"}]}
     no_dict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert no_dict.paramB == 10
@@ -476,3 +476,22 @@ def test_call_index():
     assert no_dict("paramC") == [5]
     assert no_dict(6, "paramD", 1) == [1, 5, 1]
     assert no_dict(2) == [11]
+
+
+@pytest.mark.skipif(DISABLE_DICT_KEYS, reason="This test is only relevant when dict keys are disabled.")
+def test_no_dict_keys_assigned_illegal():
+    nodict = NOD()
+    with pytest.raises(IllegalAttributeKey) as exc_info:
+        nodict["keys"] = 123
+
+
+@pytest.mark.skipif(DISABLE_DICT_VALUES, reason="This test is only relevant when dict values are disabled.")
+def test_no_dict_values_assigned_illegal():
+    nodict = NOD()
+    with pytest.raises(IllegalAttributeKey) as exc_info:
+        nodict["values"] = 123
+
+
+if __name__ == "__main__":
+    test_no_dict_keys_assigned_illegal()
+    test_no_dict_values_assigned_illegal()

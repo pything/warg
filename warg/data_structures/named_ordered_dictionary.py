@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import logging
 from typing import (
     Any,
@@ -14,14 +12,27 @@ from typing import (
     Type,
     TypeVar,
     ValuesView,
+    Collection,
 )
 
-_logger = logging.getLogger(__name__)
 __author__ = "Christian Heider Lindbjerg"
 
-__all__ = ["NamedOrderedDictionary", "NOD", "IllegalAttributeKey"]
+__all__ = [
+    "NamedOrderedDictionary",
+    "NOD",
+    "IllegalAttributeKey",
+    "DISABLE_DICT_KEYS",
+    "DISABLE_DICT_VALUES",
+    "RECURSE_MAPPING_CONVERSION",
+]
 
-from warg.data_structures.mappings import to_dict
+from .mappings import to_dict
+
+_logger = logging.getLogger(__name__)
+
+RECURSE_MAPPING_CONVERSION = True
+DISABLE_DICT_KEYS = True
+DISABLE_DICT_VALUES = True
 
 LOCALS = (
     "as_list",
@@ -30,22 +41,37 @@ LOCALS = (
     "as_flat_tuples",
     "add_unnamed_arg",
     "dict_of",
-    "keys",
     "update",
+    "items",
+    "get",
+    "pop",
+    "clear",
+    "copy",
+    "setdefault",
+    "popitem",
+    # "__dict__",
+    "__class__",
     "__setattr__",
+    "__getattr__",
+    "__delattr__",
 )
 
-RECURSE_MAPPING_CONVERSION = True
+
+if not DISABLE_DICT_KEYS:
+    LOCALS += ("keys",)
+
+if not DISABLE_DICT_VALUES:
+    LOCALS += ("values",)
 
 
-def recurse_conversion(self, value):
-    if isinstance(value, MutableMapping) and not isinstance(value, self.__class__):
+def recurse_conversion_of_mappings(self: Any, value: Any) -> Any:
+
+    if isinstance(value, Mapping) and not isinstance(value, self.__class__):
         value = self.__class__(value)
-    elif isinstance(value, (list, tuple)):  # TODO: MAYBE KEEP?
-        value = type(value)(
-            (self.__class__(x) if isinstance(x, MutableMapping) else recurse_conversion(self, x))
-            for x in value
-        )
+    elif isinstance(value, str):
+        pass
+    elif isinstance(value, Collection):  # TODO: MAYBE KEEP?
+        value = type(value)(recurse_conversion_of_mappings(self, x) for x in value)
     return value
 
 
@@ -136,16 +162,18 @@ class NamedOrderedDictionary(MutableMapping):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         # super().__init__(**kwargs)
-        if len(args) == 1 and isinstance(args[0], dict):
+        if len(args) == 1 and isinstance(args[0], Mapping):
             args_dict = args[0]
         else:
             args_dict = {}
             if len(args) == 1 and isinstance(args[0], Iterable):
                 args = args[0]
+
             for arg in args:
                 args_dict[id(arg)] = arg
 
         args_dict.update(kwargs)
+
         if len(args_dict) > 0:
             self.update(args_dict)
 
@@ -260,7 +288,7 @@ return nod
             super().__setattr__(key, value)
         else:
             if RECURSE_MAPPING_CONVERSION:
-                value = recurse_conversion(self, value)
+                value = recurse_conversion_of_mappings(self, value)
             self.__dict__[key] = value
 
     def __getitem__(self, key: Any) -> Any:
@@ -287,6 +315,9 @@ return nod
         :type key:
         :param value:
         :type value:"""
+        if key in LOCALS:
+            raise IllegalAttributeKey(key, type_=NamedOrderedDictionary)
+
         if isinstance(key, slice):
             keys = list(self.__dict__.keys())[key]
             if isinstance(value, Sequence):
@@ -295,12 +326,12 @@ return nod
                 ), f"number of keys {len(keys)} are not equal values {len(value)}"
                 for a, v in zip(keys, value):
                     if RECURSE_MAPPING_CONVERSION:
-                        v = recurse_conversion(self, v)
+                        v = recurse_conversion_of_mappings(self, v)
                     self.__dict__[a] = v
             else:
                 for a in keys:
                     if RECURSE_MAPPING_CONVERSION:
-                        value = recurse_conversion(self, value)
+                        value = recurse_conversion_of_mappings(self, value)
                     self.__dict__[a] = value
         elif isinstance(key, KeysView):
             # assert set(self.__dict__.keys()).issuperset(key)
@@ -310,16 +341,16 @@ return nod
                 assert len(key) == len(value), f"number of keys {len(key)} are not equal values {len(value)}"
                 for a, v in zip(key, value):
                     if RECURSE_MAPPING_CONVERSION:
-                        v = recurse_conversion(self, v)
+                        v = recurse_conversion_of_mappings(self, v)
                     self.__dict__[a] = v
             else:
                 for a in key:
                     if RECURSE_MAPPING_CONVERSION:
-                        value = recurse_conversion(self, value)
+                        value = recurse_conversion_of_mappings(self, value)
                     self.__dict__[a] = value
         else:
             if RECURSE_MAPPING_CONVERSION:
-                value = recurse_conversion(self, value)
+                value = recurse_conversion_of_mappings(self, value)
             self.__dict__[key] = value
 
     def __delitem__(self, key) -> None:
@@ -372,23 +403,27 @@ return nod
         Args:
         items (dict): Python dictionary containing updated values."""
 
-        if len(args) == 1 and isinstance(args[0], Mapping):
+        if len(args) == 1 and isinstance(args[0], Mapping) and not isinstance(args[0], self.__class__):
             a: Mapping = args[0]
             if RECURSE_MAPPING_CONVERSION and True:
                 l = {}
+
                 for k, v in a.items():
-                    l[k] = recurse_conversion(self, v)
+                    l[k] = recurse_conversion_of_mappings(self, v)
+
                 a = l
 
             args_dict = a
         elif len(args):
             args_dict = {}
             a: List = list(self.__dict__.keys())
+
             if True:  # be same length guard
                 assert len(a) == len(args)
+
             for arg, key in zip(args, a):
                 if RECURSE_MAPPING_CONVERSION and True:
-                    arg = recurse_conversion(self, arg)
+                    arg = recurse_conversion_of_mappings(self, arg)
 
                 args_dict[key] = arg
         else:
@@ -500,8 +535,7 @@ if __name__ == "__main__":
 
     _logger.info(f"\n{next(ccc):#^9}")  # 5
     nodict = NamedOrderedDictionary()
-    nodict.paramA = {}
-    nodict.paramA["s"] = "str_parameter"
+    nodict.paramA = {"s": "str_parameter"}
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10
@@ -520,8 +554,7 @@ if __name__ == "__main__":
 
     _logger.info(f"\n{next(ccc):#^9}")  # 7
     nodict = NamedOrderedDictionary()
-    nodict.paramA = {}
-    nodict.paramA["s"] = [{"sd": "str_parameter"}]
+    nodict.paramA = {"s": [{"sd": "str_parameter"}]}
     nodict.paramB = 10
     # assert nodict.paramA == "str_parameter"
     assert nodict.paramB == 10

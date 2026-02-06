@@ -1,4 +1,4 @@
-fail_fast: true
+fail_fast: false
 repos:
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.20.0
@@ -92,18 +92,18 @@ repos:
   #  hooks:
   #    - id: pydocstyle
 
-  - repo: https://github.com/executablebooks/mdformat
-    rev: 0.7.22
-    hooks:
-      - id: mdformat
-        additional_dependencies:
-          - mdformat-mkdocs
-          - mdformat-admon
-        exclude: |
-          (?x)^(
-            docs/formatter/black\.md
-            | docs/\w+\.md
-          )$
+  #  - repo: https://github.com/executablebooks/mdformat
+  #    rev: 0.7.22
+  #    hooks:
+  #      - id: mdformat
+  #        additional_dependencies:
+  #          - mdformat-mkdocs
+  #          - mdformat-admon
+  #        exclude: |
+  #          (?x)^(
+  #            docs/formatter/black\.md
+  #            | docs/\w+\.md
+  #          )$
 
   #  - repo: https://github.com/igorshubovych/markdownlint-cli
   #    rev: v0.37.0
