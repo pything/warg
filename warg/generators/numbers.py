@@ -1,9 +1,9 @@
 import random
-from typing import Callable, Iterable, List, Optional, Tuple
+from typing import Any, Callable, Generator, Iterable, List, Never, Optional, Tuple
 
 from warg import Number
 
-__all__ = ["n_uint_mix", "n_uint_mix_generator_builder", "n_uint_mix_generator"]
+__all__ = ["n_uint_mix", "n_uint_mix_generator_builder", "n_uint_mix_generator", "frange"]
 
 
 import logging
@@ -25,7 +25,9 @@ def n_uint_mix(mix_max: Iterable[Number], mix_min: Optional[Iterable[Number]] = 
     return [random.randrange(min_, max_) for min_, max_ in zip(mix_min, mix_max)]
 
 
-def n_uint_mix_generator(*mix, mix_min: Optional[Iterable[Number]] = None) -> Tuple[Number, ...]:
+def n_uint_mix_generator(
+    *mix, mix_min: Optional[Iterable[Number]] = None
+) -> Generator[list[int | float], Any, Never]:
     if len(mix) == 1:
         if isinstance(mix, Iterable):
             mix = mix[0]
@@ -41,11 +43,27 @@ def n_uint_mix_generator_builder(*mix: Number, mix_min: Optional[Iterable[Number
         if isinstance(mix, Iterable):
             mix = mix[0]
 
-    def no_arg_generator() -> Tuple[Number, ...]:
+    def no_arg_generator() -> Generator[list[int | float], Any, Never]:
         while 1:
             yield n_uint_mix(mix, mix_min=mix_min)
 
     return no_arg_generator
+
+
+def frange(start: Number, stop: Number, step: Number) -> Generator[Number, None, None]:
+    """
+
+    :param start:
+    :type start:
+    :param stop:
+    :type stop:
+    :param step:
+    :type step:
+    """
+    while start < stop:
+        yield start
+        start += step
+    yield stop
 
 
 if __name__ == "__main__":
