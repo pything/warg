@@ -31,7 +31,6 @@ __all__ = [
 _logger = logging.getLogger(__name__)
 
 
-# noinspection PyUnresolvedReferences
 def to_keyword_only(val: inspect.Parameter) -> inspect.Parameter:
     """
 
@@ -44,7 +43,6 @@ def to_keyword_only(val: inspect.Parameter) -> inspect.Parameter:
     return val
 
 
-# noinspection PyUnresolvedReferences
 def eval_sig_kw_params(
     passing_sig: inspect.Signature,
     receiver_func: Callable,
@@ -246,7 +244,7 @@ def verify_kws_sig(f: Callable) -> Callable:
         from_sig = inspect.signature(f)
 
         for k, v in from_sig.parameters.items():
-            # noinspection PyUnresolvedReferences
+
             if v.kind == inspect._ParameterKind.VAR_KEYWORD:
                 return f(*args, **kwargs)
 
@@ -424,7 +422,6 @@ def drop_unused_args(f: Callable) -> Callable:
     return wrapper
 
 
-# noinspection PyUnresolvedReferences
 def drop_unused_kws(f: Callable) -> Callable:
     """
 
@@ -444,7 +441,7 @@ def drop_unused_kws(f: Callable) -> Callable:
         from_sig = inspect.signature(f)
 
         for k, v in from_sig.parameters.items():
-            # noinspection PyUnresolvedReferences
+
             if v.kind == inspect._ParameterKind.VAR_KEYWORD:
                 return f(*args, **kwargs)
 

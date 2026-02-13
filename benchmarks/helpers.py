@@ -7,7 +7,15 @@ from typing import Tuple, Callable
 
 
 def benchmark_func(func: Callable, times: int = 100000) -> Tuple[float, float]:
-    """description"""
+    """
+
+    :param func:
+    :type func:
+    :param times:
+    :type times:
+    :return:
+    :rtype:
+    """
     start = time.time()
     result = None
     for _ in range(times):

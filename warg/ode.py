@@ -108,21 +108,19 @@ def this_is_barely_legal():
 if __name__ == "__main__":
     # from __future__ import braces # TODO: Try disable comment
 
-    # noinspection PyUnresolvedReferences
     import __hello__
 
     print()
     import this
 
     print()
-    # noinspection PyUnresolvedReferences
+
     import antigravity
 
     print()
     print(this.i, this.d, this.c, this.s)
     print()
 
-    # noinspection PyUnresolvedReferences
     # import that  # pip install that
 
     this_is_barely_legal()

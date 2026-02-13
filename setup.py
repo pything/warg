@@ -2,7 +2,7 @@
 from typing import List, Sequence, TextIO, Union
 
 
-def python_version_check(major: int = 3, minor: int = 7):
+def python_version_check(major: int = 3, minor: int = 11):
     """description"""
     import sys
 
