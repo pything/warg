@@ -4,7 +4,7 @@ __doc__ = r"""
            Created on 09/10/2019
            """
 
-__all__ = ["indent_lines", "str_to_tuple", "clean_string"]
+__all__ = ["indent_lines", "str_to_tuple", "clean_string", "parse_collection_string"]
 
 import logging
 from typing import Any
@@ -46,6 +46,20 @@ def str_to_tuple(arg):
 
 def clean_string(s: str) -> str:
     return s.lower().strip().replace(" ", "_")
+
+
+def parse_collection_string(s: str) -> list[str]:
+    """
+    Use this function to convert a string representation of a collection of strings, like "['a', 'b', 'c']" or "('a', 'b', 'c')" or "{'a', 'b', 'c'}" to a list of strings ["a", "b", "c"]. This is used to parse string inputs for parameters that are collections of strings, like Tuple[str, ...], List[str], Set[str].
+    This is safer than using eval() and also more flexible in terms of input format, as it can handle different types of brackets and also allows for extra whitespace and different types of quotes around the strings.
+
+    :param s:
+    :type s:
+    :return:
+    :rtype:
+    """
+    # Strip brackets and split by comma, also strip whitespace and quotes from each element
+    return [v.strip().strip("'").strip('"') for v in s.strip("[](){}").split(",")]
 
 
 if __name__ == "__main__":

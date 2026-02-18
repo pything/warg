@@ -53,6 +53,13 @@ _logger = logging.getLogger(__name__)
 
 
 def int_limits(c_int_type: Any) -> Tuple[int, int]:
+    """
+
+    :param c_int_type:
+    :type c_int_type:
+    :return:
+    :rtype:
+    """
     signed = c_int_type(-1).value < c_int_type(0).value
     bit_size = ctypes.sizeof(c_int_type) * 8
     signed_limit = 2 ** (bit_size - 1)
@@ -63,6 +70,13 @@ TO_LIST_MAX_RECURSION_LIMIT = int_limits(ctypes.c_int)[-1]
 
 
 def recurse_replace_empty(iterable: Iterable) -> Optional[Iterable]:
+    """
+
+    :param iterable:
+    :type iterable:
+    :return:
+    :rtype:
+    """
     if isinstance(iterable, str) or not isinstance(iterable, Iterable):
         return iterable
 
@@ -79,14 +93,35 @@ def recurse_replace_empty(iterable: Iterable) -> Optional[Iterable]:
 
 
 def list_keys(d: Dict) -> List[Any]:
+    """
+
+    :param d:
+    :type d:
+    :return:
+    :rtype:
+    """
     return list(d.keys())
 
 
 def first_key(d: Dict) -> Any:
+    """
+
+    :param d:
+    :type d:
+    :return:
+    :rtype:
+    """
     return list_keys(d)[0]
 
 
 def last_key(d: Dict) -> Any:
+    """
+
+    :param d:
+    :type d:
+    :return:
+    :rtype:
+    """
     return list_keys(d)[-1]
 
 
@@ -279,6 +314,13 @@ def chain_apply(it: Iterable, *callables: Callable) -> Iterable[Any]:
 
 
 def to_list(x: Union[Iterable, Any]) -> Union[List, Any]:
+    """
+
+    :param x:
+    :type x:
+    :return:
+    :rtype:
+    """
     if False:
         if x is None:
             return []
@@ -304,6 +346,13 @@ def to_list(x: Union[Iterable, Any]) -> Union[List, Any]:
 
 
 def to_tuple(x: Union[Iterable, Any]) -> Union[Tuple, Any]:
+    """
+
+    :param x:
+    :type x:
+    :return:
+    :rtype:
+    """
     if False:
         if x is None:
             return ()
@@ -330,6 +379,15 @@ def to_tuple(x: Union[Iterable, Any]) -> Union[Tuple, Any]:
 
 @Suppress(FileNotFoundError)
 def text_in_file(text: str, filename: Path) -> bool:
+    """
+
+    :param text:
+    :type text:
+    :param filename:
+    :type filename:
+    :return:
+    :rtype:
+    """
     if filename.exists():
         return any(text in line for line in filename.open())
 
@@ -472,10 +530,12 @@ if __name__ == "__main__":
         _logger.info(result)
 
     def i8jsadij():
+        """ """
         ij = ([10, 29], [(2, 3, 4), [[12, 4, 5]], ((2, 92, 90))], [])
         _logger.info(to_list(ij))
 
     def i8jsadi2j():
+        """ """
         ij = ([10, 29], [(2, 3, 4), [[12, 4, 5]], ((2, 92, 90))], [])
         _logger.info(to_tuple(ij))
 
