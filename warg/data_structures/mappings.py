@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 import logging
-from typing import Callable, Dict, Hashable, Iterable, Mapping, MutableMapping
+from typing import Any, Callable, Dict, Hashable, Iterable, List, Mapping, MutableMapping
 
 _logger = logging.getLogger(__name__)
 __all__ = [
@@ -12,6 +12,7 @@ __all__ = [
     "pivot_dict",
     "to_dict",
     "nested_dict",
+    "invert_mapping_list",
 ]
 
 
@@ -85,6 +86,22 @@ def invert_dict(d: Mapping) -> Dict:  # TODO: HANDLE DUPLICATE KEYS; CONVERT TO 
     :rtype:
     """
     return {v: k for k, v in d.items()}
+
+
+def invert_mapping_list(m: Mapping[Any, Any]) -> Mapping[Any, List[Any]]:
+    """
+
+    :param m:
+    :type m:
+    :return:
+    :rtype:
+    """
+    out = defaultdict(list)
+
+    for k, v in m.items():
+        out[v].append(k)
+
+    return out
 
 
 def pivot_dict(d: Dict, key) -> Dict:  # TODO: HANDLE DUPLICATE KEYS; CONVERT TO TUPLES

@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 DEFAULT_REPRESENTATION = "%Y-%m-%d_%H:%M:%S.%f"
 
 
-def default_datetime_repr(date: datetime, str_format: str = DEFAULT_REPRESENTATION) -> str:
+def default_datetime_repr(date: datetime.datetime, str_format: str = DEFAULT_REPRESENTATION) -> str:
     """
 
     :param date:
