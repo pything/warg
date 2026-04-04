@@ -8,3 +8,4 @@ sphinx
 sphinxcontrib-programoutput
 urllib3>=2.5.0 # not directly required, pinned by Snyk to avoid a vulnerability
 warg
+urllib3>=2.2.2 # not directly required, pinned by Snyk to avoid a vulnerability
