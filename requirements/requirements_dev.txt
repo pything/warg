@@ -5,7 +5,7 @@
 black>=18.9b0
 certifi>=2023.7.22 # not directly required, pinned by Snyk to avoid a vulnerability
 coveralls>=1.6.0
-pip>=19.0.3
+pip>=26.0.1
 pygments>=2.15.0 # not directly required, pinned by Snyk to avoid a vulnerability
 pytest>=4.3.0
 pytest-cov>=2.6.1
